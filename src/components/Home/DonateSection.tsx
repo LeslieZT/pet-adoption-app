@@ -32,6 +32,7 @@ export const DonateSection: React.FC = () => {
           icon="sponsor"
         />
       </div>
+      <img src='./src/assets/dog-icon.png' alt='dog-icon' className="mt-16"/>
     </section>
   );
 };
