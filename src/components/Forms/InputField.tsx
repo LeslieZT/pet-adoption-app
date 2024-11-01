@@ -9,6 +9,7 @@ interface InputFieldProps<T extends FieldValues> {
   type?: string;
   placeholder?: string;
   icon?: IconType;
+  className?: string;
 }
 
 export const InputField = <T extends FieldValues>({
@@ -18,9 +19,10 @@ export const InputField = <T extends FieldValues>({
   type = "text",
   placeholder,
   icon: Icon,
+  className = "",
 }: InputFieldProps<T>) => {
   return (
-    <div>
+    <div className={className}>
       <div className="mb-2 block">
         <Label
           htmlFor={name}
