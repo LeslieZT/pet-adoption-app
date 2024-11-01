@@ -6,6 +6,7 @@ import { ages, genders, petTypes } from "../../constants/allowValues";
 import { InputField, SelectField } from "../Forms";
 import { SearchFormData, SearchSchema } from "../../schema/Search.schema";
 import { CustomButton } from "../Buttons";
+import { PetCard } from "../Card/PetCard";
 
 export const SearchPet: React.FC = () => {
   const { control, handleSubmit } = useForm<SearchFormData>({
@@ -23,7 +24,7 @@ export const SearchPet: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row md:flex-col gap-10 mt-10">
+    <div className="flex flex-row md:flex-col gap-10 mt-10 p-4">
       <div className="w-80 md:w-full p-4">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -76,8 +77,61 @@ export const SearchPet: React.FC = () => {
         </form>
       </div>
 
-      <div className="h-screen bg-royal-purple w-full">
-        <h1>Adopt</h1>
+      <div className="w-full flex flex-wrap gap-4 justify-between">
+        <PetCard
+          name="Doggy"
+          breed="Dog"
+          age="2 years"
+          location="New York"
+       
+          gender="male"
+          imageUrl="./src/assets/Cat.png"
+        />
+        <PetCard
+          name="Cat"
+          breed="Cat"
+          age="2 years"
+          location="New York"
+   
+          gender="male"
+          imageUrl="./src/assets/section1_pet6.png"
+        />
+        <PetCard
+          name="Doggy"
+          breed="Dog"
+          age="2 years"
+          location="New York"
+ 
+          gender="female"
+          imageUrl="./src/assets/Cat.png"
+        />
+        <PetCard
+          name="Doggy"
+          breed="Dog"
+          age="2 years"
+          location="New York"
+     
+          gender="male"
+          imageUrl="./src/assets/Cat.png"
+        />
+        <PetCard
+          name="Cat"
+          breed="Cat"
+          age="2 years"
+          location="New York"
+   
+          gender="male"
+          imageUrl="./src/assets/section1_pet6.png"
+        />
+        <PetCard
+          name="Doggy"
+          breed="Dog"
+          age="2 years"
+          location="New York"
+       
+          gender="female"
+          imageUrl="./src/assets/Cat.png"
+        />
       </div>
     </div>
   );

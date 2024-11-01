@@ -12,7 +12,6 @@ export const AdoptPage: React.FC = () => {
         Every Pet Deserves a Loving Home. <span className="text-lavender-purple">Adopt</span> a Pet
         Today
       </Heading>
-
       <SearchPet />
     </div>
   );

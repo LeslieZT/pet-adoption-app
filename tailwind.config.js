@@ -15,6 +15,7 @@ export default {
         "pastel-lilac": "#C7C7FD", // Lila pastel, tono real
         "pastel-lilac-light": "#F4F4FF", // Lila pastel claro
         "vibrant-pink": "#DA74CC", // Rosa vibrante, tono real
+        "vibrant-pink-light": "#F9E9FE", // Rosa vibrante claro #f9e9fe
         "aqua-blue": "#45A1CC", // Azul acuático, tono real
         // TEXT COLORS
         "soft-gray-blue": "#8C8CC0", // Azul gris claro
