@@ -1,18 +1,14 @@
-import './App.css'
-import { Button } from "flowbite-react";
-
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import { NavbarApp } from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <>      
-      <p className="text-blue-400">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>
-      <Button>Click me</Button>
-    </div>
+    <>
+      <NavbarApp />
+      <Outlet />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -2,7 +2,7 @@ const config = {
   useTabs: false,
   tabWidth: 2,
   endOfLine: "lf",
-  printWidth: 120,
+  printWidth: 100,
   arrowParens: "always",
   singleQuote: false,
   trailingComma: "all",
