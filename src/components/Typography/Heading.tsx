@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 const HeadingVariants = cva("dark:text-white", {
   variants: {
     color: {
+      white: "text-white",
       "royal-purple": "text-royal-purple",
       "slate-gray": "text-slate-gray",
       "lavender-purple": "text-lavender-purple",
@@ -26,7 +27,7 @@ const HeadingVariants = cva("dark:text-white", {
 });
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  color?: "royal-purple" | "slate-gray" | "lavender-purple"; // "vibrant-pink" | "aqua-blue" ;
+  color?: "royal-purple" | "slate-gray" | "lavender-purple" | "white"; // "vibrant-pink" | "aqua-blue" ;
   level?: "1" | "2" | "3" | "4" | "5" | "6";
   children: React.ReactNode;
   className?: string;
@@ -34,7 +35,13 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 export type TagType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-export const Heading: React.FC<HeadingProps> = ({ level, color, children, className = "", ...props }) => {
+export const Heading: React.FC<HeadingProps> = ({
+  level,
+  color,
+  children,
+  className = "",
+  ...props
+}) => {
   const Tag = `h${level}` as TagType;
 
   const headingClasses = HeadingVariants({ color, level });

@@ -1,18 +1,29 @@
 import { Card } from "flowbite-react";
+import { MdOutlinePets, MdConnectWithoutContact } from "react-icons/md";
+import { TbHomeHeart } from "react-icons/tb";
+import { HiMiniClipboardDocumentList } from "react-icons/hi2";
 import { Heading } from "../Typography";
 import { Paragraph } from "../Typography/Paragraph";
 
-interface CardAdoptProps {
-  icon: React.ReactNode;
+interface AdoptCardProps {
+  icon: "findPet" | "contact" | "paperwork" | "takeThemHome";
   title: string;
   description: string;
 }
+const icons = {
+  findPet: MdOutlinePets,
+  contact: MdConnectWithoutContact,
+  paperwork: HiMiniClipboardDocumentList,
+  takeThemHome: TbHomeHeart,
+};
 
-export const CardAdopt: React.FC<CardAdoptProps> = ({ icon, title, description }) => {
+export const AdoptCard: React.FC<AdoptCardProps> = ({ icon, title, description }) => {
+  const Icon = icons[icon];
+
   return (
     <Card className="max-w-sm bg-pastel-lilac-light border-solid border-2 border-pastel-lilac rounded-lg shadow-md">
       <div className="flex flex-col items-start justify-center gap-3">
-        {icon}
+        <Icon className="h-8 w-8 text-royal-purple" />
         <Heading
           level="5"
           color="royal-purple"
@@ -30,4 +41,3 @@ export const CardAdopt: React.FC<CardAdoptProps> = ({ icon, title, description }
     </Card>
   );
 };
-

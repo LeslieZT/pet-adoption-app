@@ -1,3 +1,5 @@
-import { Gallery } from "./Gallery";
+import { GallerySection } from "./GallerySection";
+import { AdoptSection } from "./AdoptSection";
+import { DonateSection } from "./DonateSection";
 
-export { Gallery  };
+export { GallerySection, AdoptSection, DonateSection };

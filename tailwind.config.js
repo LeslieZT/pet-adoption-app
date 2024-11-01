@@ -10,7 +10,7 @@ export default {
         poppins: ["Poppins", "Inter", "system-ui", "Avenir", "Helvetica", "Arial", "sans-serif"],
       },
       colors: {
-        "royal-purple": "#3F2D7E", // royal-purple Púrpura profundo, tono real 
+        "royal-purple": "#3F2D7E", // royal-purple Púrpura profundo, tono real
         "lavender-purple": "#A374CC", // Lavanda claro
         "pastel-lilac": "#C7C7FD", // Lila pastel, tono real
         "pastel-lilac-light": "#F4F4FF", // Lila pastel claro

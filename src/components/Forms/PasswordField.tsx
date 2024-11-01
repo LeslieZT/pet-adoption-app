@@ -9,7 +9,11 @@ interface PasswordFieldProps<T extends FieldValues> {
   label: string;
 }
 
-export const PasswordField = <T extends FieldValues>({ name, control, label }: PasswordFieldProps<T>) => {
+export const PasswordField = <T extends FieldValues>({
+  name,
+  control,
+  label,
+}: PasswordFieldProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {

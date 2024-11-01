@@ -1,15 +1,15 @@
 import { twMerge } from "tailwind-merge";
 
-interface GalleryProps {
+interface PetGalleryProps {
   className?: string;
 }
 
-export const Gallery: React.FC<GalleryProps> = ({ className = "" }) => {
+export const PetGallery: React.FC<PetGalleryProps> = ({ className = "" }) => {
   const pets = [
-    "./src/assets/section1_pet1.png",
-    "./src/assets/section1_pet2.png",
-    "./src/assets/section1_pet3.png",
-    "./src/assets/section1_pet4.png",
+    "./src/assets/section1_dog.png",
+    "./src/assets/section1_cat.png",
+    "./src/assets/section1_hamster.jpg",
+    "./src/assets/section1_rabbit.png",
   ];
 
   return (
@@ -20,7 +20,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = "" }) => {
           src={pet}
           alt={`pet-${index}`}
           className="object-cover rounded-lg w-full h-40 md:h-60 lg:h-72 xl:h-80 transition-transform duration-300 ease-in-out transform hover:scale-105"
-        />     
+        />
       ))}
     </div>
   );

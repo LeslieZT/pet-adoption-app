@@ -6,13 +6,14 @@ const ParagraphVariants = cva("dark:text-white", {
     color: {
       primary: "text-slate-gray",
       secondary: "cool-blue",
+      tertiary: "text-white",
     },
     size: {
-      small: "text-xs md:text-sm", 
+      small: "text-xs md:text-sm",
       medium: "text-sm md:text-base",
       large: "text-base md:text-lg",
-      extraLarge: "text-lg", 
-      superLarge: "text-xl", 
+      extraLarge: "text-lg",
+      superLarge: "text-xl",
       megaLarge: "text-2xl",
     },
   },
@@ -24,7 +25,7 @@ const ParagraphVariants = cva("dark:text-white", {
 
 interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
   size?: "small" | "medium" | "large" | "extraLarge" | "superLarge" | "megaLarge";
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "tertiary";
   children: React.ReactNode;
   className?: string;
 }

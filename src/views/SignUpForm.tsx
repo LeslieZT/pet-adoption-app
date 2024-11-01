@@ -94,25 +94,20 @@ export const SignUpForm = () => {
           />
         </div>
 
-   
-
         <CustomButton
           type="submit"
           color="royal-purple"
         >
           Sign Up
         </CustomButton>
-       
+
         <div className="flex items-center justify-center">
           <hr className="w-full border-gray-300" />
           <span className="px-2 text-gray-500 bg-white">Or</span>
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <CustomButton
-            color="lavender-purple"
-            outline={true}
-          >
+          <CustomButton color="light-pastel-lilac">
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
@@ -129,10 +124,7 @@ export const SignUpForm = () => {
             Google
           </CustomButton>
 
-          <CustomButton
-            color="lavender-purple"
-            outline={true}
-          >
+          <CustomButton color="light-pastel-lilac">
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"

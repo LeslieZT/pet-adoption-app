@@ -76,10 +76,7 @@ export const SignInForm = () => {
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <CustomButton
-            color="lavender-purple"
-            outline={true}
-          >
+          <CustomButton color="light-pastel-lilac">
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
@@ -96,10 +93,7 @@ export const SignInForm = () => {
             Google
           </CustomButton>
 
-          <CustomButton
-            color="lavender-purple"
-            outline={true}
-          >
+          <CustomButton color="light-pastel-lilac">
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"

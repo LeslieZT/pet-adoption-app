@@ -6,7 +6,11 @@ export interface AuthenticatioLayoutProps {
   alt: string;
   children: React.ReactNode;
 }
-export const AuthenticatioLayout: React.FC<AuthenticatioLayoutProps> = ({ children, coverImage, alt }) => {
+export const AuthenticatioLayout: React.FC<AuthenticatioLayoutProps> = ({
+  children,
+  coverImage,
+  alt,
+}) => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <div className="hidden lg:flex lg:w-1/2 bg-white items-center justify-center">

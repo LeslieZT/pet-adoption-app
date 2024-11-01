@@ -1,3 +1,4 @@
-import { CardAdopt } from "./CardAdopt";
+import { AdoptCard } from "./AdoptCard";
+import { DonateCard } from "./DonateCard";
 
-export { CardAdopt };
+export { AdoptCard, DonateCard };

@@ -21,12 +21,10 @@ const IconLogoVariants = cva("dark:text-white", {
 
 export const IconLogo: React.FC<IconLogoProps> = ({ size, className = "" }) => {
   return (
-
-      <img
-        src="./src/assets/icon-logo.png"
-        alt="HappyPaws Logo"
-        className={twMerge(IconLogoVariants({ size }), className)}
-      />
-    
+    <img
+      src="./src/assets/icon-logo.png"
+      alt="HappyPaws Logo"
+      className={twMerge(IconLogoVariants({ size }), className)}
+    />
   );
 };
