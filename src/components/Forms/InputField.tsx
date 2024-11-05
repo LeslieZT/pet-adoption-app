@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TextInput, Label } from "flowbite-react";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { IconType } from "react-icons";
@@ -10,6 +11,7 @@ interface InputFieldProps<T extends FieldValues> {
   placeholder?: string;
   icon?: IconType;
   className?: string;
+  [key: string]: any;
 }
 
 export const InputField = <T extends FieldValues>({
@@ -20,6 +22,7 @@ export const InputField = <T extends FieldValues>({
   placeholder,
   icon: Icon,
   className = "",
+  ...props
 }: InputFieldProps<T>) => {
   return (
     <div className={className}>
@@ -42,6 +45,7 @@ export const InputField = <T extends FieldValues>({
             icon={Icon}
             helperText={error?.message}
             color={error ? "failure" : "gray"}
+            {...props}
           />
         )}
       />

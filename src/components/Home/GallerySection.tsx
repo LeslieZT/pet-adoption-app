@@ -2,6 +2,7 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 import { CustomButton } from "../Buttons";
 import { Paragraph, SubTitle } from "../Typography";
 import { PetGallery } from "./PetGallery";
+import { Link } from "react-router-dom";
 
 export const GallerySection: React.FC = () => {
   return (
@@ -16,15 +17,22 @@ export const GallerySection: React.FC = () => {
           adventures or a cuddly companion for cozy nights in, our diverse selection of pets awaits
           your discovery.
         </Paragraph>
-        <CustomButton className="py-2 w-60 hidden md:block btn-gallery">
-          Explore Pets <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
-        </CustomButton>
+
+        <Link to="/adopt">
+          <CustomButton className="py-2 w-60 hidden md:block btn-gallery">
+            Explore Pets <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
+          </CustomButton>
+        </Link>
       </div>
       <div className="flex flex-col justify-center gap-4">
         <PetGallery />
-        <CustomButton className="mt-4 py-2 w-48 md:hidden">
-          Explore Pets <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
-        </CustomButton>
+        
+          <Link to="/adopt">
+          <CustomButton className="mt-4 py-2 w-48 md:hidden">
+            Explore Pets <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
+            </CustomButton>
+          </Link>
+       
       </div>
     </section>
   );

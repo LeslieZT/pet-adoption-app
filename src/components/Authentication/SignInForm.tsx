@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { Card } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignInFormData, SignInSchema } from "../schema/SignIn.schema";
-import { Heading } from "../components/Typography";
-import { CustomButton } from "../components/Buttons";
-import { InputField, PasswordField } from "../components/Forms";
+import { SignInFormData, SignInSchema } from "../../schema/SignIn.schema";
+import { Heading } from "../Typography";
+import { CustomButton } from "../Buttons";
+import { InputField, PasswordField } from "../Forms";
 import { Link } from "react-router-dom";
 
 export const SignInForm = () => {

@@ -4,6 +4,7 @@ import { PiCoinsFill } from "react-icons/pi";
 import { Heading } from "../Typography";
 import { Paragraph } from "../Typography/Paragraph";
 import { CustomButton } from "../Buttons";
+import { Link } from "react-router-dom";
 
 interface DonateCardProps {
   icon: "oneTime" | "monthly" | "sponsor";
@@ -54,12 +55,14 @@ export const DonateCard: React.FC<DonateCardProps> = ({
           {description}
         </Paragraph>
 
-        <CustomButton
-          color={btnColor}
-          className="mt-6 py-2 w-auto md: max-w-sm"
-        >
-          Explore Pets <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
-        </CustomButton>
+        <Link to="/donate">
+          <CustomButton
+            color={btnColor}
+            className="mt-6 py-2 w-auto md: max-w-sm"
+          >
+            Donate Now <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
+          </CustomButton>
+        </Link>
       </div>
     </Card>
   );

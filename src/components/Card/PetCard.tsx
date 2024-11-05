@@ -1,5 +1,8 @@
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { IoMdFemale, IoMdMale } from "react-icons/io";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { PiPawPrintFill } from "react-icons/pi";
 
 import { useState } from "react";
 import { Heading, Paragraph } from "../Typography";
@@ -15,8 +18,13 @@ interface PetCardProps {
 }
 
 const genderColors = {
-  male: "bg-blue-100 text-blue-800",
+  male: "bg-alice-blue text-aqua-blue",
   female: "bg-vibrant-pink-light text-vibrant-pink",
+};
+
+const iconColors = {
+  male: "text-aqua-blue",
+  female: "text-vibrant-pink",
 };
 
 const genderIcons = {
@@ -34,7 +42,6 @@ export const PetCard: React.FC<PetCardProps> = ({
   isFavorite,
 }) => {
   const [favorite, setFavorite] = useState(isFavorite);
-
   const Icon = genderIcons[gender];
 
   return (
@@ -58,19 +65,47 @@ export const PetCard: React.FC<PetCardProps> = ({
       </div>
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
-          <Heading level="5" color="royal-purple" className="font-bold dark:text-white">{name}</Heading>
+          <Heading
+            level="5"
+            color="royal-purple"
+            className="font-bold dark:text-white"
+          >
+            {name}
+          </Heading>
           <span className={`text-lg p-2 rounded-full ${genderColors[gender]}`}>
             <Icon className="w-5 h-5" />
           </span>
         </div>
-
         <div className="space-y-2">
-          
-          <Paragraph size="small"> {breed} </Paragraph>
-          <Paragraph size="small"> {age} </Paragraph>
-          <Paragraph size="small"> {location} </Paragraph>
+          <div className="flex items-center gap-2">
+            <PiPawPrintFill className={`w-5 h-5 ${iconColors[gender]}`} />
+            <Paragraph
+              size="small"
+              className="w-[90%]"
+            >
+              {breed}
+            </Paragraph>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdOutlineAccessTimeFilled className={`w-5 h-5 ${iconColors[gender]}`} />
 
-          
+            <Paragraph
+              size="small"
+              className="w-[90%]"
+            >
+              {age}
+            </Paragraph>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <FaLocationDot className={`w-5 h-5 ${iconColors[gender]}`} />
+            <Paragraph
+              size="small"
+              className="w-[90%]"
+            >
+              {location}
+            </Paragraph>
+          </div>
         </div>
       </div>
     </div>
