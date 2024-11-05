@@ -61,9 +61,9 @@ export const DonationSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex justify-around items-center mt-10 gap-10">
+      <div className="flex flex-col md:flex-row justify-around items-center mt-10 gap-10">
         <form
-          className="flex justify-center items-center  gap-2"
+          className="flex justify-center items-center gap-2"
           onSubmit={handleSubmit(onSubmit)}
         >
           <InputField
@@ -73,7 +73,7 @@ export const DonationSection: React.FC = () => {
             type="number"
             min={0}
             placeholder={`$ ${isMonthly ? "per month" : ""}`}
-            className="w-80"
+            className="md:w-80"
           />
 
           <CustomButton
@@ -83,10 +83,9 @@ export const DonationSection: React.FC = () => {
             Donate
           </CustomButton>
         </form>
-
         <img
           src="./src/assets/icons.png"
-          alt="donation-illustration"
+          alt="donation-icons"  
         />
       </div>
     </section>

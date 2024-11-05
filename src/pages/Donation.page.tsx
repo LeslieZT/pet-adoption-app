@@ -3,6 +3,7 @@ import { Heading, Paragraph } from "../components/Typography";
 
 export const DonationPage: React.FC = () => {
   return(
+    <>
     <div className="mx-auto min-w-[300px] max-w-screen-2xl px-4">
       <Heading
         level="2"
@@ -17,5 +18,12 @@ export const DonationPage: React.FC = () => {
       </Paragraph>
       <DonationSection  />
     </div>
+    <img
+      src="./src/assets/donation_dog.png"
+      alt="donation-icons"
+      className="w-full h-96 object-cover"
+      />
+    </>
+    
   )
 };
