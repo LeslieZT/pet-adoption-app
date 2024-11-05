@@ -6,7 +6,7 @@ import {
   SignUpPage,
   AdoptionPage,
   DonationPage,
-  PetProfilePage,
+  PetInfoPage,
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "/adopt/:petId",
-            element: <PetProfilePage />,
+            element: <PetInfoPage />,
           },
         ],
       },

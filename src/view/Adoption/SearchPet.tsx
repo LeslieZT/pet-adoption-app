@@ -32,7 +32,7 @@ export const SearchPet: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-row md:flex-col gap-2 mt-10 p-4">
+      <div className="flex flex-row md:flex-col gap-2 mt-10">
         <div className="w-96 md:w-full p-4 ">
           <form
             onSubmit={handleSubmit(onSubmit)}

@@ -4,11 +4,11 @@ import { DonationSection } from "../view/Donation/DonationSection";
 const DonationPage: React.FC = () => {
   return (
     <>
-      <div className="mx-auto min-w-[300px] max-w-screen-2xl px-4">
+      <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4">
         <Heading
           level="2"
           color="royal-purple"
-          className="text-center font-medium mt-16"
+          className="text-center font-medium mt-12"
         >
           With your help, we can be part of more pet love stories
         </Heading>

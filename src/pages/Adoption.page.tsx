@@ -3,7 +3,7 @@ import { SearchPet } from "../view/Adoption/SearchPet";
 
 const AdoptionPage: React.FC = () => {
   return (
-    <div className="mx-auto min-w-[300px] max-w-screen-2xl">
+    <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4">
       <Heading
         level="2"
         color="royal-purple"

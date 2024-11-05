@@ -3,7 +3,7 @@ import { Paragraph, SubTitle } from "../../components/Typography";
 
 export const AdoptSection: React.FC = () => {
   return (
-    <section className="px-4 py-8 md:py-20 grid md:grid-cols-2 gap-6 md:gap-10 xl:gap-20">
+    <section className="py-6 md:py-20 grid md:grid-cols-2 gap-6 md:gap-10 xl:gap-20">
       <div className="order-last md:order-first">
         <img
           src="/src/assets/adopt.png"

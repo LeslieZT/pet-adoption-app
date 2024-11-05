@@ -17,7 +17,7 @@ export default {
         "vibrant-pink": "#DA74CC", // Rosa vibrante, tono real
         "vibrant-pink-light": "#F9E9FE", // Rosa vibrante claro #f9e9fe
         "aqua-blue": "#45A1CC", // Azul acuático, tono real
-        "alice-blue": "#e6f5fe", // Azul alice, tono real
+        "aqua-blue-light": "#e6f5fe", // Azul alice, tono real
         // TEXT COLORS
         "soft-gray-blue": "#8C8CC0", // Azul gris claro
         "cool-blue": "#6F7BB6", // Azul frío, tono real

@@ -4,7 +4,7 @@ import { DonateCard } from "../../components/Card";
 
 export const DonateSection: React.FC = () => {
   return (
-    <section className="px-4 py-8 md:py-20 flex flex-col items-center justify-center gap-6 md:gap-8">
+    <section className="py-6 md:py-20 flex flex-col items-center justify-center gap-6 md:gap-8">
       <SubTitle className="text-justify md:text-left">Donate and Save Lives</SubTitle>
       <Paragraph className="text-center max-w-3xl">
         Your donation can make a life-saving difference. Join us in our mission to rescue, care for,

@@ -1,12 +1,10 @@
-import { GoHeart, GoHeartFill } from "react-icons/go";
+import { Link } from "react-router-dom";
 import { IoMdFemale, IoMdMale } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { PiPawPrintFill } from "react-icons/pi";
-
-import { useState } from "react";
 import { Heading, Paragraph } from "../Typography";
-import { Link } from "react-router-dom";
+import { MarkPetsAsFavoriteCard } from "./MarkPetsAsFavoriteCard";
 
 interface PetCardProps {
   refCode: string;
@@ -20,7 +18,7 @@ interface PetCardProps {
 }
 
 const genderColors = {
-  male: "bg-alice-blue text-aqua-blue",
+  male: "bg-aqua-blue-light text-aqua-blue",
   female: "bg-vibrant-pink-light text-vibrant-pink",
 };
 
@@ -44,29 +42,18 @@ export const PetCard: React.FC<PetCardProps> = ({
   imageUrl,
   isFavorite,
 }) => {
-  const [favorite, setFavorite] = useState(isFavorite);
   const Icon = genderIcons[gender];
 
   return (
-    <Link to={`/adopt/${refCode}`}>
-      <div className="w-52 md:w-56 shadow-md rounded-xl">
-        <div className="relative">
-          <img
-            className="rounded-t-xl w-full h-64 object-cover"
-            src={imageUrl}
-            alt={`${name} - ${breed}`}
-          />
-          <button
-            onClick={() => setFavorite(!favorite)}
-            className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors"
-          >
-            {favorite ? (
-              <GoHeartFill className="w-5 h-5 text-royal-purple" />
-            ) : (
-              <GoHeart className="w-5 h-5 text-royal-purple" />
-            )}
-          </button>
-        </div>
+    <div className="w-52 md:w-56 shadow-md rounded-xl">
+      <MarkPetsAsFavoriteCard
+        refCode={refCode}
+        name={name}
+        imageUrl={imageUrl}
+        isFavorite={isFavorite}
+        variant="small"
+      />
+      <Link to={`/adopt/${refCode}`}>
         <div className="p-4">
           <div className="flex items-center justify-between mb-2">
             <Heading
@@ -112,7 +99,7 @@ export const PetCard: React.FC<PetCardProps> = ({
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };

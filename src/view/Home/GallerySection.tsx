@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export const GallerySection: React.FC = () => {
   return (
-    <section className="px-4 py-8 md:py-20 grid md:grid-cols-2 gap-6 md:gap-10 xl:gap-20">
+    <section className="py-6 md:py-20 grid md:grid-cols-2 gap-6 md:gap-10 xl:gap-20">
       <div className="flex flex-col items-start justify-center gap-6 md:gap-8">
         <SubTitle className="text-justify md:text-left">
           Find Out Which Furry Friend Fits You Best!
