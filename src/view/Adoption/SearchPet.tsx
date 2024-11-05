@@ -1,14 +1,15 @@
-import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Pagination } from "flowbite-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HiLocationMarker, HiSearch } from "react-icons/hi";
 import { FaPaw, FaVenusMars } from "react-icons/fa";
 import { ages, genders, petTypes } from "../../constants/allowValues";
-import { InputField, SelectField } from "../Forms";
 import { SearchFormData, SearchSchema } from "../../schema/Search.schema";
-import { CustomButton } from "../Buttons";
-import { PetCard } from "../Card/PetCard";
-import { Pagination } from "flowbite-react";
+import { InputField, SelectField } from "../../components/Forms";
+import { CustomButton } from "../../components/Buttons";
+import { PetCard } from "../../components/Card";
+
 
 export const SearchPet: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -86,6 +87,7 @@ export const SearchPet: React.FC = () => {
         <div>
           <div className="w-full flex flex-wrap gap-2 justify-between">
             <PetCard
+              refCode="123"
               name="Doggy"
               breed="Dog"
               age="2 years"
@@ -94,14 +96,16 @@ export const SearchPet: React.FC = () => {
               imageUrl="./src/assets/Cat.png"
             />
             <PetCard
+              refCode="123"
               name="Cat"
               breed="Cat"
               age="2 years"
               location="New York"
               gender="male"
-              imageUrl="./src/assets/section1_pet6.png"
+              imageUrl="./src/assets/section1_rabbit.png"
             />
             <PetCard
+              refCode="123"
               name="Doggy"
               breed="Dog"
               age="2 years"
@@ -110,6 +114,7 @@ export const SearchPet: React.FC = () => {
               imageUrl="./src/assets/Cat.png"
             />
             <PetCard
+              refCode="123"
               name="Doggy"
               breed="Dog"
               age="2 years"
@@ -118,14 +123,16 @@ export const SearchPet: React.FC = () => {
               imageUrl="./src/assets/Cat.png"
             />
             <PetCard
+              refCode="123"
               name="Cat"
               breed="Cat"
               age="2 years"
               location="New York"
               gender="male"
-              imageUrl="./src/assets/section1_pet6.png"
+              imageUrl="./src/assets/section1_rabbit.png"
             />
             <PetCard
+              refCode="123"
               name="Doggy"
               breed="Dog"
               age="2 years"

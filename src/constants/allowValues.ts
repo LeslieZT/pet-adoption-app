@@ -15,7 +15,6 @@ export const ages = [
   { value: "7+", label: "7+ Years Old" },
 ];
 
-
 export const donationTiers = [
   {
     id: "life-saver",
@@ -51,4 +50,3 @@ export const donationTiers = [
     amount: 100,
   },
 ];
-

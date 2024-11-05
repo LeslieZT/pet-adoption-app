@@ -1,5 +1,5 @@
-import { AdoptCard } from "../Card";
-import { Paragraph, SubTitle } from "../Typography";
+import { AdoptCard } from "../../components/Card";
+import { Paragraph, SubTitle } from "../../components/Typography";
 
 export const AdoptSection: React.FC = () => {
   return (

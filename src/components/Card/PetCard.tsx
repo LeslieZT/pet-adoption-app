@@ -6,8 +6,10 @@ import { PiPawPrintFill } from "react-icons/pi";
 
 import { useState } from "react";
 import { Heading, Paragraph } from "../Typography";
+import { Link } from "react-router-dom";
 
 interface PetCardProps {
+  refCode: string;
   name: string;
   breed: string;
   age: string;
@@ -33,6 +35,7 @@ const genderIcons = {
 };
 
 export const PetCard: React.FC<PetCardProps> = ({
+  refCode,
   name,
   breed,
   age,
@@ -45,69 +48,71 @@ export const PetCard: React.FC<PetCardProps> = ({
   const Icon = genderIcons[gender];
 
   return (
-    <div className="w-52 md:w-56 shadow-md rounded-xl">
-      <div className="relative">
-        <img
-          className="rounded-t-xl w-full h-64 object-cover"
-          src={imageUrl}
-          alt={`${name} - ${breed}`}
-        />
-        <button
-          onClick={() => setFavorite(!favorite)}
-          className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors"
-        >
-          {favorite ? (
-            <GoHeartFill className="w-5 h-5 text-royal-purple" />
-          ) : (
-            <GoHeart className="w-5 h-5 text-royal-purple" />
-          )}
-        </button>
-      </div>
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-2">
-          <Heading
-            level="5"
-            color="royal-purple"
-            className="font-bold dark:text-white"
+    <Link to={`/adopt/${refCode}`}>
+      <div className="w-52 md:w-56 shadow-md rounded-xl">
+        <div className="relative">
+          <img
+            className="rounded-t-xl w-full h-64 object-cover"
+            src={imageUrl}
+            alt={`${name} - ${breed}`}
+          />
+          <button
+            onClick={() => setFavorite(!favorite)}
+            className="absolute top-3 right-3 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors"
           >
-            {name}
-          </Heading>
-          <span className={`text-lg p-2 rounded-full ${genderColors[gender]}`}>
-            <Icon className="w-5 h-5" />
-          </span>
+            {favorite ? (
+              <GoHeartFill className="w-5 h-5 text-royal-purple" />
+            ) : (
+              <GoHeart className="w-5 h-5 text-royal-purple" />
+            )}
+          </button>
         </div>
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <PiPawPrintFill className={`w-5 h-5 ${iconColors[gender]}`} />
-            <Paragraph
-              size="small"
-              className="w-[90%]"
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-2">
+            <Heading
+              level="5"
+              color="royal-purple"
+              className="font-bold dark:text-white"
             >
-              {breed}
-            </Paragraph>
+              {name}
+            </Heading>
+            <span className={`text-lg p-2 rounded-full ${genderColors[gender]}`}>
+              <Icon className="w-5 h-5" />
+            </span>
           </div>
-          <div className="flex items-center gap-2">
-            <MdOutlineAccessTimeFilled className={`w-5 h-5 ${iconColors[gender]}`} />
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <PiPawPrintFill className={`w-5 h-5 ${iconColors[gender]}`} />
+              <Paragraph
+                size="small"
+                className="w-[90%]"
+              >
+                {breed}
+              </Paragraph>
+            </div>
+            <div className="flex items-center gap-2">
+              <MdOutlineAccessTimeFilled className={`w-5 h-5 ${iconColors[gender]}`} />
 
-            <Paragraph
-              size="small"
-              className="w-[90%]"
-            >
-              {age}
-            </Paragraph>
-          </div>
+              <Paragraph
+                size="small"
+                className="w-[90%]"
+              >
+                {age}
+              </Paragraph>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <FaLocationDot className={`w-5 h-5 ${iconColors[gender]}`} />
-            <Paragraph
-              size="small"
-              className="w-[90%]"
-            >
-              {location}
-            </Paragraph>
+            <div className="flex items-center gap-2">
+              <FaLocationDot className={`w-5 h-5 ${iconColors[gender]}`} />
+              <Paragraph
+                size="small"
+                className="w-[90%]"
+              >
+                {location}
+              </Paragraph>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

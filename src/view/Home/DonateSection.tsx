@@ -1,6 +1,6 @@
 import React from "react";
-import { SubTitle, Paragraph } from "../Typography";
-import { DonateCard } from "../Card";
+import { SubTitle, Paragraph } from "../../components/Typography";
+import { DonateCard } from "../../components/Card";
 
 export const DonateSection: React.FC = () => {
   return (
@@ -32,7 +32,11 @@ export const DonateSection: React.FC = () => {
           icon="sponsor"
         />
       </div>
-      <img src='./src/assets/dog-icon.png' alt='dog-icon' className="mt-16"/>
+      <img
+        src="./src/assets/dog-icon.png"
+        alt="dog-icon"
+        className="mt-16"
+      />
     </section>
   );
 };

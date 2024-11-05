@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthenticatioLayout } from "../layouts/Authenticatio.layout";
-import { SignInForm } from "../components/Authentication/SignInForm";
+import { SignInForm } from "../view/Authentication/SignInForm";
 
 const SignInPage: React.FC = () => {
   return (

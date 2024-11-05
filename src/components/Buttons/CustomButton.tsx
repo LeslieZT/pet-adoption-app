@@ -7,7 +7,7 @@ const buttonVariants = cva("transition-colors duration-100", {
   variants: {
     variant: {
       "royal-purple": "text-white bg-royal-purple hover:bg-lavender-purple",
-      "white": "text-royal-purple bg-white border-none hover:bg-royal-purple hover:text-white",
+      white: "text-royal-purple bg-white border-none hover:bg-royal-purple hover:text-white",
       "lavender-purple": "text-white bg-lavender-purple hover:bg-royal-purple",
 
       "vibrant-pink": "text-white bg-vibrant-pink hover:bg-aqua-blue",
@@ -32,7 +32,7 @@ const buttonVariants = cva("transition-colors duration-100", {
 const customTheme: CustomFlowbiteTheme["button"] = {
   color: {
     "royal-purple": buttonVariants({ variant: "royal-purple" }),
-    "white": buttonVariants({ variant: "white" }),
+    white: buttonVariants({ variant: "white" }),
     "lavender-purple": buttonVariants({ variant: "lavender-purple" }),
     "vibrant-pink": buttonVariants({ variant: "vibrant-pink" }),
     "aqua-blue": buttonVariants({ variant: "aqua-blue" }),
@@ -48,7 +48,7 @@ type CustomButtonProps = Omit<ButtonProps, "theme" | "color"> & {
   color?:
     | "royal-purple"
     | "white"
-      | "lavender-purple"
+    | "lavender-purple"
     | "vibrant-pink"
     | "aqua-blue"
     | "light-royal-purple"

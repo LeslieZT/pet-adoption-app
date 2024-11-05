@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { DonationTierCard } from "../Card/DonationTierCard";
 import { ToggleSwitch } from "flowbite-react";
-import { CustomButton } from "../Buttons";
 import { useForm } from "react-hook-form";
 import { CustomDonationFormData, CustomDonationSchema } from "../../schema/CustomDonation.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { donationTiers } from "../../constants/allowValues";
-import { InputField } from "../Forms";
+import { InputField } from "../../components/Forms";
+import { DonationTierCard } from "../../components/Card";
+import { CustomButton } from "../../components/Buttons";
 
 export const DonationSection: React.FC = () => {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -85,7 +85,7 @@ export const DonationSection: React.FC = () => {
         </form>
         <img
           src="./src/assets/icons.png"
-          alt="donation-icons"  
+          alt="donation-icons"
         />
       </div>
     </section>

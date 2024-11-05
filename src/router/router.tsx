@@ -1,7 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { HomePage, SignInPage, SignUpPage, AdoptionPage, DonationPage } from "../pages";
-
+import {
+  HomePage,
+  SignInPage,
+  SignUpPage,
+  AdoptionPage,
+  DonationPage,
+  PetProfilePage,
+} from "../pages";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +24,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "/adopt",
-        element: <AdoptionPage />,
+        children: [
+          {
+            path: "/adopt",
+            element: <AdoptionPage />,
+          },
+          {
+            path: "/adopt/:petId",
+            element: <PetProfilePage />,
+          },
+        ],
       },
       {
         path: "/donate",

@@ -1,7 +1,7 @@
-import { SearchPet } from "../components/Adoption/SearchPet";
 import { Heading } from "../components/Typography";
+import { SearchPet } from "../view/Adoption/SearchPet";
 
-export const AdoptionPage: React.FC = () => {
+const AdoptionPage: React.FC = () => {
   return (
     <div className="mx-auto min-w-[300px] max-w-screen-2xl">
       <Heading
@@ -16,3 +16,5 @@ export const AdoptionPage: React.FC = () => {
     </div>
   );
 };
+
+export default AdoptionPage;

@@ -1,4 +1,4 @@
-import { GallerySection, AdoptSection, DonateSection } from "../components/Home";
+import { GallerySection, AdoptSection, DonateSection } from "../view/Home";
 
 const HomePage: React.FC = () => {
   return (

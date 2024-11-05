@@ -26,7 +26,7 @@ export const DonationTierCard: React.FC<DonationTierCardProps> = ({
 
   const onClick = () => {
     console.log("click");
-    console.log(price, type)
+    console.log(price, type);
   };
 
   return (
