@@ -4,5 +4,14 @@ import SignUpPage from "./SignUp.page";
 import DonationPage from "./Donation.page";
 import AdoptionPage from "./Adoption.page";
 import PetInfoPage from "./PetInfo.page";
+import AdoptionApplicationPage from "./AdoptionApplication.page";
 
-export { SignInPage, SignUpPage, HomePage, AdoptionPage, DonationPage, PetInfoPage};
+export {
+  SignInPage,
+  SignUpPage,
+  HomePage,
+  AdoptionPage,
+  DonationPage,
+  PetInfoPage,
+  AdoptionApplicationPage,
+};

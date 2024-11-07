@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ToggleSwitch } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { CustomDonationFormData, CustomDonationSchema } from "../../schema/CustomDonation.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { donationTiers } from "../../constants/allowValues";
+import { CustomDonationFormData, CustomDonationSchema } from "../../schema/CustomDonation.schema";
+import { donationTiers } from "../../constants/donationTiers";
 import { InputField } from "../../components/Forms";
 import { DonationTierCard } from "../../components/Card";
 import { CustomButton } from "../../components/Buttons";

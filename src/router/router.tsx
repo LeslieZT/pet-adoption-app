@@ -7,6 +7,7 @@ import {
   AdoptionPage,
   DonationPage,
   PetInfoPage,
+  AdoptionApplicationPage,
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
           {
             path: "/adopt/:petId",
             element: <PetInfoPage />,
+          },
+          {
+            path: "/adopt/:petId/application-form",
+            element: <AdoptionApplicationPage />,
           },
         ],
       },

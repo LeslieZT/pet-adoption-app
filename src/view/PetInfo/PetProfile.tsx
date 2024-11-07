@@ -9,10 +9,10 @@ import {
   TitleSectionPetProfile,
 } from "../../components/PetProfile";
 import { Heading, Paragraph } from "../../components/Typography";
-import { PetInfo } from "../../types/PetInfo.type";
 import { CustomButton } from "../../components/Buttons";
 import { CustomButtonProps } from "../../components/Buttons/CustomButton";
 import { PetCustomCard } from "../../components/Card";
+import { PetInfo } from "../../types/PetInfo.type";
 
 interface PetProfileProps {
   id: string;
@@ -72,6 +72,7 @@ Guinness says, “Good things come to those who wait!”`,
 };
 
 export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
+  console.log(id);
   const profielColor = {
     female: {
       primary: "vibrant-pink",
@@ -132,7 +133,7 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
           </div>
 
           <div className="flex items-center  justify-center md:justify-end gap-4">
-            <Link to="/donate">
+            <Link to={`/adopt/${data.referenceCode}/application-form`}>
               <CustomButton
                 color={profielColor[data.gender].primary as CustomButtonProps["color"]}
                 className="py-1 md:py-2"
