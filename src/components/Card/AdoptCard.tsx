@@ -4,17 +4,19 @@ import { TbHomeHeart } from "react-icons/tb";
 import { HiMiniClipboardDocumentList } from "react-icons/hi2";
 import { Heading } from "../Typography";
 import { Paragraph } from "../Typography/Paragraph";
+import { PiCertificateFill } from "react-icons/pi";
 
 interface AdoptCardProps {
-  icon: "findPet" | "contact" | "paperwork" | "takeThemHome";
+  icon: "findPet" | "contact" | "paperwork" | "takeThemHome" | "application";
   title: string;
   description: string;
 }
 const icons = {
   findPet: MdOutlinePets,
   contact: MdConnectWithoutContact,
-  paperwork: HiMiniClipboardDocumentList,
+  application: HiMiniClipboardDocumentList,
   takeThemHome: TbHomeHeart,
+  paperwork: PiCertificateFill
 };
 
 export const AdoptCard: React.FC<AdoptCardProps> = ({ icon, title, description }) => {

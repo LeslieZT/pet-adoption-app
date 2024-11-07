@@ -10,7 +10,6 @@ import { InputField, SelectField } from "../../components/Forms";
 import { CustomButton } from "../../components/Buttons";
 import { PetCard } from "../../components/Card";
 
-
 export const SearchPet: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 

@@ -9,9 +9,7 @@ export const AdoptApplicationQuestions = [
     code: "hasPermission",
     question: "Do you have permission to keep pets? (if renting)",
   },
-  { id: "3", 
-    code: "hasOutdoorSpace", 
-    question: "Do you have outdoor space at home?" },
+  { id: "3", code: "hasOutdoorSpace", question: "Do you have outdoor space at home?" },
   {
     id: "4",
     code: "hasPastExperience",

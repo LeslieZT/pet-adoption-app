@@ -1,7 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { DivIcon} from "leaflet";
-
+import { DivIcon } from "leaflet";
 
 const CustomMarkerIcon = (gender: string) => {
   return new DivIcon({
@@ -38,7 +37,12 @@ interface MapComponentProps {
   classname?: string;
 }
 
-export const MapComponent: React.FC<MapComponentProps> = ({ position, market, gender, classname }) => {
+export const MapComponent: React.FC<MapComponentProps> = ({
+  position,
+  market,
+  gender,
+  classname,
+}) => {
   return (
     <MapContainer
       center={position}
@@ -51,7 +55,7 @@ export const MapComponent: React.FC<MapComponentProps> = ({ position, market, ge
       />
       <Marker
         position={position}
-        icon={CustomMarkerIcon(gender)} 
+        icon={CustomMarkerIcon(gender)}
       >
         <Popup>{market}</Popup>
       </Marker>

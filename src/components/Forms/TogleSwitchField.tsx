@@ -14,7 +14,7 @@ export const ToggleSwitchField = <T extends FieldValues>({
 }: ToggleSwitchFieldProps<T>) => {
   return (
     <div className="flex justify-between items-center gap-2">
-      <span className="text-sm text-slate-gray font-medium">{question}</span>
+      <span className="text-slate-gray text-sm md:text-base font-medium">{question}</span>
       <div>
         <Controller
           name={name}

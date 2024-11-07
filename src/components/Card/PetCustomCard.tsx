@@ -28,14 +28,13 @@ export const PetCustomCard: React.FC<PetCustomCardProps> = ({
   variant = "light",
   className = "",
 }) => {
-
   const primaryColor = gender === "male" ? "aqua-blue" : "vibrant-pink";
   const secondaryColor = gender === "male" ? "light-aqua-blue" : "light-vibrant-pink";
 
   const bgColor = variant === "dark" ? `bg-${primaryColor}` : "bg-white";
   const headingColor = variant === "dark" ? "white" : primaryColor;
   const paragraphColor = variant === "dark" ? "tertiary" : "primary";
-  const btnColor = variant === "dark" ? secondaryColor : primaryColor ;
+  const btnColor = variant === "dark" ? secondaryColor : primaryColor;
 
   const Icon = icons[icon];
 

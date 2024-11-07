@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import { PiPawPrintFill } from "react-icons/pi";
 import { FaSquareInstagram, FaSquareFacebook, FaSquareTwitter } from "react-icons/fa6";
-import { MarkPetsAsFavoriteCard } from "../../components/Card/MarkPetsAsFavoriteCard";
-import {
-  BehaviorTag,
-  InformationTag,
-  MapComponent,
-  TitleSectionPetProfile,
-} from "../../components/PetProfile";
 import { Heading, Paragraph } from "../../components/Typography";
 import { CustomButton } from "../../components/Buttons";
 import { CustomButtonProps } from "../../components/Buttons/CustomButton";
 import { PetCustomCard } from "../../components/Card";
 import { PetInfo } from "../../types/PetInfo.type";
+import { MarkPetsAsFavoriteCard } from "../../components/Card/MarkPetsAsFavoriteCard";
+import {
+  IncludeCareContent,
+  PetBehaviorContent,
+  PetInfoContent,
+  PetLocationContent,
+  TitleSectionPetProfile,
+} from "../../components/PetProfile";
 
 interface PetProfileProps {
   id: string;
@@ -100,7 +101,7 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
               <Heading
                 level="2"
                 color="slate-gray"
-                className="font-bold text-2xl md:text-3xl"
+                className="font-bold"
               >
                 Hello,{" "}
                 <span className={`text-${profielColor[data.gender].primary}`}>I'm {data.name}</span>
@@ -158,98 +159,30 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 mt-6 md:mt-10">
         <div className="space-y-6">
-          <div className="h-auto space-y-4">
-            <TitleSectionPetProfile
-              title={`${data.name}'s information`}
-              icon="information"
-            />
-            <div className=" flex flex-wrap justify-between gap-2">
-              <InformationTag
-                name="Gender"
-                value={data.gender}
-                gender={data.gender}
-              />
-              <InformationTag
-                name="Age"
-                value={data.age}
-                gender={data.gender}
-              />
-              <InformationTag
-                name="Breed"
-                value={data.breed}
-                gender={data.gender}
-              />
-              <InformationTag
-                name="Weight"
-                value={`${data.weight} Kg`}
-                gender={data.gender}
-              />
-              <InformationTag
-                name="Height"
-                value={`${data.height} Cm`}
-                gender={data.gender}
-              />
-              <InformationTag
-                name="Color"
-                value={data.color}
-                gender={data.gender}
-              />
-            </div>
-          </div>
-
-          <div className="h-auto space-y-4">
-            <TitleSectionPetProfile
-              title={`${data.name} behavior`}
-              icon="behavior"
-            />
-            <div className=" flex flex-wrap gap-2">
-              {data.behavior.map((behavior) => (
-                <BehaviorTag
-                  key={behavior.id}
-                  label={behavior.label}
-                  gender={data.gender}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="h-auto space-y-4">
-            <TitleSectionPetProfile
-              title="Include in my care"
-              icon="includeCare"
-            />
-            <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-slate-gray">
-              <li>I've been vaccinated, microchipped, wormed and neutered as required</li>
-              <li>Examined by a vet and treated if needed</li>
-              <li>Assessed by an experienced member of our team</li>
-              <li>Given an individual profile to help match me with my new owner</li>
-              <li>Matched with our expert free insurance from Petplan</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <TitleSectionPetProfile
-            title={`${data.name} location`}
-            icon="location"
-          />
-          <div className="space-y-2">
-            <Paragraph>
-              <span className="font-semibold">Shelter name:</span> {data.location.shelterName}
-            </Paragraph>
-            <Paragraph>
-              <span className="font-semibold">Address:</span> {data.location.address}
-            </Paragraph>
-            <Paragraph>
-              <span className="font-semibold">Phone:</span> {data.location.phone}
-            </Paragraph>
-          </div>
-          <MapComponent
-            market={data.location.shelterName}
-            position={[data.location.latitud, data.location.longitud]}
+          <PetInfoContent
+            name={data.name}
             gender={data.gender}
+            age={data.age}
+            breed={data.breed}
+            weight={data.weight}
+            height={data.height}
+            color={data.color}
           />
+
+          <PetBehaviorContent
+            name={data.name}
+            gender={data.gender}
+            behavior={data.behavior}
+          />
+
+          <IncludeCareContent />
         </div>
+
+        <PetLocationContent
+          name={data.name}
+          gender={data.gender}
+          location={data.location}
+        />
       </section>
 
       <section className="flex flex-col md:flex-row justify-between items-center mt-6 md:mt-10 gap-2">

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { RiEdit2Fill } from "react-icons/ri";
 import { ToggleSwitchField } from "../../components/Forms";
 import {
   AdoptionApplicationFormData,
@@ -9,12 +10,14 @@ import { CustomButton } from "../../components/Buttons";
 import { AdoptApplicationQuestions } from "../../constants/questions";
 import { TextareaField } from "../../components/Forms/TextareaField";
 import { RadioButtonField } from "../../components/Forms/RadioButtonField";
+import { Heading } from "../../components/Typography";
 
 interface AdoptionFormProps {
   petId: string;
+  className?: string;
 }
 
-export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId }) => {
+export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) => {
   console.log(petId);
 
   const { control, handleSubmit } = useForm<AdoptionApplicationFormData>({
@@ -41,7 +44,16 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId }) => {
   };
 
   return (
-    <div>
+    <div className={className}>
+      <Heading
+        level="5"
+        color="royal-purple"
+        className="font-medium flex items-center gap-2 mb-6"
+      >
+        <RiEdit2Fill className="h-7 w-7 text-royal-purple" />
+        Adoption application form
+      </Heading>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-6"
@@ -52,8 +64,16 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId }) => {
           question="What type of home do you live in?"
           options={[
             { id: "1", value: "House with Yard", label: "House with Yard" },
-            { id: "2", value: "Apartment with Outdoor Access", label: "Apartment with Outdoor Access" },
-            { id: "3", value: "House or Apartment without Outdoor Access", label: "House or Apartment without Outdoor Access" },
+            {
+              id: "2",
+              value: "Apartment with Outdoor Access",
+              label: "Apartment with Outdoor Access",
+            },
+            {
+              id: "3",
+              value: "House or Apartment without Outdoor Access",
+              label: "House or Apartment without Outdoor Access",
+            },
             { id: "4", value: "Farm or Rural Property", label: "Farm or Rural Property" },
           ]}
         />

@@ -2,7 +2,7 @@ import { PiNewspaperClipping, PiPawPrint } from "react-icons/pi";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { LuClipboardList } from "react-icons/lu";
 import { SiWeightsandbiases } from "react-icons/si";
-import { Heading } from "../Typography";
+import { Heading } from ".";
 
 const icons = {
   about: PiPawPrint,

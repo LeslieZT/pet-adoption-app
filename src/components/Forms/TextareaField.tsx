@@ -25,7 +25,7 @@ export const TextareaField = <T extends FieldValues>({
         <Label
           htmlFor={name}
           value={label}
-          className="text-slate-gray"
+          className="text-slate-gray text-sm md:text-base font-medium"
         />
       </div>
       <Controller
@@ -40,6 +40,7 @@ export const TextareaField = <T extends FieldValues>({
             color={error ? "failure" : "gray"}
             {...props}
             rows={4}
+            className="p-4"
           />
         )}
       />

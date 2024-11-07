@@ -21,24 +21,32 @@ export const AdoptSection: React.FC = () => {
         <div className="grid grid-cols-2 gap-4">
           <AdoptCard
             icon="findPet"
-            title="Find Pet Match"
+            title="1. Find Pet Match"
             description="Explore our website and find the perfect pet that steals your heart."
           />
           <AdoptCard
-            icon="contact"
-            title="Contact and Meet"
-            description="Contact the shelter to meet the pet and see if it's a match."
+            icon="application"
+            title="2. Complete Application"
+            description="Complete the adoption application."
           />
           <AdoptCard
-            icon="paperwork"
-            title="Complete Paperwork"
-            description="Complete the application and fee to finalize adoption."
+            icon="contact"
+            title="3. Meet and Greet"  
+            description="Our team will contact you to arrange a meeting with your new furry friend. This ensures a perfect match!"
           />
+         
           <AdoptCard
             icon="takeThemHome"
-            title="Take Them Home"
-            description="Bring your new furry friend home and start making memories together!"
+            title="4. Prepare for Their Arrival"
+            description="Get your home ready with the basics: food, water bowls, a cozy bed, and toys to welcome your pet home."
           />
+
+          <AdoptCard
+            icon="paperwork"
+            title="5. Finalize the Adoption"
+            description="Once everything is set, we'll complete the paperwork, and your pet will be ready to go home with you!"
+          />
+
         </div>
       </div>
     </section>

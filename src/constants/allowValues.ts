@@ -17,4 +17,3 @@ export const ages = [
   { value: "4-6", label: "4 - 6 Years Old" },
   { value: "7+", label: "7+ Years Old" },
 ];
-

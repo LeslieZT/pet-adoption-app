@@ -6,7 +6,7 @@ interface MarkPetsAsFavoriteCardProps {
   name: string;
   imageUrl: string;
   isFavorite?: boolean;
-  variant?: "small" | "medium" | "large"
+  variant?: "small" | "medium" | "large";
 }
 
 export const MarkPetsAsFavoriteCard: React.FC<MarkPetsAsFavoriteCardProps> = ({
@@ -19,17 +19,17 @@ export const MarkPetsAsFavoriteCard: React.FC<MarkPetsAsFavoriteCardProps> = ({
   const [favorite, setFavorite] = useState(isFavorite);
 
   const style = {
-    height : {
-      small : "h-64",
+    height: {
+      small: "h-64",
       medium: "h-auto",
-      large: "h-full"
+      large: "h-full",
     },
     rounded: {
-      small : "rounded-t-xl",
+      small: "rounded-t-xl",
       medium: "rounded-2xl",
-      large: "rounded-3xl"
-    }    
-  }
+      large: "rounded-3xl",
+    },
+  };
 
   return (
     <div className={`relative ${style.height[variant]}`}>

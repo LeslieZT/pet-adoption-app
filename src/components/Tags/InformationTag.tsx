@@ -13,7 +13,10 @@ export const InformationTag: React.FC<InformationTagProps> = ({ name, value, gen
 
   return (
     <div
-      className={twMerge("flex flex-col items-center justify-center p-1 md:py-3 md:px-4 rounded-lg w-32 md:w-auto", bgColor)}
+      className={twMerge(
+        "flex flex-col items-center justify-center p-1 md:py-3 md:px-4 rounded-lg w-32 md:w-auto",
+        bgColor,
+      )}
     >
       <Paragraph
         size="medium"
