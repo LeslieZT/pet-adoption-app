@@ -31,10 +31,10 @@ export const AdoptSection: React.FC = () => {
           />
           <AdoptCard
             icon="contact"
-            title="3. Meet and Greet"  
+            title="3. Meet and Greet"
             description="Our team will contact you to arrange a meeting with your new furry friend. This ensures a perfect match!"
           />
-         
+
           <AdoptCard
             icon="takeThemHome"
             title="4. Prepare for Their Arrival"
@@ -46,7 +46,6 @@ export const AdoptSection: React.FC = () => {
             title="5. Finalize the Adoption"
             description="Once everything is set, we'll complete the paperwork, and your pet will be ready to go home with you!"
           />
-
         </div>
       </div>
     </section>

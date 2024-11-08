@@ -24,7 +24,7 @@ export const AccountSidebar: React.FC<AccountSidebarProps> = ({
               onClick={() => setActiveContent("profile")}
               active={activeContent === "profile"}
               className={`hover:!text-white  hover:bg-royal-purple ${activeContent === "profile" ? "bg-lavender-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
+            >
               Profile
             </Sidebar.Item>
             <Sidebar.Item
@@ -32,7 +32,6 @@ export const AccountSidebar: React.FC<AccountSidebarProps> = ({
               onClick={() => setActiveContent("applications")}
               active={activeContent === "applications"}
               className={`hover:!text-white  hover:bg-royal-purple ${activeContent === "applications" ? "bg-lavender-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-
             >
               Adopt Aplications
             </Sidebar.Item>
@@ -41,7 +40,6 @@ export const AccountSidebar: React.FC<AccountSidebarProps> = ({
               onClick={() => setActiveContent("favorite-pets")}
               active={activeContent === "favorite-pets"}
               className={`hover:!text-white  hover:bg-royal-purple ${activeContent === "favorite-pets" ? "bg-lavender-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-
             >
               Favorite Pets
             </Sidebar.Item>

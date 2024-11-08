@@ -16,9 +16,7 @@ export function RadioButtonField<T extends FieldValues>({
 }: RadioButtonFieldProps<T>) {
   return (
     <fieldset className="flex flex-col gap-4">
-      <legend className="mb-4 text-slate-gray text-sm md:text-base font-medium">
-      {question}
-      </legend>
+      <legend className="mb-4 text-slate-gray text-sm md:text-base font-medium">{question}</legend>
       <Controller
         name={name}
         control={control}

@@ -16,7 +16,7 @@ const icons = {
   contact: MdConnectWithoutContact,
   application: HiMiniClipboardDocumentList,
   takeThemHome: TbHomeHeart,
-  paperwork: PiCertificateFill
+  paperwork: PiCertificateFill,
 };
 
 export const AdoptCard: React.FC<AdoptCardProps> = ({ icon, title, description }) => {

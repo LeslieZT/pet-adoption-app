@@ -1,11 +1,11 @@
-import { UserAvatar } from "./UserAvatar"
-import { UserProfileForm } from "./UserProfileForm"
+import { UserAvatar } from "./UserAvatar";
+import { UserProfileForm } from "./UserProfileForm";
 
 export const ProfileSection = () => {
-    return (
-        <div className="flex flex-col md:flex-grap lg:flex-row gap-4 md:gap-8 justify-center items-center">
-            <UserAvatar/>
-            <UserProfileForm/>
-        </div>
-    )
-}
+  return (
+    <div className="flex flex-col md:flex-grap lg:flex-row gap-4 md:gap-8 justify-center items-center">
+      <UserAvatar />
+      <UserProfileForm />
+    </div>
+  );
+};

@@ -85,7 +85,6 @@ export const NavbarApp: React.FC = () => {
             >
               My Account
             </Navbar.Link>
-
           </Navbar.Collapse>
 
           <div className="hidden gap-4 md:order-2 md:flex md:justify-end md:mt-4 md:w-full lg:w-auto lg:mt-0">
@@ -101,102 +100,107 @@ export const NavbarApp: React.FC = () => {
 
       {/* Drawer Navigation */}
 
-      <Drawer open={isDrawerOpen} onClose={toggleSidebar}>
-        <Drawer.Header title="HappyPaws" titleIcon={() => <></>} />
+      <Drawer
+        open={isDrawerOpen}
+        onClose={toggleSidebar}
+      >
+        <Drawer.Header
+          title="HappyPaws"
+          titleIcon={() => <></>}
+        />
         <Drawer.Items>
-        <Sidebar
+          <Sidebar
             aria-label="HappyPaws sidebar"
             className="[&>div]:bg-transparent [&>div]:p-0"
-        >
-          <div className="flex items-center justify-center">
-            <IconLogo
-              size="large"
-              className="mb-5"
-            />
-          </div>
-          <Sidebar.Items>
-            <Sidebar.ItemGroup>              
-              <Sidebar.Item
-                as={Link}
-                to="/"
-                icon={HiHome}
-                onClick={() => handleLinkClick("home")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "home" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Home
-              </Sidebar.Item>
+          >
+            <div className="flex items-center justify-center">
+              <IconLogo
+                size="large"
+                className="mb-5"
+              />
+            </div>
+            <Sidebar.Items>
+              <Sidebar.ItemGroup>
+                <Sidebar.Item
+                  as={Link}
+                  to="/"
+                  icon={HiHome}
+                  onClick={() => handleLinkClick("home")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "home" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Home
+                </Sidebar.Item>
 
-              <Sidebar.Item
-                as={Link}
-                to="/adopt"
-                icon={MdOutlinePets}
-                onClick={() => handleLinkClick("adopt")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "adopt" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Adopt
-              </Sidebar.Item>
-              <Sidebar.Item
-                as={Link}
-                to="/donate"
-                icon={HiCurrencyDollar}
-                onClick={() => handleLinkClick("donate")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "donate" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Donate
-              </Sidebar.Item>
-              <Sidebar.Item
-                as={Link}
-                to="/blog"
-                icon={HiHeart}
-                onClick={() => handleLinkClick("blog")}
-                className={`hover:!text-white   hover:bg-lavender-purple ${activeLink === "blog" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Blog
-              </Sidebar.Item>
-              <Sidebar.Item
-                as={Link}
-                to="/contact"
-                icon={HiOutlineMail}
-                onClick={() => handleLinkClick("contact")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "contact" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Contact
-              </Sidebar.Item>
-            </Sidebar.ItemGroup>
-            <Sidebar.ItemGroup>
-              <Sidebar.Item
-                as={Link}
-                to="/account"
-                icon={FaUserCircle}
-                onClick={() => handleLinkClick("account")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "account" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                My Account
-              </Sidebar.Item>
-              <Sidebar.Item
-                as={Link}
-                to="/sign-in"
-                icon={HiArrowSmRight}
-                onClick={() => handleLinkClick("sign-in")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "sign-in" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Sign In
-              </Sidebar.Item>
-              <Sidebar.Item
-                as={Link}
-                to="/sign-up"
-                icon={HiUserAdd}
-                onClick={() => handleLinkClick("sign-up")}
-                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "sign-up" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-              >
-                Sign Up
-              </Sidebar.Item>
-            </Sidebar.ItemGroup>
-          </Sidebar.Items>
-        </Sidebar>
+                <Sidebar.Item
+                  as={Link}
+                  to="/adopt"
+                  icon={MdOutlinePets}
+                  onClick={() => handleLinkClick("adopt")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "adopt" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Adopt
+                </Sidebar.Item>
+                <Sidebar.Item
+                  as={Link}
+                  to="/donate"
+                  icon={HiCurrencyDollar}
+                  onClick={() => handleLinkClick("donate")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "donate" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Donate
+                </Sidebar.Item>
+                <Sidebar.Item
+                  as={Link}
+                  to="/blog"
+                  icon={HiHeart}
+                  onClick={() => handleLinkClick("blog")}
+                  className={`hover:!text-white   hover:bg-lavender-purple ${activeLink === "blog" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Blog
+                </Sidebar.Item>
+                <Sidebar.Item
+                  as={Link}
+                  to="/contact"
+                  icon={HiOutlineMail}
+                  onClick={() => handleLinkClick("contact")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "contact" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Contact
+                </Sidebar.Item>
+              </Sidebar.ItemGroup>
+              <Sidebar.ItemGroup>
+                <Sidebar.Item
+                  as={Link}
+                  to="/account"
+                  icon={FaUserCircle}
+                  onClick={() => handleLinkClick("account")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "account" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  My Account
+                </Sidebar.Item>
+                <Sidebar.Item
+                  as={Link}
+                  to="/sign-in"
+                  icon={HiArrowSmRight}
+                  onClick={() => handleLinkClick("sign-in")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "sign-in" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Sign In
+                </Sidebar.Item>
+                <Sidebar.Item
+                  as={Link}
+                  to="/sign-up"
+                  icon={HiUserAdd}
+                  onClick={() => handleLinkClick("sign-up")}
+                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "sign-up" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                >
+                  Sign Up
+                </Sidebar.Item>
+              </Sidebar.ItemGroup>
+            </Sidebar.Items>
+          </Sidebar>
         </Drawer.Items>
       </Drawer>
-
     </>
   );
 };

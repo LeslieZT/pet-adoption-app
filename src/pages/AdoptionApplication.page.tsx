@@ -4,7 +4,6 @@ import { Heading, Paragraph, SubtitleApplication } from "../components/Typograph
 import { AdoptionForm } from "../view/Adoption/AdoptionForm";
 import { PetAdoptCard } from "../components/Card";
 
-
 const AdoptionApplicationPage: React.FC = () => {
   const { petId } = useParams<{ petId: string }>();
 

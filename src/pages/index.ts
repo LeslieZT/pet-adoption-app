@@ -1,4 +1,4 @@
-import AccountPage  from './AccountPage';
+import AccountPage from "./AccountPage";
 import HomePage from "./Home.page";
 import SignInPage from "./SignIn.page";
 import SignUpPage from "./SignUp.page";
