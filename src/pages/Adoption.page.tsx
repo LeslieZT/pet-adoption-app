@@ -1,9 +1,10 @@
 import { Heading } from "../components/Typography";
+import { MainLayout } from "../layouts/Main.layout";
 import { SearchPet } from "../view/Adoption/SearchPet";
 
 const AdoptionPage: React.FC = () => {
   return (
-    <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4">
+    <MainLayout>
       <Heading
         level="2"
         color="royal-purple"
@@ -13,7 +14,7 @@ const AdoptionPage: React.FC = () => {
         Today
       </Heading>
       <SearchPet />
-    </div>
+    </MainLayout>
   );
 };
 

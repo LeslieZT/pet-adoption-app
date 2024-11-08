@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { MainLayout } from "../layouts/Main.layout";
 import { PetProfile } from "../view/PetInfo/PetProfile";
 
 const PetInfoPage: React.FC = () => {
@@ -9,9 +10,9 @@ const PetInfoPage: React.FC = () => {
   }
 
   return (
-    <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4">
+    <MainLayout>
       <PetProfile id={petId}></PetProfile>
-    </div>
+    </MainLayout>
   );
 };
 

@@ -12,7 +12,7 @@ const HeadingVariants = cva("dark:text-white", {
       "aqua-blue": "text-aqua-blue",
     },
     level: {
-      "1": "text-3xl md:text-4xl",
+      "1": "text-2xl md:text-3xl",
       "2": "text-2xl md:text-3xl",
       "3": "text-xl md:text-2xl",
       "4": "text-lg md:text-xl",

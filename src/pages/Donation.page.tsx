@@ -1,10 +1,11 @@
+import { MainLayout } from "../layouts/Main.layout";
 import { Heading, Paragraph } from "../components/Typography";
 import { DonationSection } from "../view/Donation/DonationSection";
 
 const DonationPage: React.FC = () => {
   return (
     <>
-      <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4">
+      <MainLayout>
         <Heading
           level="2"
           color="royal-purple"
@@ -18,11 +19,11 @@ const DonationPage: React.FC = () => {
           of our plans or enter the amount you'd like to contribute
         </Paragraph>
         <DonationSection />
-      </div>
+      </MainLayout>
       <img
         src="./src/assets/donation_dog.png"
         alt="donation-icons"
-        className="w-full h-96 object-cover"
+        className="w-full h-96 object-cover -mt-36 md:-mt-16 pb-20 md:pb-14"
       />
     </>
   );

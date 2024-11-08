@@ -5,11 +5,11 @@ import { FooterApp } from "./components/Footer/Footer";
 
 function App() {
   return (
-    <>
+    <div className="relative min-h-screen">
       <NavbarApp />
       <Outlet />
       <FooterApp />
-    </>
+    </div>
   );
 }
 

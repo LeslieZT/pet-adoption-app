@@ -1,3 +1,4 @@
+import AccountPage  from './AccountPage';
 import HomePage from "./Home.page";
 import SignInPage from "./SignIn.page";
 import SignUpPage from "./SignUp.page";
@@ -13,5 +14,6 @@ export {
   AdoptionPage,
   DonationPage,
   PetInfoPage,
+  AccountPage,
   AdoptionApplicationPage,
 };

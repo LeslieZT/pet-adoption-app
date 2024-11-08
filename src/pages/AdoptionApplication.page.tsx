@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
+import { MainLayout } from "../layouts/Main.layout";
 import { Heading, Paragraph, SubtitleApplication } from "../components/Typography";
 import { AdoptionForm } from "../view/Adoption/AdoptionForm";
 import { PetAdoptCard } from "../components/Card";
+
 
 const AdoptionApplicationPage: React.FC = () => {
   const { petId } = useParams<{ petId: string }>();
@@ -11,7 +13,7 @@ const AdoptionApplicationPage: React.FC = () => {
   }
 
   return (
-    <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4">
+    <MainLayout>
       <Heading
         level="2"
         color="royal-purple"
@@ -73,7 +75,7 @@ const AdoptionApplicationPage: React.FC = () => {
           className="h-26 w-28 md:h-60 md:w-40"
         />
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

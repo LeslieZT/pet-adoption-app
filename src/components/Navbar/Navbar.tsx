@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Sidebar } from "flowbite-react";
+import { Drawer, Navbar, Sidebar } from "flowbite-react";
 import { Link } from "react-router-dom";
 import {
   HiHome,
@@ -12,19 +12,17 @@ import {
 import { MdOutlinePets } from "react-icons/md";
 import { CustomButton } from "../Buttons";
 import { IconLogo, Logo } from "../Logo";
+import { FaUserCircle } from "react-icons/fa";
 
 export const NavbarApp: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
 
-  console.log(activeLink);
-
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = () => setIsDrawerOpen(!isDrawerOpen);
 
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
-    console.log(activeLink);
-    if (isSidebarOpen) toggleSidebar();
+    if (isDrawerOpen) toggleSidebar();
   };
 
   return (
@@ -35,7 +33,7 @@ export const NavbarApp: React.FC = () => {
             as={Link}
             to="/"
           >
-            <Logo size="small" />
+            <Logo size="large" />
           </Navbar.Brand>
           <Navbar.Toggle onClick={toggleSidebar} />
           <Navbar.Collapse className="hidden md:flex ">
@@ -79,6 +77,15 @@ export const NavbarApp: React.FC = () => {
             >
               Contact
             </Navbar.Link>
+            <Navbar.Link
+              as={Link}
+              to="/account"
+              onClick={() => handleLinkClick("account")}
+              className={`hover:!text-royal-purple text-base ${activeLink === "account" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
+            >
+              My Account
+            </Navbar.Link>
+
           </Navbar.Collapse>
 
           <div className="hidden gap-4 md:order-2 md:flex md:justify-end md:mt-4 md:w-full lg:w-auto lg:mt-0">
@@ -92,31 +99,23 @@ export const NavbarApp: React.FC = () => {
         </Navbar>
       </div>
 
-      {/* Sidebar */}
-      <div
-        className={`fixed inset-0 z-30 transition-opacity duration-300 ${
-          isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      >
-        <div
-          className="absolute inset-0 bg-gray-800 bg-opacity-50"
-          onClick={toggleSidebar}
-        ></div>
+      {/* Drawer Navigation */}
 
+      <Drawer open={isDrawerOpen} onClose={toggleSidebar}>
+        <Drawer.Header title="HappyPaws" titleIcon={() => <></>} />
+        <Drawer.Items>
         <Sidebar
-          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 ${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-          aria-label="HappyPaws sidebar"
+            aria-label="HappyPaws sidebar"
+            className="[&>div]:bg-transparent [&>div]:p-0"
         >
           <div className="flex items-center justify-center">
             <IconLogo
-              size="small"
+              size="large"
               className="mb-5"
             />
           </div>
           <Sidebar.Items>
-            <Sidebar.ItemGroup>
+            <Sidebar.ItemGroup>              
               <Sidebar.Item
                 as={Link}
                 to="/"
@@ -167,6 +166,15 @@ export const NavbarApp: React.FC = () => {
             <Sidebar.ItemGroup>
               <Sidebar.Item
                 as={Link}
+                to="/account"
+                icon={FaUserCircle}
+                onClick={() => handleLinkClick("account")}
+                className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "account" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+              >
+                My Account
+              </Sidebar.Item>
+              <Sidebar.Item
+                as={Link}
                 to="/sign-in"
                 icon={HiArrowSmRight}
                 onClick={() => handleLinkClick("sign-in")}
@@ -186,7 +194,9 @@ export const NavbarApp: React.FC = () => {
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         </Sidebar>
-      </div>
+        </Drawer.Items>
+      </Drawer>
+
     </>
   );
 };

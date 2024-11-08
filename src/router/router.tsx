@@ -8,6 +8,7 @@ import {
   DonationPage,
   PetInfoPage,
   AdoptionApplicationPage,
+  AccountPage
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
         path: "/donate",
         element: <DonationPage />,
       },
+      {
+        path: "/account",
+        element: <AccountPage />,
+      }
     ],
   },
   {

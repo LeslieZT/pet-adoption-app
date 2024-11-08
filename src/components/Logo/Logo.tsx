@@ -24,7 +24,7 @@ const TextLogoVariants = cva("dark:text-white", {
   variants: {
     size: {
       small: "text-2xl",
-      large: "text-4xl",
+      large: "text-3xl",
     },
   },
   defaultVariants: {

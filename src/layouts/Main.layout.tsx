@@ -1,9 +1,13 @@
-import { Outlet } from "react-router-dom";
+import React from "react";
 
-export const MainLayout: React.FC = () => {
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+export const MainLayout: React.FC<MainLayoutProps> = ( { children } ) => {
   return (
-    <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Outlet />
+    <div className="mx-auto min-w-[300px] max-w-screen-2xl p-4 pb-36 md:pb-16">
+      {children}
     </div>
   );
 };
