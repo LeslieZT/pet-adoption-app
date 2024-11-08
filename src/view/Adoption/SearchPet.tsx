@@ -9,10 +9,12 @@ import { SearchFormData, SearchSchema } from "../../schema/Search.schema";
 import { InputField, SelectField } from "../../components/Forms";
 import { CustomButton } from "../../components/Buttons";
 import { PetCard } from "../../components/Card";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export const SearchPet: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  
   const [currentPage, setCurrentPage] = useState(1);
-
   const onPageChange = (page: number) => setCurrentPage(page);
 
   const { control, handleSubmit } = useForm<SearchFormData>({
@@ -31,8 +33,8 @@ export const SearchPet: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-row md:flex-col gap-2 mt-10">
-        <div className="w-96 md:w-full p-4 ">
+      <div className="flex flex-col gap-2 mt-4">
+        <div className="w-full p-4 ">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col md:flex-row md:items-end justify-center gap-4 "
@@ -83,7 +85,7 @@ export const SearchPet: React.FC = () => {
             </CustomButton>
           </form>
         </div>
-        <div className="w-full flex flex-wrap gap-2 justify-between">
+        <div className="w-full flex flex-wrap gap-4 justify-around">
           <PetCard
             refCode="123"
             name="Doggy"
@@ -141,12 +143,13 @@ export const SearchPet: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex overflow-x-auto sm:justify-center mt-10">
+      <div className="flex justify-center mt-10">
         <Pagination
           currentPage={currentPage}
           totalPages={10}
-          onPageChange={onPageChange}
+          onPageChange={onPageChange}   
           showIcons
+          layout={isMobile ? 'table' : 'pagination'}       
         />
       </div>
     </>

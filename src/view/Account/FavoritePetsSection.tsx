@@ -11,7 +11,7 @@ export const FavoritePetsSection: React.FC = () => {
       >
         My favorite pets
       </Heading>
-      <div className="w-full flex flex-wrap gap-2 justify-between">
+      <div className="w-full flex flex-wrap gap-4 justify-around">
         <PetCard
           refCode="123"
           name="Doggy"

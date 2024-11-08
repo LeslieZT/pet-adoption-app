@@ -45,13 +45,13 @@ export const PetCard: React.FC<PetCardProps> = ({
   const Icon = genderIcons[gender];
 
   return (
-    <div className="w-52 md:w-56 shadow-md rounded-xl">
+    <div className="w-full sm:max-w-80 md:max-w-56 shadow-md rounded-xl grid md:grid-cols-1 grid-cols-2 gap-2">
       <MarkPetsAsFavoriteCard
         refCode={refCode}
         name={name}
         imageUrl={imageUrl}
         isFavorite={isFavorite}
-        variant="small"
+        variant="medium"
       />
       <Link to={`/adopt/${refCode}`}>
         <div className="p-4">

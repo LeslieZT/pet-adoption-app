@@ -8,7 +8,7 @@ const AdoptionPage: React.FC = () => {
       <Heading
         level="2"
         color="royal-purple"
-        className="text-center font-medium mt-16"
+        className="text-center font-medium mt-4"
       >
         Every Pet Deserves a Loving Home. <span className="text-lavender-purple">Adopt</span> a Pet
         Today

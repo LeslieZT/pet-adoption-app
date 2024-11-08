@@ -20,19 +20,24 @@ export const MarkPetsAsFavoriteCard: React.FC<MarkPetsAsFavoriteCardProps> = ({
 
   const style = {
     height: {
-      small: "h-64",
-      medium: "h-auto",
+      small: "h-52",
+      medium: "h-48 md:max-h-52",
       large: "h-full",
     },
+    weight: {
+      small: "w-52",
+      medium: "w-full",
+      large: "w-full",
+    },
     rounded: {
-      small: "rounded-t-xl",
-      medium: "rounded-2xl",
+      small: "rounded-xl",
+      medium: "rounded-l-xl md:rounded-t-xl",
       large: "rounded-3xl",
     },
   };
 
   return (
-    <div className={`relative ${style.height[variant]}`}>
+    <div className={`relative ${style.height[variant]} ${style.weight[variant]}`}>
       <img
         className={`${style.rounded[variant]} w-full h-full object-cover`}
         src={imageUrl}

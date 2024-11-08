@@ -69,9 +69,9 @@ const AdoptionApplicationPage: React.FC = () => {
       </div>
       <div className="flex items-center justify-center md:justify-end mb-10 mt-4 w-full">
         <img
-          src="../../src/assets/cat-icon.png"
+          src="../../src/assets/dog-icon2.png"
           alt="dog-icon"
-          className="h-26 w-28 md:h-60 md:w-40"
+          className="h-32 w-40 md:h-36 md:w-44"
         />
       </div>
     </MainLayout>

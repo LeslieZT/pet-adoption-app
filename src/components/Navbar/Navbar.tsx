@@ -28,7 +28,7 @@ export const NavbarApp: React.FC = () => {
   return (
     <>
       <div className="sticky top-0 z-30 bg-white shadow-md">
-        <Navbar className="py-4 px-4">
+        <Navbar className="py-4 px-4 w-full">
           <Navbar.Brand
             as={Link}
             to="/"
@@ -36,7 +36,7 @@ export const NavbarApp: React.FC = () => {
             <Logo size="large" />
           </Navbar.Brand>
           <Navbar.Toggle onClick={toggleSidebar} />
-          <Navbar.Collapse className="hidden md:flex ">
+          <Navbar.Collapse className="hidden md:order-2 md:mt-5 lg:mt-0 md:flex">
             <Navbar.Link
               as={Link}
               to="/"
@@ -87,7 +87,7 @@ export const NavbarApp: React.FC = () => {
             </Navbar.Link>
           </Navbar.Collapse>
 
-          <div className="hidden gap-4 md:order-2 md:flex md:justify-end md:mt-4 md:w-full lg:w-auto lg:mt-0">
+          <div className="hidden gap-4 md:flex lg:order-2">
             <CustomButton>
               <Link to="/sign-in">Sign In</Link>
             </CustomButton>
