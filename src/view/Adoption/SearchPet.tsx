@@ -83,63 +83,61 @@ export const SearchPet: React.FC = () => {
             </CustomButton>
           </form>
         </div>
-        <div>
-          <div className="w-full flex flex-wrap gap-2 justify-between">
-            <PetCard
-              refCode="123"
-              name="Doggy"
-              breed="Dog"
-              age="2 years"
-              location="New York"
-              gender="male"
-              imageUrl="./src/assets/Cat.png"
-            />
-            <PetCard
-              refCode="123"
-              name="Cat"
-              breed="Cat"
-              age="2 years"
-              location="New York"
-              gender="male"
-              imageUrl="./src/assets/section1_rabbit.png"
-            />
-            <PetCard
-              refCode="123"
-              name="Doggy"
-              breed="Dog"
-              age="2 years"
-              location="New York"
-              gender="female"
-              imageUrl="./src/assets/Cat.png"
-            />
-            <PetCard
-              refCode="123"
-              name="Doggy"
-              breed="Dog"
-              age="2 years"
-              location="New York"
-              gender="male"
-              imageUrl="./src/assets/Cat.png"
-            />
-            <PetCard
-              refCode="123"
-              name="Cat"
-              breed="Cat"
-              age="2 years"
-              location="New York"
-              gender="male"
-              imageUrl="./src/assets/section1_rabbit.png"
-            />
-            <PetCard
-              refCode="123"
-              name="Doggy"
-              breed="Dog"
-              age="2 years"
-              location="New York"
-              gender="female"
-              imageUrl="./src/assets/Cat.png"
-            />
-          </div>
+        <div className="w-full flex flex-wrap gap-2 justify-between">
+          <PetCard
+            refCode="123"
+            name="Doggy"
+            breed="Dog"
+            age="2 years"
+            location="New York"
+            gender="male"
+            imageUrl="./src/assets/Cat.png"
+          />
+          <PetCard
+            refCode="123"
+            name="Cat"
+            breed="Cat"
+            age="2 years"
+            location="New York"
+            gender="male"
+            imageUrl="./src/assets/section1_rabbit.png"
+          />
+          <PetCard
+            refCode="123"
+            name="Doggy"
+            breed="Dog"
+            age="2 years"
+            location="New York"
+            gender="female"
+            imageUrl="./src/assets/Cat.png"
+          />
+          <PetCard
+            refCode="123"
+            name="Doggy"
+            breed="Dog"
+            age="2 years"
+            location="New York"
+            gender="male"
+            imageUrl="./src/assets/Cat.png"
+          />
+          <PetCard
+            refCode="123"
+            name="Cat"
+            breed="Cat"
+            age="2 years"
+            location="New York"
+            gender="male"
+            imageUrl="./src/assets/section1_rabbit.png"
+          />
+          <PetCard
+            refCode="123"
+            name="Doggy"
+            breed="Dog"
+            age="2 years"
+            location="New York"
+            gender="female"
+            imageUrl="./src/assets/Cat.png"
+          />
         </div>
       </div>
 

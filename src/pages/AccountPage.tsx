@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card } from "flowbite-react";
 import { AccountSidebar, ContentType } from "../components/Navbar/Sidebar";
-import { ProfileSection, AplicationSection } from "../view/Account";
+import { ProfileSection, AplicationSection, FavoritePetsSection } from "../view/Account";
 import { MainLayout } from "../layouts/Main.layout";
 
 const AccountPage: React.FC = () => {
@@ -12,6 +12,8 @@ const AccountPage: React.FC = () => {
         return <ProfileSection />;
       case "applications":
         return <AplicationSection />;
+      case "favorite-pets":
+        return <FavoritePetsSection />;
       default:
         return <ProfileSection />;
     }

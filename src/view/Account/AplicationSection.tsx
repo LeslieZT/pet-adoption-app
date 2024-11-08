@@ -1,7 +1,8 @@
+import React from "react";
 import { Table } from "flowbite-react";
 import { Heading } from "../../components/Typography";
 
-export const AplicationSection = () => {
+export const AplicationSection: React.FC = () => {
   const applications = [
     { id: 1, petName: "Max", status: "Pendiente", date: "2023-05-15" },
     { id: 2, petName: "Luna", status: "Aprobada", date: "2023-05-10" },
