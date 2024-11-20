@@ -6,8 +6,7 @@ const SignInPage: React.FC = () => {
   return (
     <AuthenticatioLayout
       coverImage="./src/assets/sign-in-cover.png"
-      alt="HappyPaws Sign In"
-    >
+      alt="HappyPaws Sign In">
       <SignInForm />
     </AuthenticatioLayout>
   );

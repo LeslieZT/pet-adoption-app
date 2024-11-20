@@ -1,5 +1,3 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Card } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
@@ -8,13 +6,9 @@ import { SignInFormData, SignInSchema } from "../../schema/SignIn.schema";
 import { Heading } from "../../components/Typography";
 import { CustomButton } from "../../components/Buttons";
 import { InputField, PasswordField } from "../../components/Forms";
-import { useAuthStore } from "../../store/Auth.store";
+import { Link } from "react-router-dom";
 
-export const SignInForm = () => {
-  const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
-  const { signIn, signInWithOAuth } = useAuthStore((state) => state);
-
+export const ContactForm = () => {
   const { control, handleSubmit } = useForm<SignInFormData>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -23,21 +17,9 @@ export const SignInForm = () => {
     },
   });
 
-  const onSubmit = async (data: SignInFormData) => {
-    try {
-      await signIn(data);
-      navigate("/home");
-      
-    } catch (error: any) {
-      setError(error.message);
-    }
+  const onSubmit = (data: SignInFormData) => {
+    console.log("Login attempt with:", data);
   };
-
-  const hanbleSignInWithOAuth = async (provider: string) => {
-    const response = await signInWithOAuth(provider);
-    window.location.replace(response.url);
-  };
-  
 
   return (
     <Card className="w-full max-w-md lg:py-10 lg:px-4">
@@ -81,7 +63,6 @@ export const SignInForm = () => {
             Forgot password?
           </Link>
         </div>
-        {error && <span className="text-red-500 text-sm text-center">{error}</span>}
         <CustomButton
           type="submit"
           color="royal-purple"
@@ -95,7 +76,7 @@ export const SignInForm = () => {
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <CustomButton color="light-pastel-lilac"  onClick={() => hanbleSignInWithOAuth("google")}>
+          <CustomButton color="light-pastel-lilac">
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
@@ -112,7 +93,7 @@ export const SignInForm = () => {
             Google
           </CustomButton>
 
-          <CustomButton color="light-pastel-lilac" onClick={() => hanbleSignInWithOAuth("facebook")}>
+          <CustomButton color="light-pastel-lilac">
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Drawer, Navbar, Sidebar } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   HiHome,
   HiArrowSmRight,
@@ -10,11 +10,14 @@ import {
   HiHeart,
 } from "react-icons/hi";
 import { MdOutlinePets } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 import { CustomButton } from "../Buttons";
 import { IconLogo, Logo } from "../Logo";
-import { FaUserCircle } from "react-icons/fa";
+import { useAuthStore } from "../../store/Auth.store";
+import { PiSignOutBold } from "react-icons/pi";
 
 export const NavbarApp: React.FC = () => {
+  const { isAuthenticated, signOut } = useAuthStore((state) => state);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
 
@@ -23,6 +26,11 @@ export const NavbarApp: React.FC = () => {
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
     if (isDrawerOpen) toggleSidebar();
+  };
+
+  const handleSignOut = async() => {
+    await signOut();
+    setActiveLink("home");
   };
 
   return (
@@ -77,23 +85,35 @@ export const NavbarApp: React.FC = () => {
             >
               Contact
             </Navbar.Link>
-            <Navbar.Link
-              as={Link}
-              to="/account"
-              onClick={() => handleLinkClick("account")}
-              className={`hover:!text-royal-purple text-base ${activeLink === "account" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
-            >
-              My Account
-            </Navbar.Link>
           </Navbar.Collapse>
 
           <div className="hidden gap-4 md:flex lg:order-2">
-            <CustomButton>
-              <Link to="/sign-in">Sign In</Link>
-            </CustomButton>
-            <CustomButton color="light-pastel-lilac">
-              <Link to="/sign-up">Sign Up</Link>
-            </CustomButton>
+            {isAuthenticated ? (
+              <div className="flex items-center gap-4">
+                <NavLink
+                  to="/account"
+                  onClick={() => handleLinkClick("account")}
+                  className={`hover:text-royal-purple text-base flex items-end justify-center gap-1 ${
+                    activeLink === "account"
+                      ? "text-royal-purple font-bold"
+                      : "text-soft-gray-blue font-medium"
+                  }`}
+                >
+                  <FaUserCircle className="h-8 w-8" />
+                  <span>Account</span>
+                </NavLink>
+                <CustomButton onClick={() => handleSignOut()}> Sign Out </CustomButton>
+              </div>
+            ) : (
+              <>
+                <CustomButton>
+                  <Link to="/sign-in">Sign In</Link>
+                </CustomButton>
+                <CustomButton color="light-pastel-lilac">
+                  <Link to="/sign-up">Sign Up</Link>
+                </CustomButton>
+              </>
+            )}
           </div>
         </Navbar>
       </div>
@@ -126,7 +146,7 @@ export const NavbarApp: React.FC = () => {
                   to="/"
                   icon={HiHome}
                   onClick={() => handleLinkClick("home")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "home" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                  className={` hover:!text-white  hover:bg-lavender-purple ${activeLink === "home" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
                   Home
                 </Sidebar.Item>
@@ -136,7 +156,7 @@ export const NavbarApp: React.FC = () => {
                   to="/adopt"
                   icon={MdOutlinePets}
                   onClick={() => handleLinkClick("adopt")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "adopt" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                  className={` hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "adopt" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
                   Adopt
                 </Sidebar.Item>
@@ -145,7 +165,7 @@ export const NavbarApp: React.FC = () => {
                   to="/donate"
                   icon={HiCurrencyDollar}
                   onClick={() => handleLinkClick("donate")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "donate" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                  className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "donate" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
                   Donate
                 </Sidebar.Item>
@@ -154,7 +174,7 @@ export const NavbarApp: React.FC = () => {
                   to="/blog"
                   icon={HiHeart}
                   onClick={() => handleLinkClick("blog")}
-                  className={`hover:!text-white   hover:bg-lavender-purple ${activeLink === "blog" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                  className={`hover:!text-white   hover:bg-lavender-purple sidebar-item ${activeLink === "blog" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
                   Blog
                 </Sidebar.Item>
@@ -163,39 +183,54 @@ export const NavbarApp: React.FC = () => {
                   to="/contact"
                   icon={HiOutlineMail}
                   onClick={() => handleLinkClick("contact")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "contact" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
+                  className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "contact" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
                   Contact
                 </Sidebar.Item>
               </Sidebar.ItemGroup>
               <Sidebar.ItemGroup>
-                <Sidebar.Item
-                  as={Link}
-                  to="/account"
-                  icon={FaUserCircle}
-                  onClick={() => handleLinkClick("account")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "account" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-                >
-                  My Account
-                </Sidebar.Item>
-                <Sidebar.Item
-                  as={Link}
-                  to="/sign-in"
-                  icon={HiArrowSmRight}
-                  onClick={() => handleLinkClick("sign-in")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "sign-in" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-                >
-                  Sign In
-                </Sidebar.Item>
-                <Sidebar.Item
-                  as={Link}
-                  to="/sign-up"
-                  icon={HiUserAdd}
-                  onClick={() => handleLinkClick("sign-up")}
-                  className={`hover:!text-white  hover:bg-lavender-purple ${activeLink === "sign-up" ? "bg-royal-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
-                >
-                  Sign Up
-                </Sidebar.Item>
+                {isAuthenticated ? (
+                  <>
+                    <Sidebar.Item
+                      as={Link}
+                      to="/account"
+                      icon={FaUserCircle}
+                      onClick={() => handleLinkClick("account")}
+                      className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "account" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
+                    >
+                      Account
+                    </Sidebar.Item>
+                    <Sidebar.Item
+                      to="/account"
+                      icon={PiSignOutBold}
+                      onClick={handleSignOut}
+                      className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "account" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
+                    >
+                      Sign Out
+                    </Sidebar.Item>
+                  </>
+                ) : (
+                  <>
+                    <Sidebar.Item
+                      as={Link}
+                      to="/sign-in"
+                      icon={HiArrowSmRight}
+                      onClick={() => handleLinkClick("sign-in")}
+                      className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "sign-in" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
+                    >
+                      Sign In
+                    </Sidebar.Item>
+                    <Sidebar.Item
+                      as={Link}
+                      to="/sign-up"
+                      icon={HiUserAdd}
+                      onClick={() => handleLinkClick("sign-up")}
+                      className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "sign-up" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
+                    >
+                      Sign Up
+                    </Sidebar.Item>
+                  </>
+                )}
               </Sidebar.ItemGroup>
             </Sidebar.Items>
           </Sidebar>

@@ -1,14 +1,22 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
-import { HiCalendar, HiMail, HiUser } from "react-icons/hi";
+import { HiMail, HiUser } from "react-icons/hi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpFormData, SignUpSchema } from "../../schema/SignUp.schema";
 import { Heading } from "../../components/Typography";
 import { CustomButton } from "../../components/Buttons";
 import { InputField, PasswordField } from "../../components/Forms";
-import { Link } from "react-router-dom";
+import { useAuthStore } from "../../store/Auth.store";
+
 
 export const SignUpForm = () => {
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const { signUp, signInWithOAuth } = useAuthStore((state) => state);
+
+  
   const { control, handleSubmit } = useForm<SignUpFormData>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
@@ -16,14 +24,25 @@ export const SignUpForm = () => {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: "",
-      birthdate: "",
+      confirmPassword: ""
     },
   });
 
-  const onSubmit = (data: SignUpFormData) => {
-    console.log("Login attempt with:", data);
+  const onSubmit = async(data: SignUpFormData) => {
+    try {
+      await signUp(data);
+      navigate("/sign-up/success");
+      
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
+
+  const hanbleSignInWithOAuth = async (provider: string) => {
+    const response = await signInWithOAuth(provider);
+    window.location.replace(response.url);
+  };
+  
 
   return (
     <Card className="w-full max-w-2xl lg:py-4 lg:px-4">
@@ -63,14 +82,7 @@ export const SignUpForm = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <InputField
-            name="birthdate"
-            control={control}
-            label="Birthdate"
-            type="date"
-            icon={HiCalendar}
-          />
+        <div className="grid grid-cols-1">         
           <InputField
             name="email"
             control={control}
@@ -94,6 +106,8 @@ export const SignUpForm = () => {
           />
         </div>
 
+        {error && <span className="text-red-500 text-sm text-center">{error}</span>}
+
         <CustomButton
           type="submit"
           color="royal-purple"
@@ -107,7 +121,7 @@ export const SignUpForm = () => {
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <CustomButton color="light-pastel-lilac">
+          <CustomButton color="light-pastel-lilac" onClick={() => hanbleSignInWithOAuth("google")}>
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
@@ -124,7 +138,7 @@ export const SignUpForm = () => {
             Google
           </CustomButton>
 
-          <CustomButton color="light-pastel-lilac">
+          <CustomButton color="light-pastel-lilac" onClick={() => hanbleSignInWithOAuth("facebook")}>
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"

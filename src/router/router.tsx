@@ -9,6 +9,10 @@ import {
   PetInfoPage,
   AdoptionApplicationPage,
   AccountPage,
+  ContactPage,
+  AccountCreatedPage,
+  VerifyAccountPage,
+  AuthProviderPage
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -42,6 +46,10 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        path: "/contact",
+        element: <ContactPage />,
+      },
+      {
         path: "/donate",
         element: <DonationPage />,
       },
@@ -59,4 +67,16 @@ export const router = createBrowserRouter([
     path: "/sign-up",
     element: <SignUpPage />,
   },
+  {
+    path: "/sign-up/success",
+    element: <AccountCreatedPage />,
+  },
+  {
+    path: "/auth/verify-email",
+    element: <VerifyAccountPage />,
+  },
+  {
+    path: "/auth/providers/:provider/callback",
+    element: <AuthProviderPage />,
+  }
 ]);

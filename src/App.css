@@ -11,6 +11,18 @@
   align-items: center;
 }
 
+ .sidebar-item-active svg {
+  color: #f4f4f4 !important;
+} 
+
+
+.sidebar-item:hover svg {
+  color: #f4f4f4 !important;
+} 
+
+
+
+
 @media (max-width: 768px) {
   .btn-gallery {
     display: none;
