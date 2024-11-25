@@ -13,6 +13,7 @@ import { postRequest } from "../utils/AxiosClient";
 import { ChannelType } from "../enum/ChannelType.enum";
 
 const { SIGN_UP, SIGN_IN, SIGN_IN_OAUTH, SIGN_IN_OAUTH_CALLBACK } = API_ENDPOINTS;
+
 export const signUp = async (
   params: SignUpRequest,
   channel: ChannelType,
@@ -37,11 +38,9 @@ export const signInWithOAuth = async (
   params: SignInOAuthRequest,
   channel: ChannelType,
 ): Promise<ResponseApi<SignInOAuthResponse>> => {
-  const response = await postRequest<ResponseApi<SignInOAuthResponse>>(
-    SIGN_IN_OAUTH,
-    params,
-    { headers: { "X-Channel": channel } },
-  );
+  const response = await postRequest<ResponseApi<SignInOAuthResponse>>(SIGN_IN_OAUTH, params, {
+    headers: { "X-Channel": channel },
+  });
   return response;
 };
 

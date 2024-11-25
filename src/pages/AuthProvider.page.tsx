@@ -5,7 +5,7 @@ import { useAuthStore } from "../store/Auth.store";
 import { ChannelType } from "../enum/ChannelType.enum";
 
 const AuthProviderPage: React.FC = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { provider } = useParams();
   const location = useLocation();
   const { signInWithOAuthCallback, setChhanel } = useAuthStore((state) => state);
@@ -39,8 +39,12 @@ const AuthProviderPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       {loading && (
-        <Spinner color="purple" aria-label="Purple spinner example"  className="h-52 w-52" />
-      ) }
+        <Spinner
+          color="purple"
+          aria-label="Purple spinner example"
+          className="h-52 w-52"
+        />
+      )}
     </div>
   );
 };

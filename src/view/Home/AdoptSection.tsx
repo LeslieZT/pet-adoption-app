@@ -46,15 +46,14 @@ export const AdoptSection: React.FC = () => {
             title="5. Finalize the Adoption"
             description="Once everything is set, we'll complete the paperwork, and your pet will be ready to go home with you!"
           />
-         
-            <div className="flex items-end justify-end">
-              <img
-                src="./src/assets/cat-icon.png"
-                alt="dog-icon"
-                className="h-26 w-32"
-              />
-            </div>
-       
+
+          <div className="flex items-end justify-end">
+            <img
+              src="./src/assets/cat-icon.png"
+              alt="dog-icon"
+              className="h-26 w-32"
+            />
+          </div>
         </div>
       </div>
     </section>

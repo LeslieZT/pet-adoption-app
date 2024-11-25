@@ -27,7 +27,6 @@ export const SignInForm = () => {
     try {
       await signIn(data);
       navigate("/home");
-      
     } catch (error: any) {
       setError(error.message);
     }
@@ -37,7 +36,6 @@ export const SignInForm = () => {
     const response = await signInWithOAuth(provider);
     window.location.replace(response.url);
   };
-  
 
   return (
     <Card className="w-full max-w-md lg:py-10 lg:px-4">
@@ -95,7 +93,10 @@ export const SignInForm = () => {
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <CustomButton color="light-pastel-lilac"  onClick={() => hanbleSignInWithOAuth("google")}>
+          <CustomButton
+            color="light-pastel-lilac"
+            onClick={() => hanbleSignInWithOAuth("google")}
+          >
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
@@ -112,7 +113,10 @@ export const SignInForm = () => {
             Google
           </CustomButton>
 
-          <CustomButton color="light-pastel-lilac" onClick={() => hanbleSignInWithOAuth("facebook")}>
+          <CustomButton
+            color="light-pastel-lilac"
+            onClick={() => hanbleSignInWithOAuth("facebook")}
+          >
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"

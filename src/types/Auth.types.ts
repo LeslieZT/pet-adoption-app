@@ -1,36 +1,36 @@
 export interface SignInRequest {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export interface SignInResponse {
-    accessToken: string;
-    refreshToken: string;
-    expiresIn: number;
-    expiresAt: number;
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
+  expiresAt: number;
 }
 
 export interface SignUpRequest {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 }
-  
+
 export interface SignUpResponse {
-    message: string;
+  message: string;
 }
 
 export interface SignInOAuthRequest {
-    provider: string;
+  provider: string;
 }
 
 export interface SignInOAuthResponse {
-    provider: string
-    url: string
+  provider: string;
+  url: string;
 }
 
 export interface SignInWithOAuthCallbackRequest {
-    provider: string
-    accessToken: string
+  provider: string;
+  accessToken: string;
 }

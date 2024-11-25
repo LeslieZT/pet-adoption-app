@@ -12,8 +12,8 @@ import { PetCard } from "../../components/Card";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export const SearchPet: React.FC = () => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
-  
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page: number) => setCurrentPage(page);
 
@@ -147,9 +147,9 @@ export const SearchPet: React.FC = () => {
         <Pagination
           currentPage={currentPage}
           totalPages={10}
-          onPageChange={onPageChange}   
+          onPageChange={onPageChange}
           showIcons
-          layout={isMobile ? 'table' : 'pagination'}       
+          layout={isMobile ? "table" : "pagination"}
         />
       </div>
     </>

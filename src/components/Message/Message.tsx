@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card } from "flowbite-react";
-import {  MdError } from "react-icons/md";
+import { MdError } from "react-icons/md";
 import { BsPatchCheckFill } from "react-icons/bs";
 import { Heading, Paragraph } from "../Typography";
 
@@ -19,11 +19,16 @@ const icons = {
   error: MdError,
 };
 
-
-export const MessageCard: React.FC<MessageProps> = ({ title, message, linkText, linkTo, icon="success" }) => {
+export const MessageCard: React.FC<MessageProps> = ({
+  title,
+  message,
+  linkText,
+  linkTo,
+  icon = "success",
+}) => {
   const Icon = icons[icon];
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-[80vh] p-4">
       <Card className="w-full max-w-2xl p-8">
         <Heading
           level="1"
@@ -33,7 +38,7 @@ export const MessageCard: React.FC<MessageProps> = ({ title, message, linkText, 
           {title}
         </Heading>
         <div className="my-4 flex items-center justify-center">
-        <Icon className={`h-16 w-16 text-royal-purple`} />
+          <Icon className={`h-16 w-16 text-royal-purple`} />
         </div>
         <Paragraph
           size="large"

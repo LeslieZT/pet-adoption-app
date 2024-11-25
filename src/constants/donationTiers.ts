@@ -4,7 +4,7 @@ export const donationTiers = [
     title: "Life Saver",
     subtitle: "Make adoption possible",
     description:
-      "Your donation will help provide comprehensive support for a rescued pet, covering everything from intake to adoption. This includes food, medical treatment, spaying/neutering, microchipping, and behavioral training if needed. You'll be giving a pet the best possible chance to find a loving home'",
+      "Help a rescued pet transition to a loving home by covering essential care and adoption preparation.",
     amount: 10,
   },
   {
@@ -12,7 +12,7 @@ export const donationTiers = [
     title: "Small Help",
     subtitle: "A little goes a long way",
     description:
-      "Your donation will help cover the basic daily needs of our animals like food and fresh water. With this contribution, we can ensure that every pet in our care is fed and comfortable while they wait for their forever home.",
+      "Provide daily necessities like food and water to keep pets comfortable as they await adoption.",
     amount: 25,
   },
   {
@@ -20,7 +20,7 @@ export const donationTiers = [
     title: "Full Care",
     subtitle: "Give a pet a second chance",
     description:
-      "Throughout this plan, you'll be covering a pet's full care package: food, vet visits, vaccinations, and any required medications. This includes support guarantees that no pet goes without the necessary attention and care they need to thrive.'",
+      "Ensure a pet gets everything they need, from food to medical care, for a fresh start in life.",
     amount: 50,
     isPopular: true,
   },
@@ -29,7 +29,7 @@ export const donationTiers = [
     title: "Hero of the Day",
     subtitle: "Be a hero for a pet today",
     description:
-      "This plan helps provide both food and essential veterinary care for our animals. Your donation ensures that pets receive regular check-ups, vaccinations, and any immediate treatments they might need to stay healthy and adoptable",
+      "Support advanced care and treatments, giving pets the health they need to thrive and find a home.",
     amount: 100,
   },
 ];

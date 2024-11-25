@@ -28,7 +28,7 @@ export const NavbarApp: React.FC = () => {
     if (isDrawerOpen) toggleSidebar();
   };
 
-  const handleSignOut = async() => {
+  const handleSignOut = async () => {
     await signOut();
     setActiveLink("home");
   };

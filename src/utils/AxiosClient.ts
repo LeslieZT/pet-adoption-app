@@ -26,19 +26,18 @@ export const postRequest = async <T>(
   data: unknown,
   options?: AxiosRequestConfig,
 ): Promise<T> => {
-    try {
-        const response: AxiosResponse<T> = await API_CLIENT.post(url, data, {
-            ...options,
-          });
-          return response.data;
-    } catch (error: any) {
-        if(error.response.status !== 500) {
-            console.error(error.response.data.error);
-            throw new Error(error.response.data.error.message);
-        }
-        throw error;
+  try {
+    const response: AxiosResponse<T> = await API_CLIENT.post(url, data, {
+      ...options,
+    });
+    return response.data;
+  } catch (error: any) {
+    if (error.response.status !== 500) {
+      console.error(error.response.data.error);
+      throw new Error(error.response.data.error.message);
     }
-  
+    throw error;
+  }
 };
 
 export const putRequest = async <T>(

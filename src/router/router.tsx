@@ -12,13 +12,17 @@ import {
   ContactPage,
   AccountCreatedPage,
   VerifyAccountPage,
-  AuthProviderPage
+  AuthProviderPage,
+  DonationSuccessPage,
+  DonationFailPage,
 } from "../pages";
+import { ErrorPage } from "../pages/Error.page";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -54,8 +58,28 @@ export const router = createBrowserRouter([
         element: <DonationPage />,
       },
       {
+        path: "/donate/success",
+        element: <DonationSuccessPage />,
+      },
+      {
+        path: "/donate/cancel",
+        element: <DonationFailPage />,
+      },
+      {
         path: "/account",
         element: <AccountPage />,
+      },
+      {
+        path: "/sign-up/success",
+        element: <AccountCreatedPage />,
+      },
+      {
+        path: "/auth/verify-email",
+        element: <VerifyAccountPage />,
+      },
+      {
+        path: "/auth/providers/:provider/callback",
+        element: <AuthProviderPage />,
       },
     ],
   },
@@ -68,15 +92,11 @@ export const router = createBrowserRouter([
     element: <SignUpPage />,
   },
   {
-    path: "/sign-up/success",
-    element: <AccountCreatedPage />,
+    path: "*",
+    element: <ErrorPage />,
   },
   {
-    path: "/auth/verify-email",
-    element: <VerifyAccountPage />,
+    path: "/error",
+    element: <ErrorPage />,
   },
-  {
-    path: "/auth/providers/:provider/callback",
-    element: <AuthProviderPage />,
-  }
 ]);

@@ -1,22 +1,30 @@
 import { Card } from "flowbite-react";
 import { Heading, Paragraph } from "../Typography";
 import { CustomButton } from "../Buttons";
+import { User } from "../../types/User.types";
+import * as DonationService from "../../services/donation.service";
+import { PaymentMode } from "../../types/Donation.types";
+
 interface DonationTierCardProps {
+  productId: string;
   title: string;
   subTitle: string;
   description: string;
-  price: number;
-  type: "montly" | "oneTime";
+  price: string;
+  type: PaymentMode;
   isPopular?: boolean;
+  user: User | null;
 }
 
 export const DonationTierCard: React.FC<DonationTierCardProps> = ({
+  productId,
   title,
   subTitle,
   description,
   price,
   type,
   isPopular = false,
+  user,
 }) => {
   const bgColor = isPopular ? "bg-royal-purple" : "bg-white";
   const titleColor = isPopular ? "white" : "royal-purple";
@@ -24,9 +32,21 @@ export const DonationTierCard: React.FC<DonationTierCardProps> = ({
   const priceColor = isPopular ? "white" : "lavender-purple";
   const btnColor = isPopular ? "light-royal-purple-2" : "royal-purple";
 
-  const onClick = () => {
-    console.log("click");
-    console.log(price, type);
+  const onClick = async () => {
+    try {
+      const response = await DonationService.donate({
+        code: productId,
+        mode: type,
+        amount: parseInt(price, 10),
+        idUser: user?.id,
+        channel: user?.channel,
+      });
+      if (response?.data) {
+        window.location.replace(response.data?.url);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -43,7 +63,7 @@ export const DonationTierCard: React.FC<DonationTierCardProps> = ({
         color="lavender-purple"
         className="font-bold text-center dark:text-white"
       >{`"${subTitle}"`}</Heading>
-      <div className="h-auto md:h-52">
+      <div className="h-auto md:h-32">
         <Paragraph
           size="small"
           color={paragraphColor}
@@ -59,7 +79,7 @@ export const DonationTierCard: React.FC<DonationTierCardProps> = ({
         className="font-bold dark:text-white"
       >
         {`$${price}`}
-        <span className="text-sm">{type === "montly" ? "/month" : ""}</span>
+        <span className="text-sm">{type === "subscription" ? "/month" : ""}</span>
       </Heading>
 
       <CustomButton

@@ -1,15 +1,25 @@
-import { useState } from "react";
-import { ToggleSwitch } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { Spinner, ToggleSwitch } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CustomDonationFormData, CustomDonationSchema } from "../../schema/CustomDonation.schema";
-import { donationTiers } from "../../constants/donationTiers";
 import { InputField } from "../../components/Forms";
 import { DonationTierCard } from "../../components/Card";
 import { CustomButton } from "../../components/Buttons";
+import { Plan } from "../../types/Plan.types";
+import * as PlanService from "../../services/plan.service";
+import * as DonationService from "../../services/donation.service";
+import { MessageCard } from "../../components/Message/Message";
+import { useAuthStore } from "../../store/Auth.store";
+import { PaymentMode } from "../../types/Donation.types";
 
 export const DonationSection: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [donationTiers, setDonationTiers] = useState<Plan[]>([]);
   const [isMonthly, setIsMonthly] = useState(true);
+
+  const { user } = useAuthStore((state) => state);
 
   const {
     handleSubmit,
@@ -18,13 +28,64 @@ export const DonationSection: React.FC = () => {
   } = useForm<CustomDonationFormData>({
     resolver: zodResolver(CustomDonationSchema),
     defaultValues: {
-      amount: undefined,
+      amount: "" as unknown as number,
     },
   });
 
-  const onSubmit = (data: CustomDonationFormData) => {
-    console.log("Login attempt with:", data);
+  const onSubmit = async (data: CustomDonationFormData) => {
+    try {
+      const response = await DonationService.makeCustomDonation({
+        mode: isMonthly ? PaymentMode.SUBSCRIPTION : PaymentMode.ONE_TIME,
+        amount: data.amount,
+        idUser: user?.id,
+        channel: user?.channel,
+      });
+
+      if (response?.data) {
+        window.location.replace(response.data?.url);
+      }
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    const fetchData = async () => {
+      try {
+        const response = await PlanService.getPlans();
+        setDonationTiers(response.data as Plan[]);
+        setIsLoading(false);
+      } catch (error: any) {
+        setError(error.message);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        {isLoading && (
+          <Spinner
+            color="purple"
+            aria-label="Purple spinner example"
+            className="h-52 w-52"
+          />
+        )}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <MessageCard
+        title="Something went wrong"
+        message={error}
+      />
+    );
+  }
 
   return (
     <section className="py-10">
@@ -46,48 +107,52 @@ export const DonationSection: React.FC = () => {
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-4 justify-center">
-          {donationTiers.map((tier, index) => (
+        <div className="flex flex-wrap gap-4 justify-center mt-12">
+          {donationTiers.map((tier) => (
             <DonationTierCard
-              key={index}
-              title={tier.title}
-              subTitle={tier.subtitle}
+              key={tier.productId}
+              productId={tier.productId}
+              title={tier.name}
+              subTitle={tier.title}
               description={tier.description}
-              price={tier.amount}
-              type={isMonthly ? "montly" : "oneTime"}
-              isPopular={tier.isPopular}
+              price={tier.price}
+              type={isMonthly ? PaymentMode.SUBSCRIPTION : PaymentMode.ONE_TIME}
+              isPopular={tier.isPolular}
+              user={user}
             />
           ))}
         </div>
       </div>
-
-      <div className="flex flex-col md:flex-row justify-around items-center mt-10 gap-10">
-        <form
-          className="flex justify-center items-center gap-2"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <InputField
-            name="amount"
-            control={control}
-            label="Choose your own amount"
-            type="number"
-            min={0}
-            placeholder={`$ ${isMonthly ? "per month" : ""}`}
-            className="md:w-80"
-          />
-
-          <CustomButton
-            className={errors.amount ? "mt-0" : "mt-8"}
-            type="submit"
+      {!isMonthly && (
+        <div className="flex flex-col md:flex-row justify-around items-center mt-10 gap-10">
+          <form
+            className="flex justify-center items-center gap-2"
+            onSubmit={handleSubmit(onSubmit)}
           >
-            Donate
-          </CustomButton>
-        </form>
-        <img
-          src="./src/assets/icons.png"
-          alt="donation-icons"
-        />
-      </div>
+            <InputField
+              name="amount"
+              control={control}
+              label="Choose your own amount"
+              type="number"
+              min={1}
+              step="1"
+              placeholder={`$`}
+              className="md:w-80"
+            />
+
+            <CustomButton
+              className={errors.amount ? "mt-0" : "mt-8"}
+              type="submit"
+            >
+              Donate
+            </CustomButton>
+          </form>
+          <img
+            src="./src/assets/icons.png"
+            alt="donation-icons"
+          />
+        </div>
+      )}
     </section>
   );
 };

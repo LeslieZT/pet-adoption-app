@@ -10,13 +10,11 @@ import { CustomButton } from "../../components/Buttons";
 import { InputField, PasswordField } from "../../components/Forms";
 import { useAuthStore } from "../../store/Auth.store";
 
-
 export const SignUpForm = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const { signUp, signInWithOAuth } = useAuthStore((state) => state);
 
-  
   const { control, handleSubmit } = useForm<SignUpFormData>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
@@ -24,15 +22,14 @@ export const SignUpForm = () => {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     },
   });
 
-  const onSubmit = async(data: SignUpFormData) => {
+  const onSubmit = async (data: SignUpFormData) => {
     try {
       await signUp(data);
       navigate("/sign-up/success");
-      
     } catch (error: any) {
       setError(error.message);
     }
@@ -42,7 +39,6 @@ export const SignUpForm = () => {
     const response = await signInWithOAuth(provider);
     window.location.replace(response.url);
   };
-  
 
   return (
     <Card className="w-full max-w-2xl lg:py-4 lg:px-4">
@@ -82,7 +78,7 @@ export const SignUpForm = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1">         
+        <div className="grid grid-cols-1">
           <InputField
             name="email"
             control={control}
@@ -121,7 +117,10 @@ export const SignUpForm = () => {
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <CustomButton color="light-pastel-lilac" onClick={() => hanbleSignInWithOAuth("google")}>
+          <CustomButton
+            color="light-pastel-lilac"
+            onClick={() => hanbleSignInWithOAuth("google")}
+          >
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
@@ -138,7 +137,10 @@ export const SignUpForm = () => {
             Google
           </CustomButton>
 
-          <CustomButton color="light-pastel-lilac" onClick={() => hanbleSignInWithOAuth("facebook")}>
+          <CustomButton
+            color="light-pastel-lilac"
+            onClick={() => hanbleSignInWithOAuth("facebook")}
+          >
             <svg
               className="w-4 h-4 mr-2"
               aria-hidden="true"
