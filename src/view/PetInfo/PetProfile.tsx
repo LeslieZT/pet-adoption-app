@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { PiPawPrintFill } from "react-icons/pi";
 import { FaSquareInstagram, FaSquareFacebook, FaSquareTwitter } from "react-icons/fa6";
 import { Heading, Paragraph } from "../../components/Typography";
@@ -14,66 +15,47 @@ import {
   PetLocationContent,
   TitleSectionPetProfile,
 } from "../../components/PetProfile";
+import { useAuthStore } from "../../store/Auth.store";
+import * as PetService from "../../services/pet.service";
+import { formatRefCode } from "../../utils/formatFields";
+import { Spinner } from "flowbite-react";
 
 interface PetProfileProps {
   id: string;
 }
 
-const data: PetInfo = {
-  id: "123",
-  name: "Doggy",
-  category: "Dog",
-  referenceCode: "123",
-  description: `A gentle soul who initially shies away from unfamiliar situations. Guinness is redefining what it means to be brave - For him, it means trying his very best to get to know new people from the comfort of his hiding space.
-Guinness enjoys the finer things in life, like a gentle cuddle and the great outdoors. He’s an avid explorer and tends to enjoy spending most of his time outside. Once settled into his new home he will really benefit from access to the big wide world.
-In his new home he’s looking for people who are able to give him plenty of structure and routine so he can feel safe and secure. Those who are patient enough to earn his trust will be rewarded with a very sweet and loving companion. His perfect new people will be able to let Guinness lead the way when it comes to building the friendship.
-Guinness says, “Good things come to those who wait!”`,
-  breed: "Bulldog",
-  weight: "100",
-  height: "100",
-  color: "black",
-  age: "1y, 2m",
-  gender: "female",
-  isFavorite: false,
-  behavior: [
-    {
-      id: "1",
-      label: "Playful",
-    },
-    {
-      id: "2",
-      label: "Loving",
-    },
-    {
-      id: "3",
-      label: "Friendly",
-    },
-  ],
-  location: {
-    address: "123 Main Street",
-    shelterName: "Happy Paws",
-    phone: "123-456-7890",
-    latitud: 51.505,
-    longitud: -0.09,
-  },
-  images: [
-    {
-      id: "1",
-      url: "../src/assets/section1_cat.png",
-    },
-    {
-      id: "2",
-      url: "https://pet-adoption-app.s3.us-east-2.amazonaws.com/doggy.jpg",
-    },
-    {
-      id: "3",
-      url: "https://pet-adoption-app.s3.us-east-2.amazonaws.com/doggy.jpg",
-    },
-  ],
-};
-
 export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
-  console.log(id);
+  const { user } = useAuthStore((state) => state);
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<PetInfo>({
+    petId: 0,
+    name: "",
+    description: "",
+    birthdate: new Date(),
+    age: "",
+    weight: "",
+    height: "",
+    gender: "male",
+    color: "",
+    behavior: [],
+    profilePicture: "",
+    breed: "",
+    shelter: {
+      name: "",
+      address: "",
+      phone: "",
+      latitude: "",
+      longitude: "",
+      email: "",
+      district: "",
+      province: "",
+      department: "",
+    },
+    photos: [],
+    isFavorite: false,
+    applications: 0,
+  });
+
   const profielColor = {
     female: {
       primary: "vibrant-pink",
@@ -85,13 +67,41 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
     },
   };
 
+  useEffect(() => {
+    setIsLoading(true);
+    const getPetInfo = async () => {
+      const response = await PetService.getPetById(parseInt(id), user?.id);
+      if (response.data) {
+        setData(response.data);
+        setIsLoading(false);
+      }
+    };
+    getPetInfo();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        {isLoading && (
+          <Spinner
+            color="purple"
+            aria-label="Purple spinner example"
+            className="h-52 w-52"
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-10">
+    <div className="my-10">
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
         <MarkPetsAsFavoriteCard
-          refCode={data.referenceCode}
+          id={data.petId}
           name={data.name}
-          imageUrl={data.images[0].url}
+          imageUrl={
+            "https://res.cloudinary.com/dyntsz5qv/image/upload/v1731002111/tsjzsokbmwphu3uveuqp.png"
+          }
           isFavorite={data.isFavorite}
           variant="large"
         />
@@ -104,7 +114,9 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
                 className="font-bold"
               >
                 Hello,{" "}
-                <span className={`text-${profielColor[data.gender].primary}`}>I'm {data.name}</span>
+                <span className={`text-${profielColor[data.gender as "female" | "male"].primary}`}>
+                  I'm {data.name}
+                </span>
               </Heading>
 
               <Heading
@@ -113,8 +125,10 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
                 className="font-normal text-sm md:text-lg"
               >
                 Reference code:{" "}
-                <span className={`text-${profielColor[data.gender].primary} font-bold`}>
-                  {data.referenceCode}
+                <span
+                  className={`text-${profielColor[data.gender as "female" | "male"].primary} font-bold`}
+                >
+                  {formatRefCode(data.petId)}
                 </span>
               </Heading>
             </div>
@@ -134,7 +148,7 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
           </div>
 
           <div className="flex items-center  justify-center md:justify-end gap-4">
-            <Link to={`/adopt/${data.referenceCode}/application-form`}>
+            <Link to={`/adopt/${formatRefCode(data.petId)}/application-form`}>
               <CustomButton
                 color={profielColor[data.gender].primary as CustomButtonProps["color"]}
                 className="py-1 md:py-2"
@@ -181,7 +195,7 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
         <PetLocationContent
           name={data.name}
           gender={data.gender}
-          location={data.location}
+          location={data.shelter}
         />
       </section>
 
@@ -207,8 +221,10 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
         <div className="min-w-[16rem] md:max-w-[30rem]">
           <img
             className="w-ful h-full object-cover rounded-lg shadow-md"
-            src={data.images[0].url}
-            alt={`${data.name}-${data.referenceCode}-adoption`}
+            src={
+              "https://res.cloudinary.com/dyntsz5qv/image/upload/v1731002111/tsjzsokbmwphu3uveuqp.png"
+            }
+            alt={`${data.name}-${formatRefCode(data.petId)}-adoption`}
           />
         </div>
 

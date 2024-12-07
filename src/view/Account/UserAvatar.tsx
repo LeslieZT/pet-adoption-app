@@ -4,9 +4,10 @@ import { CustomButton } from "../../components/Buttons";
 import { useRef } from "react";
 import { Heading, Paragraph } from "../../components/Typography";
 import { useAuthStore } from "../../store/Auth.store";
+import * as StorageService from "../../services/storage.service";
 
 export const UserAvatar: React.FC = () => {
-  const { user, setUser } = useAuthStore((state) => state);
+  const { user, credential, channel, updateUser } = useAuthStore((state) => state);
   const fileUploadRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -24,7 +25,11 @@ export const UserAvatar: React.FC = () => {
     ) {
       const uploadedFile = fileUploadRef.current.files[0];
       const formData = new FormData();
-      formData.append("file", uploadedFile);
+      formData.append("files", uploadedFile);
+      const { data } = await StorageService.uploadFile(credential!, channel, formData);
+      if (data) {
+        updateUser({ avatar: data[0] });
+      }
     }
   };
 
@@ -32,7 +37,7 @@ export const UserAvatar: React.FC = () => {
     <div className="flex flex-col items-center justify-center p-6 w-full md:w-[300px]">
       <div className="relative mb-4">
         <Avatar
-          img={user?.avatar}
+          img={user?.avatar?.url}
           size="xl"
           rounded
         />

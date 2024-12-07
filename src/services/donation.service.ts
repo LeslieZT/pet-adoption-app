@@ -13,6 +13,9 @@ export const donate = async (params: DonationRequest): Promise<ResponseApi<Donat
 export const makeCustomDonation = async (
   params: CustomDonationRequest,
 ): Promise<ResponseApi<DonationResponse>> => {
-  const response = await postRequest<ResponseApi<DonationResponse>>(CUSTOM_DONATION_CHECKOUT, params);
+  const response = await postRequest<ResponseApi<DonationResponse>>(
+    CUSTOM_DONATION_CHECKOUT,
+    params,
+  );
   return response;
 };

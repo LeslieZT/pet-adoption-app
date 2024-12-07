@@ -11,7 +11,10 @@ const PetInfoPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <PetProfile id={petId}></PetProfile>
+      <PetProfile
+        id={petId}
+        key={petId}
+      ></PetProfile>
     </MainLayout>
   );
 };

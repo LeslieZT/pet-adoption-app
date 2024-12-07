@@ -7,8 +7,9 @@ interface SelectFieldProps<T extends FieldValues> {
   control: Control<T>;
   label: string;
   icon?: IconType; // Hacer el icono opcional
-  options: { value: string; label: string }[];
+  options: { value: string | number | Record<string, unknown>; label: string }[];
   placeholder: string;
+  disabled?: boolean;
 }
 
 export const SelectField = <T extends FieldValues>({
@@ -16,8 +17,9 @@ export const SelectField = <T extends FieldValues>({
   label,
   control,
   icon: Icon,
-  options,
+  options = [],
   placeholder,
+  disabled = false,
 }: SelectFieldProps<T>) => {
   return (
     <div className="flex flex-col gap-2">
@@ -31,17 +33,21 @@ export const SelectField = <T extends FieldValues>({
           control={control}
           render={({ field, fieldState: { error } }) => (
             <Select
+              disabled={disabled}
               id={name}
               icon={Icon}
               {...field}
               value={field.value}
               helperText={error?.message}
+              onChange={(e) => field.onChange(e.target.value)}
             >
               <option value="">{placeholder}</option>
               {options.map((option) => (
                 <option
-                  key={option.value}
-                  value={option.value}
+                  key={option.label}
+                  value={
+                    typeof option.value === "object" ? JSON.stringify(option.value) : option.value
+                  }
                 >
                   {option.label}
                 </option>

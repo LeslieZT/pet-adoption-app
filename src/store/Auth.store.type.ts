@@ -9,7 +9,7 @@ import {
 } from "../types/Auth.types";
 import { User } from "../types/User.types";
 
-interface AuthCredentials {
+export interface AuthCredentials {
   accessToken: string;
   refreshToken: string;
   expiresIn: number;
@@ -29,8 +29,9 @@ export interface AuthState {
   signIn: (params: SignInRequest) => Promise<ResponseApi<SignInResponse>>;
   signUp: (params: SignUpRequest) => Promise<ResponseApi<SignUpResponse>>;
   signInWithOAuth: (provider: string) => Promise<SignInOAuthResponse>;
-  signInWithOAuthCallback: (params: SignInWithOAuthCallbackRequest) => void;
+  signInWithOAuthCallback: (params: SignInWithOAuthCallbackRequest) => Promise<void>;
   signOut: () => void;
   setChhanel: (channel: ChannelType) => void;
-  setUser: (user: User) => void;
+  updateUser: (params: Partial<User>) => Promise<void>;
+  setUser: (params: Partial<User>) => void;
 }

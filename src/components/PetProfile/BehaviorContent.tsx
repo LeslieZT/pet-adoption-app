@@ -1,11 +1,10 @@
-import { PetBehavior } from "../../types/PetInfo.type";
 import { BehaviorTag } from "../Tags";
 import { TitleSectionPetProfile } from "../Typography";
 
 interface PetBehaviorContentProps {
   name: string;
   gender: "male" | "female";
-  behavior: PetBehavior[];
+  behavior: string[];
 }
 
 export const PetBehaviorContent: React.FC<PetBehaviorContentProps> = ({
@@ -20,10 +19,10 @@ export const PetBehaviorContent: React.FC<PetBehaviorContentProps> = ({
         icon="behavior"
       />
       <div className=" flex flex-wrap gap-2">
-        {behavior.map((item) => (
+        {behavior.map((item, index) => (
           <BehaviorTag
-            key={item.id}
-            label={item.label}
+            key={index}
+            label={item}
             gender={gender}
           />
         ))}

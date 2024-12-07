@@ -1,4 +1,4 @@
-import { PetLocation } from "../../types/PetInfo.type";
+import { ShelterLocation } from "../../types/PetInfo.type";
 import { Paragraph } from "../Typography";
 import { MapComponent } from "../Map/MapComponent";
 import { TitleSectionPetProfile } from "../Typography";
@@ -6,7 +6,7 @@ import { TitleSectionPetProfile } from "../Typography";
 interface PetLocationContentProps {
   name: string;
   gender: "male" | "female";
-  location: PetLocation;
+  location: ShelterLocation;
 }
 
 export const PetLocationContent: React.FC<PetLocationContentProps> = ({
@@ -22,7 +22,7 @@ export const PetLocationContent: React.FC<PetLocationContentProps> = ({
       />
       <div className="space-y-2">
         <Paragraph>
-          <span className="font-semibold">Shelter name:</span> {location.shelterName}
+          <span className="font-semibold">Shelter name:</span> {location.name}
         </Paragraph>
         <Paragraph>
           <span className="font-semibold">Address:</span> {location.address}
@@ -32,8 +32,8 @@ export const PetLocationContent: React.FC<PetLocationContentProps> = ({
         </Paragraph>
       </div>
       <MapComponent
-        market={location.shelterName}
-        position={[location.latitud, location.longitud]}
+        market={location.name}
+        position={[parseFloat(location.latitude), parseFloat(location.longitude)]}
         gender={gender}
       />
     </div>

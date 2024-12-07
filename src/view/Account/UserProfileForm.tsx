@@ -1,64 +1,108 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { HiCalendar, HiGlobe, HiHome, HiMail, HiUser } from "react-icons/hi";
 import { UserProfileFormData, UserProfileSchema } from "../../schema/UserProfile.schema";
 import { Heading } from "../../components/Typography";
 import { CustomButton } from "../../components/Buttons";
-import { InputField } from "../../components/Forms";
+import { InputField, SelectField } from "../../components/Forms";
+import { useAuthStore } from "../../store/Auth.store";
+import { User } from "../../types/User.types";
+import * as PlaceService from "../../services/places.service";
+import { DepartmentResult } from "../../types/Places.types";
 
 export const UserProfileForm = () => {
-  const { control, handleSubmit, reset } = useForm<UserProfileFormData>({
+  const [isEditing, setIsEditing] = useState(false);
+  const { user, updateUser, setUser } = useAuthStore((state) => state);
+  const [places , setPlaces] = useState<DepartmentResult[]>([]);
+  const [departments, setDepartments] = useState<any>([]);
+  const [provinces, setProvinces] = useState<any>([]);
+  const [districts, setDistricts] = useState<any>([]);
+
+  const { control, handleSubmit, watch } = useForm<UserProfileFormData>({
     resolver: zodResolver(UserProfileSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      birthdate: "",
-      homeAddress: "",
-      country: "",
-      state: "",
-      province: "",
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      email: user?.email,
+      birthdate: user?.birthdate && new Date(user?.birthdate).toISOString().split("T")[0],
+      address: user?.address,
+      phone: user?.phone,
+      departmentId: user?.departmentId ? user?.departmentId.toString() : "",
+      provinceId: user?.provinceId ? user?.provinceId.toString() : "",
+      districtId: user?.districtId ? user?.districtId.toString() : "",
     },
   });
 
-  const [isEditing, setIsEditing] = useState(false);
+  const departmentId = watch("departmentId");
+  const provinceId = watch("provinceId");
 
-  const onSubmit = (data: UserProfileFormData) => {
-    console.log({ data });
+  console.log(departmentId, provinceId);
+
+  const getDepartments = (data: DepartmentResult[]) => {
+    try {
+      const departments = data.map((item) => ({ value: item.departmentId, label: item.name }));
+      setDepartments(departments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProvinces = (data: DepartmentResult[]) => {
+    try {
+      
+      const department = data.find((item) => String(item.departmentId) === departmentId);
+      const provinces = department?.provinces.map((item) => ({ value: item.provinceId, label: item.name }));      
+      setProvinces(provinces);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDistricts = (data: DepartmentResult[]) => {
+    try {
+      const department = data.find((item) => String(item.departmentId) === departmentId);
+      const province = department?.provinces.find((item) => String(item.provinceId) === provinceId);
+      const districts = province?.districts.map((item) => ({ value: item.districtId, label: item.name }));
+      setDistricts(districts);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    // Llamada a la API para obtener los datos del usuario
-    const fetchUserData = async () => {
-      try {
-        const data = {
-          firstName: "John",
-          lastName: "Doe",
-          email: "john@example.com",
-          birthdate: "1990-01-01",
-          homeAddress: "123 Main St",
-          country: "United States",
-          state: "New York",
-          province: "New York",
-        };
-        reset({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          birthdate: data.birthdate,
-          homeAddress: data.homeAddress,
-          country: data.country,
-          state: data.state,
-          province: data.province,
-        });
-      } catch (error) {
-        console.error("Error al cargar los datos del usuario:", error);
+    const fetch = async () => {
+      const response = await PlaceService.getDepartment();
+      if(response.data) {
+        setPlaces(response.data);
+        getDepartments(response.data);
+        getProvinces(response.data)
+        getDistricts(response.data)
       }
     };
+    fetch();
+  }, []);
 
-    fetchUserData();
-  }, [reset]);
+  useEffect(() => {
+    if (places.length > 0 && departmentId) {    
+      getProvinces(places);
+    }
+
+  }, [departmentId]);
+
+  useEffect(() => {
+    if (places.length > 0 && provinceId) {
+      getDistricts(places);      
+    }
+  }, [provinceId]);
+
+
+
+  const onSubmit = async (data: UserProfileFormData) => {
+    console.log({ data });
+    await updateUser( data as Partial<User>);
+    setIsEditing(false);
+  };
 
   return (
     <div>
@@ -80,7 +124,7 @@ export const UserProfileForm = () => {
             control={control}
             label="First Name"
             icon={HiUser}
-            placeholder="John"
+            placeholder="Set your first name"
             disabled={!isEditing}
           />
           <InputField
@@ -88,7 +132,7 @@ export const UserProfileForm = () => {
             control={control}
             label="Last Name"
             icon={HiUser}
-            // placeholder="Doe"
+            placeholder="Set your last name"
             disabled={!isEditing}
           />
         </div>
@@ -109,43 +153,48 @@ export const UserProfileForm = () => {
             type="email"
             icon={HiMail}
             // placeholder="name@example.com"
-            disabled={!isEditing}
+            disabled={true}
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <InputField
-            name="homeAddress"
+            name="address"
             control={control}
             label="Home Address"
             icon={HiHome}
             placeholder="123 Main St"
             disabled={!isEditing}
           />
-          <InputField
-            name="country"
+          <SelectField
+            name="departmentId"
             control={control}
-            label="Country"
+            label="Department"
             icon={HiGlobe}
-            placeholder="Select your country"
+            options={departments}
+            placeholder="Select your department"
             disabled={!isEditing}
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <InputField
-            name="state"
-            control={control}
-            label="State/Department"
-            placeholder="Your state"
-            disabled={!isEditing}
-          />
-          <InputField
-            name="province"
+          <SelectField
+            name="provinceId"
             control={control}
             label="Province"
-            placeholder="Your province"
+            placeholder="Select your province"
+            icon={HiGlobe}
             disabled={!isEditing}
+            options={provinces}
+          />
+          <SelectField
+            name="districtId"
+            control={control}
+            label="District"
+            icon={HiGlobe}
+            placeholder="Select your district"
+            disabled={!isEditing}
+            options={districts}
           />
         </div>
 

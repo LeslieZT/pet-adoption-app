@@ -20,7 +20,7 @@ export const AccountSidebar: React.FC<AccountSidebarProps> = ({
         <Sidebar.Items>
           <Sidebar.ItemGroup>
             <Sidebar.Item
-              href="#"
+              href="#/profile"
               onClick={() => setActiveContent("profile")}
               active={activeContent === "profile"}
               className={`hover:!text-white  hover:bg-royal-purple ${activeContent === "profile" ? "bg-lavender-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
@@ -28,7 +28,7 @@ export const AccountSidebar: React.FC<AccountSidebarProps> = ({
               Profile
             </Sidebar.Item>
             <Sidebar.Item
-              href="#"
+              href="#/applications"
               onClick={() => setActiveContent("applications")}
               active={activeContent === "applications"}
               className={`hover:!text-white  hover:bg-royal-purple ${activeContent === "applications" ? "bg-lavender-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}
@@ -36,7 +36,7 @@ export const AccountSidebar: React.FC<AccountSidebarProps> = ({
               Adopt Aplications
             </Sidebar.Item>
             <Sidebar.Item
-              href="#"
+              href="#/favorite-pets"
               onClick={() => setActiveContent("favorite-pets")}
               active={activeContent === "favorite-pets"}
               className={`hover:!text-white  hover:bg-royal-purple ${activeContent === "favorite-pets" ? "bg-lavender-purple text-white font-bold" : "text-soft-gray-blue font-medium"}`}

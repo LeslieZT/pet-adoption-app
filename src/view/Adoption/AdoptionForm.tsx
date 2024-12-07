@@ -11,16 +11,18 @@ import { AdoptApplicationQuestions } from "../../constants/questions";
 import { TextareaField } from "../../components/Forms/TextareaField";
 import { RadioButtonField } from "../../components/Forms/RadioButtonField";
 import { Heading } from "../../components/Typography";
+import { useAuthStore } from "../../store/Auth.store";
+import * as AdoptionService from "../../services/adoption.service";
 
 interface AdoptionFormProps {
-  petId: string;
+  petId: number;
   className?: string;
 }
 
 export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) => {
-  console.log(petId);
+  const { channel, credential, isAuthenticated } = useAuthStore((state) => state);
 
-  const { control, handleSubmit } = useForm<AdoptionApplicationFormData>({
+  const { control, handleSubmit, reset } = useForm<AdoptionApplicationFormData>({
     resolver: zodResolver(AdoptionApplicationSchema),
     defaultValues: {
       housingType: "House with Yard",
@@ -38,9 +40,22 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
     },
   });
 
-  const onSubmit = (data: AdoptionApplicationFormData) => {
-    console.log(data);
-    // Handle form submission
+  const onSubmit = async (data: AdoptionApplicationFormData) => {
+    if (!isAuthenticated) {
+      alert("Please login to continue");
+      return;
+    }
+
+    const response = await AdoptionService.create(
+      { application: data, petId },
+      channel,
+      credential!,
+    );
+    console.log(response);
+    if (response) {
+      alert("Application submitted successfully");
+    }
+    reset();
   };
 
   return (

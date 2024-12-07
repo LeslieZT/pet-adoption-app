@@ -31,7 +31,7 @@ const AdoptionApplicationPage: React.FC = () => {
             title="1. Complete Your Adoption Application"
             paragraph="Fill out a quick form to provide us with the details we need to finalize the adoption"
           />
-          <AdoptionForm petId={petId} />
+          <AdoptionForm petId={parseInt(petId)} />
         </div>
         <div className="order-1 md:order-2 md:col-start-3  md:col-end-4 md:row-start-1 md:row-end-3">
           <PetAdoptCard

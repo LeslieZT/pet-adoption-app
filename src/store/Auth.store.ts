@@ -5,6 +5,7 @@ import { AuthState, SignInWithOAuthCallbackRequest } from "./Auth.store.type";
 import { SignInRequest, SignUpRequest } from "../types/Auth.types";
 import { ChannelType } from "../enum/ChannelType.enum";
 import * as AuthService from "../services/auth.service";
+import * as UserService from "../services/user.service";
 import { User } from "../types/User.types";
 
 export const useAuthStore = create<AuthState>()(
@@ -19,17 +20,11 @@ export const useAuthStore = create<AuthState>()(
           try {
             const response = await AuthService.signIn(params, get().channel);
             set({ isAuthenticated: true, credential: response.data });
-            //
-            set({
-              user: {
-                id: "dfd2cb8d-d030-4f60-970c-9180db2dbe01",
-                firstName: "John Doe",
-                channel: ChannelType.ADOPTION,
-                lastName: "Doe",
-                email: "john@example.com",
-                avatar: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-              },
-            });
+            const credentials = get().credential!;
+            const { data: userData } = await UserService.getUser(credentials, get().channel);      
+            if (userData) {           
+              set({ user: { ...userData } });
+            }
             return response;
           } catch (error) {
             console.error("Error en signIn:", error);
@@ -65,16 +60,12 @@ export const useAuthStore = create<AuthState>()(
             );
             set({ credential: params.credential, isAuthenticated: true });
             //
-            set({
-              user: {
-                id: "dfd2cb8d-d030-4f60-970c-9180db2dbe01",
-                channel: ChannelType.ADOPTION,
-                firstName: "John Doe",
-                lastName: "Doe",
-                email: "john@example.com",
-                avatar: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-              },
-            });
+            const credentials = get().credential!;
+            const { data: userData } = await UserService.getUser(credentials, get().channel);
+            console.log(userData);
+            if (userData) {
+              set({ user: userData });
+            }
           } catch (error) {
             console.error("Error en signInWithOAuthCallback:", error);
             throw error;
@@ -86,9 +77,29 @@ export const useAuthStore = create<AuthState>()(
         setChhanel: (channel: ChannelType) => {
           set({ channel });
         },
-        setUser: (user: User) => {
-          set({ user });
+
+        updateUser: async (params: Partial<User>) => {
+          try {
+            const credentials = get().credential!;
+
+            if(params.districtId){
+              params.districtId = parseInt(params.districtId as unknown as string);
+            }
+
+            const { data: userData } = await UserService.updateUser(
+              credentials,
+              get().channel,
+              params,
+            );
+            if (userData) {              
+              set({ user: { ...get().user!, ...params } });
+            }
+          } catch (error) {
+            console.error("Error en updateUser:", error);
+            throw error;
+          }
         },
+        setUser: (params: Partial<User>) => set({ user: { ...get().user!, ...params } }),
       }),
       {
         name: "auth-store",

@@ -1,35 +1,30 @@
-export interface PetBehavior {
-  id: string;
-  label: string;
-}
-
-export interface PetLocation {
+export interface ShelterLocation {
+  name: string;
   address: string;
-  shelterName: string;
   phone: string;
-  latitud: number;
-  longitud: number;
-}
-
-export interface PetImage {
-  id: string;
-  url: string;
+  latitude: string;
+  longitude: string;
+  email: string;
+  district: string;
+  province: string;
+  department: string;
 }
 
 export interface PetInfo {
-  id: string;
+  petId: number;
   name: string;
-  referenceCode: string;
   description: string;
-  breed: string;
+  birthdate: Date;
+  age: string;
   weight: string;
   height: string;
+  gender: "male" | "female";
   color: string;
-  age: string;
-  gender: "female" | "male";
-  category: "Dog" | "Cat" | "Bird" | "Rabbit" | "Hamster" | "Fish";
+  behavior: string[];
+  profilePicture: string;
+  breed: string;
+  shelter: ShelterLocation;
+  photos: string[];
   isFavorite: boolean;
-  behavior: PetBehavior[];
-  location: PetLocation;
-  images: PetImage[];
+  applications: number;
 }

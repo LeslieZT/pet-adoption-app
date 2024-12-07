@@ -4,8 +4,22 @@ export const API_ENDPOINTS = {
   SIGN_IN_OAUTH: "/api/v1/authentication/sign-in/providers",
   SIGN_IN_OAUTH_CALLBACK: "/api/v1/authentication/sign-in/providers/callback",
   LOGOUT: "/api/v1/authentication/logout",
-  USER: "/api/v1/user",
+  GET_USER: "/api/v1/users/profile",
+  UPDATE_USER: "/api/v1/users/profile",
   LIST_PLANS: "/api/v1/plans",
   DONATION_CHECKOUT: "/api/v1/donations/checkout",
   CUSTOM_DONATION_CHECKOUT: "/api/v1/donations/custom-checkout",
+  SEARCH_LOCATION: "/api/v1/shelters/search",
+  GET_PETS: "/api/v1/pets",
+  GET_PET_BY_ID: "/api/v1/pets/find-one",
+  GET_PET_BREEDS: "/api/v1/pets/breeds",
+  GET_PET_CATEGORIES: "/api/v1/pets/categories",
+  MARK_AS_FAVORITE: "/api/v1/pets/mark-favorite",
+  GET_FAVORITE_PETS: "/api/v1/pets/favorite",
+  UPLOAD_FILE: "/api/v1/storage/upload",
+  GET_DEPARTMENTS: "/api/v1/places/departments",
+  FIND_ALL_ADOPTION_PLANS: "/api/v1/adoptions/applications",
+  CREATE_ADOPTION_APPLICATION: "/api/v1/adoptions/applications",
 };
+
+export const LIMIT_PAGE = 3;

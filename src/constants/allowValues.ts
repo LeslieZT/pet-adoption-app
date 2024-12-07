@@ -1,19 +1,19 @@
-export const petTypes = [
-  { value: "dog", label: "Dog" },
-  { value: "cat", label: "Cat" },
-  { value: "bird", label: "Bird" },
-  { value: "rabbit", label: "Rabbit" },
-  { value: "hamster", label: "Hamster" },
-  { value: "fish", label: "Fish" },
-];
+// export const PET_TYPES = [
+//   { value: 1, label: "Dog" },
+//   { value: 2, label: "Cat" },
+//   { value: 3, label: "Bird" },
+//   { value: "rabbit", label: "Rabbit" },
+//   { value: "hamster", label: "Hamster" },
+//   { value: "fish", label: "Fish" },
+// ];
 
-export const genders = [
+export const PET_GENDERS = [
   { value: "female", label: "Female" },
   { value: "male", label: "Male" },
 ];
 
-export const ages = [
-  { value: "1-3", label: "1 - 3 Years Old" },
-  { value: "4-6", label: "4 - 6 Years Old" },
-  { value: "7+", label: "7+ Years Old" },
+export const PET_AGES = [
+  { value: { minAge: 0, maxAge: 24 }, label: "0 - 2 Years Old" },
+  { value: { minAge: 25, maxAge: 84 }, label: "3 - 7 Years Old" },
+  { value: { minAge: 84 }, label: "7+ Years Old" },
 ];
