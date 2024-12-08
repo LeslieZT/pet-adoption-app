@@ -61,9 +61,9 @@ export const DonationTierCard: React.FC<DonationTierCardProps> = ({
       <Heading
         level="6"
         color="lavender-purple"
-        className="font-bold text-center dark:text-white"
+        className="font-medium text-center dark:text-white"
       >{`"${subTitle}"`}</Heading>
-      <div className="h-auto md:h-32">
+      <div className="h-auto md:h-28">
         <Paragraph
           size="small"
           color={paragraphColor}
@@ -78,8 +78,8 @@ export const DonationTierCard: React.FC<DonationTierCardProps> = ({
         color={priceColor}
         className="font-bold dark:text-white"
       >
-        {`$${price}`}
-        <span className="text-sm">{type === "subscription" ? "/month" : ""}</span>
+        {`S/.${price}`}
+        <span className="text-sm">{type === "subscription" ? "/mes" : ""}</span>
       </Heading>
 
       <CustomButton

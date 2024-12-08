@@ -21,3 +21,14 @@ export interface CustomDonationRequest {
 export interface DonationResponse {
   url: string;
 }
+
+export interface DonationUserResponse {
+  donationId: string;
+  createdAt: Date;
+  type: string;
+  status: string;
+  plan: {
+    name: true;
+    price: number;
+  };
+}

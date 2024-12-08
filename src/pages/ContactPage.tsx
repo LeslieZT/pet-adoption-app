@@ -10,11 +10,11 @@ export const ContactPage: React.FC = () => {
         color="royal-purple"
         className="text-center font-medium mt-12"
       >
-        Contact us
+        Contacta con nosotros
       </Heading>
 
       <Paragraph className="text-center mt-6">
-        Do you have questions? We are here to help you. Get in touch with us
+        ¿Tienes preguntas? Estamos aquí para ayudarte. Ponte en contacto con nosotros
       </Paragraph>
       <ContactForm />
     </MainLayout>

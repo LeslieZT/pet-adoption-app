@@ -36,7 +36,7 @@ export const Logo: React.FC<LogoProps> = ({ size, className = "" }) => {
   return (
     <div className={twMerge("flex items-center justify-center gap-2", className)}>
       <img
-        src="./src/assets/icon-logo.png"
+        src="https://res.cloudinary.com/dyntsz5qv/image/upload/v1733582100/icon-logo_bvyy4b.png"
         alt="HappyPaws Logo"
         className={IconLogoVariants({ size })}
       />

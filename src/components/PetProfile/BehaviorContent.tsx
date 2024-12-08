@@ -15,7 +15,7 @@ export const PetBehaviorContent: React.FC<PetBehaviorContentProps> = ({
   return (
     <div className="h-auto space-y-4">
       <TitleSectionPetProfile
-        title={`${name} behavior`}
+        title={`Comportamiento de ${name} `}
         icon="behavior"
       />
       <div className=" flex flex-wrap gap-2">

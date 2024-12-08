@@ -4,15 +4,15 @@ export const IncludeCareContent: React.FC = () => {
   return (
     <div className="h-auto space-y-4">
       <TitleSectionPetProfile
-        title="Include in my care"
+        title="Incluir en mi cuidado"
         icon="includeCare"
       />
       <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-slate-gray">
-        <li>I've been vaccinated, microchipped, wormed and neutered as required</li>
-        <li>Examined by a vet and treated if needed</li>
-        <li>Assessed by an experienced member of our team</li>
-        <li>Given an individual profile to help match me with my new owner</li>
-        <li>Matched with our expert free insurance from Petplan</li>
+        <li>Vacunación y desparacitación al día</li>
+        <li>Examen veterinario completo y tratamiento necesario</li>
+        <li>Alimentación adecuada según mis necesidades</li>
+        <li>Cuidado personalizado para adaptarme a mi nuevo hogar</li>
+        <li>Seguro de salud especializado para mascotas</li>
       </ul>
     </div>
   );

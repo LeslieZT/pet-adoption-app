@@ -15,8 +15,11 @@ import {
   AuthProviderPage,
   DonationSuccessPage,
   DonationFailPage,
+  AdoptionApplicationSuccessPage,
+  ContactSuccessPage,
 } from "../pages";
 import { ErrorPage } from "../pages/Error.page";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -45,13 +48,29 @@ export const router = createBrowserRouter([
           },
           {
             path: "/adopt/:petId/application-form",
-            element: <AdoptionApplicationPage />,
+            element: (
+              <ProtectedRoute>
+                <AdoptionApplicationPage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/adopt/:petId/application-form/success",
+            element: (
+              <ProtectedRoute>
+                <AdoptionApplicationSuccessPage />
+              </ProtectedRoute>
+            ),
           },
         ],
       },
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/contact/success",
+        element: <ContactSuccessPage />,
       },
       {
         path: "/donate",
@@ -67,7 +86,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/account",
-        element: <AccountPage />,
+        element: (
+          <ProtectedRoute>
+            <AccountPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/sign-up/success",

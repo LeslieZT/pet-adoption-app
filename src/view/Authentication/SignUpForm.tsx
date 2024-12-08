@@ -51,30 +51,30 @@ export const SignUpForm = () => {
           color="slate-gray"
           className="font-bold text-center"
         >
-          Create an Account
+          Crea tu cuenta
         </Heading>
         <Heading
           level="6"
           color="lavender-purple"
           className="font-medium text-center"
         >
-          Join the Family, Adopt with Love
+          Haz la diferencia, adopta con corazón
         </Heading>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <InputField
             name="firstName"
             control={control}
-            label="First Name"
+            label="Nombre"
             icon={HiUser}
-            placeholder="John"
+            placeholder="Juan"
           />
           <InputField
             name="lastName"
             control={control}
-            label="Last Name"
+            label="Apellido"
             icon={HiUser}
-            placeholder="Doe"
+            placeholder="Pérez"
           />
         </div>
 
@@ -82,10 +82,10 @@ export const SignUpForm = () => {
           <InputField
             name="email"
             control={control}
-            label="Email"
+            label="Correo electrónico"
             type="email"
             icon={HiMail}
-            placeholder="name@example.com"
+            placeholder="nombre@ejemplo.com"
           />
         </div>
 
@@ -93,12 +93,12 @@ export const SignUpForm = () => {
           <PasswordField
             name="password"
             control={control}
-            label="Password"
+            label="Contraseña"
           />
           <PasswordField
             name="confirmPassword"
             control={control}
-            label="Confirm Password"
+            label="Confirmar contraseña"
           />
         </div>
 
@@ -108,12 +108,12 @@ export const SignUpForm = () => {
           type="submit"
           color="royal-purple"
         >
-          Sign Up
+          Registrarse
         </CustomButton>
 
         <div className="flex items-center justify-center">
           <hr className="w-full border-gray-300" />
-          <span className="px-2 text-gray-500 bg-white">Or</span>
+          <span className="px-2 text-gray-500 bg-white">O</span>
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -159,12 +159,12 @@ export const SignUpForm = () => {
         </div>
         <div className="text-sm text-center mt-2">
           <p className="text-text-slate-gray">
-            Already have an account?{" "}
+            ¿Ya tienes una cuenta?{" "}
             <Link
               to="/sign-in"
               className="font-medium text-lavender-purple hover:underline dark:text-primary-500"
             >
-              Join now!
+              ¡Únete ahora!
             </Link>
           </p>
         </div>

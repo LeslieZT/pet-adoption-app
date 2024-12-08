@@ -72,9 +72,7 @@ export const FavoritePetsSection: React.FC = () => {
             shelterName={pet.shelterName}
             location={pet.address}
             gender={pet.gender as "male" | "female"}
-            imageUrl={
-              "https://res.cloudinary.com/dyntsz5qv/image/upload/v1731002111/tsjzsokbmwphu3uveuqp.png"
-            }
+            imageUrl={pet.profilePicture}
             isFavorite={pet.isFavorite}
           />
         ))}

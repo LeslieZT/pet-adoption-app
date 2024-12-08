@@ -4,8 +4,8 @@ const DonationSuccessPage: React.FC = () => {
   return (
     <>
       <MessageCard
-        title="Donation Successful"
-        message="Your donation has been processed successfully. Thank you for supporting shelters and making a difference!"
+        title="Donación Exitosa"
+        message="Tu donación ha sido procesada exitosamente. ¡Gracias por apoyar a los refugios y hacer la diferencia!"
       />
     </>
   );

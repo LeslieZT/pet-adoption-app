@@ -17,7 +17,7 @@ export const AuthenticatioLayout: React.FC<AuthenticatioLayoutProps> = ({
         <img
           src={coverImage}
           alt={alt}
-          className="w-[90%] h-[80%]"
+          className="w-full h-full"
         />
       </div>
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center px-4 py-8 sm:p-4">

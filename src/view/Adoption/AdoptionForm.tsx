@@ -13,6 +13,7 @@ import { RadioButtonField } from "../../components/Forms/RadioButtonField";
 import { Heading } from "../../components/Typography";
 import { useAuthStore } from "../../store/Auth.store";
 import * as AdoptionService from "../../services/adoption.service";
+import { useState } from "react";
 
 interface AdoptionFormProps {
   petId: number;
@@ -20,12 +21,13 @@ interface AdoptionFormProps {
 }
 
 export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) => {
-  const { channel, credential, isAuthenticated } = useAuthStore((state) => state);
+  const { channel, credential } = useAuthStore((state) => state);
+  const [error, setError] = useState<string | null>(null);
 
   const { control, handleSubmit, reset } = useForm<AdoptionApplicationFormData>({
     resolver: zodResolver(AdoptionApplicationSchema),
     defaultValues: {
-      housingType: "House with Yard",
+      housingType: "Casa con patio",
       isPlaceOwned: false,
       hasPermission: false,
       hasOutdoorSpace: false,
@@ -41,21 +43,19 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
   });
 
   const onSubmit = async (data: AdoptionApplicationFormData) => {
-    if (!isAuthenticated) {
-      alert("Please login to continue");
-      return;
+    try {
+      const response = await AdoptionService.create(
+        { application: data, petId },
+        channel,
+        credential!,
+      );
+      reset();
+      if (response.data) {
+        alert("Solicitud enviada exitosamente");
+      }
+    } catch (error: any) {
+      setError(error.message);
     }
-
-    const response = await AdoptionService.create(
-      { application: data, petId },
-      channel,
-      credential!,
-    );
-    console.log(response);
-    if (response) {
-      alert("Application submitted successfully");
-    }
-    reset();
   };
 
   return (
@@ -66,7 +66,7 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
         className="font-medium flex items-center gap-2 mb-6"
       >
         <RiEdit2Fill className="h-7 w-7 text-royal-purple" />
-        Adoption application form
+        Formulario de solicitud de adopción
       </Heading>
 
       <form
@@ -76,20 +76,20 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
         <RadioButtonField
           name="housingType"
           control={control}
-          question="What type of home do you live in?"
+          question="¿Qué tipo de vivienda tienes?"
           options={[
-            { id: "1", value: "House with Yard", label: "House with Yard" },
+            { id: "1", value: "Casa con patio", label: "Casa con patio" },
             {
               id: "2",
-              value: "Apartment with Outdoor Access",
-              label: "Apartment with Outdoor Access",
+              value: "Apartamento con acceso al exterior",
+              label: "Apartamento con acceso al exterior",
             },
             {
               id: "3",
-              value: "House or Apartment without Outdoor Access",
-              label: "House or Apartment without Outdoor Access",
+              value: "Casa o apartamento sin acceso al exterior",
+              label: "Casa o apartamento sin acceso al exterior",
             },
-            { id: "4", value: "Farm or Rural Property", label: "Farm or Rural Property" },
+            { id: "4", value: "Granja o propiedad rural", label: "Granja o propiedad rural" },
           ]}
         />
 
@@ -97,7 +97,6 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
           <ToggleSwitchField
             key={question.id}
             control={control}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             name={question.code as any}
             question={question.question}
           />
@@ -106,22 +105,23 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
         <TextareaField
           name="adoptionReason"
           control={control}
-          label="Why do you want to adopt this pet?"
-          placeholder="Adoption Reason"
+          label="¿Por qué quieres adoptar a esta mascota?"
+          placeholder="Razón para adoptar"
           className="w-full"
         />
         <TextareaField
           name="situationChange"
           control={control}
-          label="What would you do if your personal situation changes and you can no longer care for the pet?"
-          placeholder="Situation Change"
+          label="¿Qué harías si tu situación personal cambia y ya no puedes cuidar a la mascota?"
+          placeholder="Cambio de situación"
           className="w-full"
         />
+        {error && <span className="text-red-500 text-sm text-center">{error}</span>}
         <CustomButton
           type="submit"
           color="royal-purple"
         >
-          Submit
+          Enviar
         </CustomButton>
       </form>
     </div>

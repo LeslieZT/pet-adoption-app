@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { Drawer, Navbar, Sidebar } from "flowbite-react";
-import { Link, NavLink } from "react-router-dom";
-import {
-  HiHome,
-  HiArrowSmRight,
-  HiUserAdd,
-  HiOutlineMail,
-  HiCurrencyDollar,
-  HiHeart,
-} from "react-icons/hi";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { HiHome, HiArrowSmRight, HiUserAdd, HiOutlineMail, HiCurrencyDollar } from "react-icons/hi";
 import { MdOutlinePets } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { CustomButton } from "../Buttons";
@@ -17,6 +10,7 @@ import { useAuthStore } from "../../store/Auth.store";
 import { PiSignOutBold } from "react-icons/pi";
 
 export const NavbarApp: React.FC = () => {
+  const navigate = useNavigate();
   const { isAuthenticated, signOut } = useAuthStore((state) => state);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
@@ -31,6 +25,7 @@ export const NavbarApp: React.FC = () => {
   const handleSignOut = async () => {
     await signOut();
     setActiveLink("home");
+    navigate("/");
   };
 
   return (
@@ -51,7 +46,7 @@ export const NavbarApp: React.FC = () => {
               onClick={() => handleLinkClick("home")}
               className={`hover:!text-royal-purple text-base ${activeLink === "home" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
             >
-              Home
+              Inicio
             </Navbar.Link>
             <Navbar.Link
               as={Link}
@@ -59,7 +54,7 @@ export const NavbarApp: React.FC = () => {
               onClick={() => handleLinkClick("adopt")}
               className={`hover:!text-royal-purple text-base ${activeLink === "adopt" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
             >
-              Adopt
+              Adoptar
             </Navbar.Link>
             <Navbar.Link
               as={Link}
@@ -67,23 +62,16 @@ export const NavbarApp: React.FC = () => {
               onClick={() => handleLinkClick("donate")}
               className={`hover:!text-royal-purple text-base ${activeLink === "donate" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
             >
-              Donate
+              Donar
             </Navbar.Link>
-            <Navbar.Link
-              as={Link}
-              to="/blog"
-              onClick={() => handleLinkClick("blog")}
-              className={`hover:!text-royal-purple text-base ${activeLink === "blog" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
-            >
-              Blog
-            </Navbar.Link>
+
             <Navbar.Link
               as={Link}
               to="/contact"
               onClick={() => handleLinkClick("contact")}
               className={`hover:!text-royal-purple text-base ${activeLink === "contact" ? "text-royal-purple font-bold" : "text-soft-gray-blue"}`}
             >
-              Contact
+              Contáctanos
             </Navbar.Link>
           </Navbar.Collapse>
 
@@ -100,17 +88,17 @@ export const NavbarApp: React.FC = () => {
                   }`}
                 >
                   <FaUserCircle className="h-8 w-8" />
-                  <span>Account</span>
+                  <span>Mi Cuenta</span>
                 </NavLink>
-                <CustomButton onClick={() => handleSignOut()}> Sign Out </CustomButton>
+                <CustomButton onClick={() => handleSignOut()}> Cerrar Sesión </CustomButton>
               </div>
             ) : (
               <>
                 <CustomButton>
-                  <Link to="/sign-in">Sign In</Link>
+                  <Link to="/sign-in">Inicia Sesión</Link>
                 </CustomButton>
                 <CustomButton color="light-pastel-lilac">
-                  <Link to="/sign-up">Sign Up</Link>
+                  <Link to="/sign-up">Regístrate</Link>
                 </CustomButton>
               </>
             )}
@@ -148,7 +136,7 @@ export const NavbarApp: React.FC = () => {
                   onClick={() => handleLinkClick("home")}
                   className={` hover:!text-white  hover:bg-lavender-purple ${activeLink === "home" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
-                  Home
+                  Inicio
                 </Sidebar.Item>
 
                 <Sidebar.Item
@@ -158,7 +146,7 @@ export const NavbarApp: React.FC = () => {
                   onClick={() => handleLinkClick("adopt")}
                   className={` hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "adopt" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
-                  Adopt
+                  Adoptar
                 </Sidebar.Item>
                 <Sidebar.Item
                   as={Link}
@@ -167,17 +155,9 @@ export const NavbarApp: React.FC = () => {
                   onClick={() => handleLinkClick("donate")}
                   className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "donate" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
-                  Donate
+                  Donar
                 </Sidebar.Item>
-                <Sidebar.Item
-                  as={Link}
-                  to="/blog"
-                  icon={HiHeart}
-                  onClick={() => handleLinkClick("blog")}
-                  className={`hover:!text-white   hover:bg-lavender-purple sidebar-item ${activeLink === "blog" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
-                >
-                  Blog
-                </Sidebar.Item>
+
                 <Sidebar.Item
                   as={Link}
                   to="/contact"
@@ -185,7 +165,7 @@ export const NavbarApp: React.FC = () => {
                   onClick={() => handleLinkClick("contact")}
                   className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "contact" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                 >
-                  Contact
+                  Contáctanos
                 </Sidebar.Item>
               </Sidebar.ItemGroup>
               <Sidebar.ItemGroup>
@@ -198,7 +178,7 @@ export const NavbarApp: React.FC = () => {
                       onClick={() => handleLinkClick("account")}
                       className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "account" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                     >
-                      Account
+                      Mi Cuenta
                     </Sidebar.Item>
                     <Sidebar.Item
                       to="/account"
@@ -206,7 +186,7 @@ export const NavbarApp: React.FC = () => {
                       onClick={handleSignOut}
                       className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "account" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                     >
-                      Sign Out
+                      Cerrar Sesión
                     </Sidebar.Item>
                   </>
                 ) : (
@@ -218,7 +198,7 @@ export const NavbarApp: React.FC = () => {
                       onClick={() => handleLinkClick("sign-in")}
                       className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "sign-in" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                     >
-                      Sign In
+                      Inicia Sesión
                     </Sidebar.Item>
                     <Sidebar.Item
                       as={Link}
@@ -227,7 +207,7 @@ export const NavbarApp: React.FC = () => {
                       onClick={() => handleLinkClick("sign-up")}
                       className={`hover:!text-white  hover:bg-lavender-purple sidebar-item ${activeLink === "sign-up" ? "bg-royal-purple text-white font-bold sidebar-item-active" : "text-soft-gray-blue font-medium"}`}
                     >
-                      Sign Up
+                      Regístrate
                     </Sidebar.Item>
                   </>
                 )}

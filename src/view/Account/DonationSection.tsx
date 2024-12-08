@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Spinner, Table } from "flowbite-react";
 import { Heading } from "../../components/Typography";
-import * as AdoptionService from "../../services/adoption.service";
 import { useAuthStore } from "../../store/Auth.store";
-import { AdoptionApplicationResponse } from "../../types/Adoption.types";
+import * as DonationService from "../../services/donation.service";
+import { DonationUserResponse } from "../../types/Donation.types";
 
-export const AplicationSection: React.FC = () => {
+export const DonationUserSection: React.FC = () => {
   const { channel, credential, isAuthenticated } = useAuthStore((state) => state);
-  const [applications, setApplications] = useState<AdoptionApplicationResponse[]>([]);
+  const [Donations, setDonations] = useState<DonationUserResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(false);
     if (isAuthenticated) {
       const getData = async () => {
-        const { data } = await AdoptionService.findAllByUser(channel, credential!);
+        const { data } = await DonationService.findAllByUser(channel, credential!);
         if (data) {
-          setApplications(data);
+          setDonations(data);
         }
         setIsLoading(false);
       };
@@ -47,33 +47,34 @@ export const AplicationSection: React.FC = () => {
       >
         Mis aplicaciones de adoptación
       </Heading>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto text-center">
         <Table>
-          <Table.Head className="text-center">
+          <Table.Head>
             <Table.HeadCell>ID</Table.HeadCell>
-            <Table.HeadCell>Mascota</Table.HeadCell>
+            <Table.HeadCell>Plan</Table.HeadCell>
+            <Table.HeadCell>Monto</Table.HeadCell>
             <Table.HeadCell>Tipo</Table.HeadCell>
             <Table.HeadCell>Estado</Table.HeadCell>
             <Table.HeadCell>Fecha</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y text-center">
-            {applications.map((app) => (
+            {Donations.map((donation) => (
               <Table.Row
-                key={app.id}
+                key={donation.donationId}
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
               >
-                <Table.Cell>{app.id}</Table.Cell>
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {app.petName}
-                </Table.Cell>
-                <Table.Cell>{app.petCategory}</Table.Cell>
-                <Table.Cell>
-                  {" "}
-                  <div className={`p-2 w-full text-white rounded-md bg-royal-purple`}>
-                    {app.status}
+                <Table.Cell>{donation.donationId}</Table.Cell>
+                <Table.Cell>{donation.plan.name}</Table.Cell>
+                <Table.Cell>S/. {donation.plan.price}.00</Table.Cell>
+                <Table.Cell className="text-center">
+                  <div
+                    className={`p-2 w-full text-white rounded-md ${donation.type === "payment" ? "bg-royal-purple" : "bg-lavender-purple"}`}
+                  >
+                    <p>{donation.type === "payment" ? "Pago" : "Suscripción"}</p>
                   </div>
                 </Table.Cell>
-                <Table.Cell>{new Date(app.createdAt).toLocaleString()}</Table.Cell>
+                <Table.Cell>{donation.status}</Table.Cell>
+                <Table.Cell>{new Date(donation.createdAt).toLocaleString()}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>

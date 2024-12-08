@@ -48,27 +48,27 @@ export const SignInForm = () => {
           color="slate-gray"
           className="font-bold text-center"
         >
-          Welcome Back 👋
+          ¡Bienvenido de nuevo 👋
         </Heading>
         <Heading
           level="6"
           color="lavender-purple"
           className="font-medium text-center"
         >
-          Please enter your details to sign in
+          Ingresa tus datos para acceder
         </Heading>
         <InputField
           name="email"
           control={control}
-          label="Your email"
+          label="Tu correo electrónico"
           type="email"
-          placeholder="name@flowbite.com"
+          placeholder="nombre@ejemplo.com"
           icon={HiMail}
         />
         <PasswordField
           name="password"
           control={control}
-          label="Your password"
+          label="Tu contraseña"
         />
 
         <div className="flex items-center justify-end">
@@ -76,7 +76,7 @@ export const SignInForm = () => {
             to="#"
             className="text-sm font-medium text-lavender-purple hover:underline dark:text-primary-500"
           >
-            Forgot password?
+            ¿Olvidaste tu contraseña?
           </Link>
         </div>
         {error && <span className="text-red-500 text-sm text-center">{error}</span>}
@@ -84,12 +84,12 @@ export const SignInForm = () => {
           type="submit"
           color="royal-purple"
         >
-          Sign in
+          Iniciar sesión
         </CustomButton>
 
         <div className="flex items-center justify-center">
           <hr className="w-full border-gray-300" />
-          <span className="px-2 text-gray-500 bg-white">Or</span>
+          <span className="px-2 text-gray-500 bg-white">O</span>
           <hr className="w-full border-gray-300" />
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -135,12 +135,12 @@ export const SignInForm = () => {
         </div>
         <div className="text-sm text-center mt-2">
           <p className="text-text-slate-gray">
-            Don't have an account?{" "}
+            ¿No tienes cuenta?{" "}
             <Link
               to="/sign-up"
               className="font-medium text-lavender-purple hover:underline dark:text-primary-500"
             >
-              Sign up
+              Regístrate
             </Link>
           </p>
         </div>

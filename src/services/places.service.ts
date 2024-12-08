@@ -9,5 +9,3 @@ export const getDepartment = async (): Promise<ResponseApi<DepartmentResult[]>> 
   const response = await getRequest<ResponseApi<DepartmentResult[]>>(GET_DEPARTMENTS);
   return response;
 };
-
- 

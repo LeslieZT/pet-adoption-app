@@ -12,6 +12,8 @@ import ContactPage from "./ContactPage";
 import AccountCreatedPage from "./AccountCreated.page";
 import VerifyAccountPage from "./VerifyAccount.page";
 import AuthProviderPage from "./AuthProvider.page";
+import AdoptionApplicationSuccessPage from "./AdoptionSuccess.page";
+import ContactSuccessPage from "./ContactSuccess.page";
 
 export {
   SignInPage,
@@ -28,4 +30,6 @@ export {
   AccountPage,
   AdoptionApplicationPage,
   ContactPage,
+  AdoptionApplicationSuccessPage,
+  ContactSuccessPage,
 };

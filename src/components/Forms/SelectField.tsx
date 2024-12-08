@@ -1,7 +1,6 @@
 import { Label, Select } from "flowbite-react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { IconType } from "react-icons";
-
 interface SelectFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;

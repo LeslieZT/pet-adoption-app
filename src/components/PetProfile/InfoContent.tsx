@@ -12,7 +12,6 @@ interface PetInfoContentProps {
 }
 
 export const PetInfoContent: React.FC<PetInfoContentProps> = ({
-  name,
   gender,
   age,
   breed,
@@ -23,32 +22,32 @@ export const PetInfoContent: React.FC<PetInfoContentProps> = ({
   return (
     <div className="h-auto space-y-4">
       <TitleSectionPetProfile
-        title={`${name}'s information`}
+        title="Información General"
         icon="information"
       />
       <div className=" flex flex-wrap justify-between gap-2">
         <InformationTag
-          name="Gender"
-          value={gender}
+          name="Genero"
+          value={gender === "male" ? "Macho" : "Hembra"}
           gender={gender}
         />
         <InformationTag
-          name="Age"
+          name="Edad"
           value={age}
           gender={gender}
         />
         <InformationTag
-          name="Breed"
+          name="Raza"
           value={breed}
           gender={gender}
         />
         <InformationTag
-          name="Weight"
+          name="Peso"
           value={`${weight} Kg`}
           gender={gender}
         />
         <InformationTag
-          name="Height"
+          name="Altura"
           value={`${height} Cm`}
           gender={gender}
         />

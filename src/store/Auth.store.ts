@@ -21,8 +21,8 @@ export const useAuthStore = create<AuthState>()(
             const response = await AuthService.signIn(params, get().channel);
             set({ isAuthenticated: true, credential: response.data });
             const credentials = get().credential!;
-            const { data: userData } = await UserService.getUser(credentials, get().channel);      
-            if (userData) {           
+            const { data: userData } = await UserService.getUser(credentials, get().channel);
+            if (userData) {
               set({ user: { ...userData } });
             }
             return response;
@@ -82,7 +82,7 @@ export const useAuthStore = create<AuthState>()(
           try {
             const credentials = get().credential!;
 
-            if(params.districtId){
+            if (params.districtId) {
               params.districtId = parseInt(params.districtId as unknown as string);
             }
 
@@ -91,7 +91,7 @@ export const useAuthStore = create<AuthState>()(
               get().channel,
               params,
             );
-            if (userData) {              
+            if (userData) {
               set({ user: { ...get().user!, ...params } });
             }
           } catch (error) {

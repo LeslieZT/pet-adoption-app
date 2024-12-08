@@ -24,3 +24,16 @@
     display: none;
   }
 }
+
+.carousel-custom [data-testid="carousel-right-control"] span,
+.carousel-custom [data-testid="carousel-left-control"] span {
+  background-color: #3f2d7e;
+  color: white; /* Ejemplo de color de texto */
+  padding: 10px; /* Ejemplo de relleno */
+  cursor: pointer; /* Cambia el cursor cuando se pase por encima */
+}
+
+.carousel-custom [data-testid="carousel-right-control"] span:hover,
+.carousel-custom [data-testid="carousel-left-control"] span:hover {
+  background-color: #a374cc;
+}

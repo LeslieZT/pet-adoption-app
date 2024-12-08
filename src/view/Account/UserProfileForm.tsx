@@ -13,8 +13,8 @@ import { DepartmentResult } from "../../types/Places.types";
 
 export const UserProfileForm = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const { user, updateUser, setUser } = useAuthStore((state) => state);
-  const [places , setPlaces] = useState<DepartmentResult[]>([]);
+  const { user, updateUser } = useAuthStore((state) => state);
+  const [places, setPlaces] = useState<DepartmentResult[]>([]);
   const [departments, setDepartments] = useState<any>([]);
   const [provinces, setProvinces] = useState<any>([]);
   const [districts, setDistricts] = useState<any>([]);
@@ -50,9 +50,11 @@ export const UserProfileForm = () => {
 
   const getProvinces = (data: DepartmentResult[]) => {
     try {
-      
       const department = data.find((item) => String(item.departmentId) === departmentId);
-      const provinces = department?.provinces.map((item) => ({ value: item.provinceId, label: item.name }));      
+      const provinces = department?.provinces.map((item) => ({
+        value: item.provinceId,
+        label: item.name,
+      }));
       setProvinces(provinces);
     } catch (error) {
       console.log(error);
@@ -63,7 +65,10 @@ export const UserProfileForm = () => {
     try {
       const department = data.find((item) => String(item.departmentId) === departmentId);
       const province = department?.provinces.find((item) => String(item.provinceId) === provinceId);
-      const districts = province?.districts.map((item) => ({ value: item.districtId, label: item.name }));
+      const districts = province?.districts.map((item) => ({
+        value: item.districtId,
+        label: item.name,
+      }));
       setDistricts(districts);
     } catch (error) {
       console.log(error);
@@ -73,34 +78,31 @@ export const UserProfileForm = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await PlaceService.getDepartment();
-      if(response.data) {
+      if (response.data) {
         setPlaces(response.data);
         getDepartments(response.data);
-        getProvinces(response.data)
-        getDistricts(response.data)
+        getProvinces(response.data);
+        getDistricts(response.data);
       }
     };
     fetch();
   }, []);
 
   useEffect(() => {
-    if (places.length > 0 && departmentId) {    
+    if (places.length > 0 && departmentId) {
       getProvinces(places);
     }
-
   }, [departmentId]);
 
   useEffect(() => {
     if (places.length > 0 && provinceId) {
-      getDistricts(places);      
+      getDistricts(places);
     }
   }, [provinceId]);
 
-
-
   const onSubmit = async (data: UserProfileFormData) => {
     console.log({ data });
-    await updateUser( data as Partial<User>);
+    await updateUser(data as Partial<User>);
     setIsEditing(false);
   };
 
@@ -115,14 +117,14 @@ export const UserProfileForm = () => {
           color="royal-purple"
           className="font-bold"
         >
-          Profile
+          Perfil
         </Heading>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <InputField
             name="firstName"
             control={control}
-            label="First Name"
+            label="Nombre"
             icon={HiUser}
             placeholder="Set your first name"
             disabled={!isEditing}
@@ -130,7 +132,7 @@ export const UserProfileForm = () => {
           <InputField
             name="lastName"
             control={control}
-            label="Last Name"
+            label="Apellido"
             icon={HiUser}
             placeholder="Set your last name"
             disabled={!isEditing}
@@ -141,7 +143,7 @@ export const UserProfileForm = () => {
           <InputField
             name="birthdate"
             control={control}
-            label="Birthdate"
+            label="Fecha de nacimiento"
             type="date"
             icon={HiCalendar}
             disabled={!isEditing}
@@ -149,7 +151,7 @@ export const UserProfileForm = () => {
           <InputField
             name="email"
             control={control}
-            label="Email"
+            label="Correo electrónico"
             type="email"
             icon={HiMail}
             // placeholder="name@example.com"
@@ -161,7 +163,7 @@ export const UserProfileForm = () => {
           <InputField
             name="address"
             control={control}
-            label="Home Address"
+            label="Dirección"
             icon={HiHome}
             placeholder="123 Main St"
             disabled={!isEditing}
@@ -169,7 +171,7 @@ export const UserProfileForm = () => {
           <SelectField
             name="departmentId"
             control={control}
-            label="Department"
+            label="Departamento"
             icon={HiGlobe}
             options={departments}
             placeholder="Select your department"
@@ -181,7 +183,7 @@ export const UserProfileForm = () => {
           <SelectField
             name="provinceId"
             control={control}
-            label="Province"
+            label="Provincia"
             placeholder="Select your province"
             icon={HiGlobe}
             disabled={!isEditing}
@@ -190,7 +192,7 @@ export const UserProfileForm = () => {
           <SelectField
             name="districtId"
             control={control}
-            label="District"
+            label="Distrito"
             icon={HiGlobe}
             placeholder="Select your district"
             disabled={!isEditing}
@@ -203,7 +205,7 @@ export const UserProfileForm = () => {
             type="submit"
             color="royal-purple"
           >
-            Save
+            Guardar
           </CustomButton>
         )}
       </form>
@@ -213,7 +215,7 @@ export const UserProfileForm = () => {
           onClick={() => setIsEditing(true)}
           className="w-full mt-4"
         >
-          Update
+          Actualizar
         </CustomButton>
       )}
     </div>

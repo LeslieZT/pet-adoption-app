@@ -5,7 +5,7 @@ import { SignUpForm } from "../view/Authentication/SignUpForm";
 const SignUpPage: React.FC = () => {
   return (
     <AuthenticatioLayout
-      coverImage="./src/assets/sign-up-cover.png"
+      coverImage="https://res.cloudinary.com/dyntsz5qv/image/upload/v1733588219/sign-up-picture-min_twifwi.png"
       alt="HappyPaws Sign Up"
     >
       <SignUpForm />

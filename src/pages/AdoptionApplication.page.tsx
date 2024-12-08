@@ -1,14 +1,31 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { MainLayout } from "../layouts/Main.layout";
 import { Heading, Paragraph, SubtitleApplication } from "../components/Typography";
 import { AdoptionForm } from "../view/Adoption/AdoptionForm";
 import { PetAdoptCard } from "../components/Card";
+import * as PetService from "../services/pet.service";
+
+import { PetInfo } from "../types/PetInfo.type";
 
 const AdoptionApplicationPage: React.FC = () => {
   const { petId } = useParams<{ petId: string }>();
+  const [data, setData] = useState<PetInfo>({} as PetInfo);
+
+  useEffect(() => {
+    if (petId) {
+      const getPetInfo = async () => {
+        const response = await PetService.getPetById(parseInt(petId));
+        if (response.data) {
+          setData(response.data);
+        }
+      };
+      getPetInfo();
+    }
+  }, []);
 
   if (!petId) {
-    return <div>Not Found</div>;
+    return <div>No encontrado</div>;
   }
 
   return (
@@ -18,32 +35,32 @@ const AdoptionApplicationPage: React.FC = () => {
         color="royal-purple"
         className="text-center font-medium mt-12"
       >
-        You've Chosen Your New Best Friend!
+        ¡Has elegido a tu nuevo mejor amigo!
       </Heading>
       <Paragraph className="text-center mt-6">
-        Thank you for giving a loving home to one of our rescued pets! You're one step closer to
-        changing a life—here's what comes next:
+        ¡Gracias por ofrecerle un hogar amoroso a una de nuestras mascotas rescatadas! Estás un paso
+        más cerca de cambiar una vida. Esto es lo que sigue:
       </Paragraph>
 
       <div className="mt-10 grid md:grid-cols-3 md:grid-rows-auto gap-6 md:gap-10">
         <div className=" order-2 md:order-1 md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-4">
           <SubtitleApplication
-            title="1. Complete Your Adoption Application"
-            paragraph="Fill out a quick form to provide us with the details we need to finalize the adoption"
+            title="1. Completa tu solicitud de adopción"
+            paragraph="Llena un formulario rápido para proporcionarnos los detalles necesarios para finalizar la adopción."
           />
           <AdoptionForm petId={parseInt(petId)} />
         </div>
         <div className="order-1 md:order-2 md:col-start-3  md:col-end-4 md:row-start-1 md:row-end-3">
           <PetAdoptCard
             referenceCode={petId}
-            name="Doggy"
-            breed="Bulldog"
-            age="1y, 2m"
-            gender="male"
-            weight="100"
-            height="100"
-            color="black"
-            imageUrl="../../src/assets/section1_hamster.jpg"
+            name={data.name}
+            breed={data.breed}
+            age={data.age}
+            gender={data.gender}
+            weight={data.weight}
+            height={data.height}
+            color={data.color}
+            imageUrl={data.profilePicture}
           />
         </div>
         <div className="order-3 md:col-start-3 md:col-end-4 md:row-start-3 md:row-end-4 ">
@@ -51,26 +68,26 @@ const AdoptionApplicationPage: React.FC = () => {
             level="3"
             className="font-semibold mb-4"
           >
-            Next Steps
+            Próximos pasos
           </Heading>
           <SubtitleApplication
-            title="2. Meet and Greet"
-            paragraph="Our team will contact you to arrange a meeting with your new furry friend. This ensures a perfect match!"
+            title="2. Conoce a tu nueva mascota"
+            paragraph="Nuestro equipo se pondrá en contacto contigo para organizar una reunión con tu nuevo amigo peludo. ¡Esto asegura un emparejamiento perfecto!"
           />
           <SubtitleApplication
-            title="3. Prepare for Their Arrival"
-            paragraph="Get your home ready with the basics: food, water bowls, a cozy bed, and toys to welcome your pet home."
+            title="3. Prepárate para su llegada"
+            paragraph="Prepara tu hogar con lo básico: comida, platos de agua, una cama acogedora y juguetes para darle la bienvenida."
           />
           <SubtitleApplication
-            title="4. Finalize the Adoption"
-            paragraph="Once everything is set, we'll complete the paperwork, and your pet will be ready to go home with you!"
+            title="4. Finaliza la adopción"
+            paragraph="Una vez que todo esté listo, completaremos el papeleo y tu mascota estará lista para irse contigo a casa."
           />
         </div>
       </div>
       <div className="flex items-center justify-center md:justify-end mb-10 mt-4 w-full">
         <img
           src="../../src/assets/dog-icon2.png"
-          alt="dog-icon"
+          alt="ícono de perro"
           className="h-32 w-40 md:h-36 md:w-44"
         />
       </div>

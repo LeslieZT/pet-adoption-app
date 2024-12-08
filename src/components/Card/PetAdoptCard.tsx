@@ -1,6 +1,7 @@
 import { Card } from "flowbite-react";
 import { PetInfoContent } from "../PetProfile";
 import { Heading } from "../Typography";
+import { Link } from "react-router-dom";
 
 interface PetAdoptCardProps {
   referenceCode: string;
@@ -25,22 +26,25 @@ export const PetAdoptCard: React.FC<PetAdoptCardProps> = ({
   color,
   imageUrl,
 }) => {
-  const profielColor = gender === "male" ? "aqua-blue" : "vibrant-pink";
+  const profileColor = gender === "male" ? "aqua-blue" : "vibrant-pink";
 
   return (
     <Card className="">
-      <img
-        className={`w-full h-52 md:h-80 object-cover`}
-        src={imageUrl}
-        alt={`${name}-${referenceCode}`}
-      />
+      <Link to={`/adopt/${referenceCode}`}>
+        <img
+          className={`w-full h-52 md:h-80 object-cover`}
+          src={imageUrl}
+          alt={`${name}-${referenceCode}`}
+        />
+      </Link>
+
       <div className="flex flex-col md:flex-row md:justify-between items-center">
         <Heading
           level="3"
           color="slate-gray"
           className="font-bold"
         >
-          Hello, <span className={`text-${profielColor}`}>I'm {name}</span>
+          <span className={`text-${profileColor}`}>{name}</span>
         </Heading>
 
         <Heading
@@ -48,7 +52,8 @@ export const PetAdoptCard: React.FC<PetAdoptCardProps> = ({
           color="slate-gray"
           className="font-normal text-sm md:text-base"
         >
-          Reference code: <span className={`text-${profielColor} font-bold`}>{referenceCode}</span>
+          Código Referencia:{" "}
+          <span className={`text-${profileColor} font-bold`}>{referenceCode}</span>
         </Heading>
       </div>
       <PetInfoContent

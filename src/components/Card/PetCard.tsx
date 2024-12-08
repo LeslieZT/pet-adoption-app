@@ -76,7 +76,7 @@ export const PetCard: React.FC<PetCardProps> = ({
               <PiPawPrintFill className={`w-5 h-5 ${iconColors[gender]}`} />
               <Paragraph
                 size="small"
-                className="w-[90%]"
+                className="w-[90%]  truncate"
               >
                 {breed}
               </Paragraph>

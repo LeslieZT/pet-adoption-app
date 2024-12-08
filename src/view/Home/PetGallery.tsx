@@ -6,10 +6,10 @@ interface PetGalleryProps {
 
 export const PetGallery: React.FC<PetGalleryProps> = ({ className = "" }) => {
   const pets = [
-    "./src/assets/section1_dog.png",
-    "./src/assets/section1_cat.png",
-    "./src/assets/section1_hamster.jpg",
-    "./src/assets/section1_rabbit.png",
+    "https://res.cloudinary.com/dyntsz5qv/image/upload/v1733582103/section1_cat_jwxn0v.png",
+    "https://res.cloudinary.com/dyntsz5qv/image/upload/v1733589754/dog_dt8kyd.png",
+    "https://res.cloudinary.com/dyntsz5qv/image/upload/v1733582104/section1_hamster_nokdmr.jpg",
+    "https://res.cloudinary.com/dyntsz5qv/image/upload/v1733590369/rabbit-image_u0kite.png",
   ];
 
   return (

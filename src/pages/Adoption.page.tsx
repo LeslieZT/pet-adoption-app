@@ -10,8 +10,8 @@ const AdoptionPage: React.FC = () => {
         color="royal-purple"
         className="text-center font-medium mt-4"
       >
-        Every Pet Deserves a Loving Home. <span className="text-lavender-purple">Adopt</span> a Pet
-        Today
+        Cada mascota merece un hogar lleno de amor.{" "}
+        <span className="text-lavender-purple">Adopta</span> una mascota hoy
       </Heading>
       <SearchPet />
     </MainLayout>

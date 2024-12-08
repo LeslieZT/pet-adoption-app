@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { Heading, Paragraph } from "../Typography";
+import { Heading } from "../Typography";
 
 interface InformationTagProps {
   name: string;
@@ -14,20 +14,24 @@ export const InformationTag: React.FC<InformationTagProps> = ({ name, value, gen
   return (
     <div
       className={twMerge(
-        "flex flex-col items-center justify-center p-1 md:py-3 md:px-4 rounded-lg w-32 md:w-auto",
+        "flex flex-col items-center justify-center p-1 md:py-3 md:px-4 rounded-lg w-32 h-24 overflow-hidden", // Contenedor con ancho y altura fija
         bgColor,
       )}
     >
-      <Paragraph
-        size="medium"
-        color="primary"
-      >
-        {name}
-      </Paragraph>
       <Heading
         level="6"
+        className="font-medium text-center"
         color={textColor}
-        className="font-medium"
+      >
+        {name}
+      </Heading>
+      <Heading
+        level="6"
+        color="slate-gray"
+        className=" text-center"
+        style={{
+          fontSize: "clamp(0.3rem, 1rem, 0.9rem)", // Ajusta el tamaño de la fuente con un rango dinámico
+        }}
       >
         {value}
       </Heading>

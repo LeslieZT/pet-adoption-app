@@ -60,7 +60,7 @@ export const DonateCard: React.FC<DonateCardProps> = ({
             color={btnColor}
             className="mt-6 py-2 w-auto md: max-w-sm"
           >
-            Donate Now <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
+            Apoya Ahora <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
           </CustomButton>
         </Link>
       </div>

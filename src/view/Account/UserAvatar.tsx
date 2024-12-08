@@ -40,6 +40,7 @@ export const UserAvatar: React.FC = () => {
           img={user?.avatar?.url}
           size="xl"
           rounded
+          className="border-2 border-solid border-lavender-purple rounded-full shadow-xl"
         />
         <form
           onSubmit={onSubmit}

@@ -12,6 +12,7 @@ import * as DonationService from "../../services/donation.service";
 import { MessageCard } from "../../components/Message/Message";
 import { useAuthStore } from "../../store/Auth.store";
 import { PaymentMode } from "../../types/Donation.types";
+import { customTheme } from "../../theme";
 
 export const DonationSection: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -88,26 +89,33 @@ export const DonationSection: React.FC = () => {
   }
 
   return (
-    <section className="py-10">
-      <div>
-        <div className="flex justify-center items-center gap-4 pb-8">
+    <section className="my-10">
+      <div className="flex flex-col justify-center items-center gap-10 ">
+        <img
+          src="https://res.cloudinary.com/dyntsz5qv/image/upload/v1733582101/icons_e4e5cp.png"
+          alt="donation-icons"
+        />
+        <div className="flex justify-center items-center gap-4">
           <span
             className={`text-md ${!isMonthly ? "text-royal-purple font-bold" : "text-gray-500"}`}
           >
-            One off
+            Pago único
           </span>
           <ToggleSwitch
+            theme={customTheme["toggleSwitch"]}
             checked={isMonthly}
+            color="royal-purple"
             onChange={setIsMonthly}
           />
           <span
             className={`text-md ${isMonthly ? "text-royal-purple font-bold" : "text-gray-500"}`}
           >
-            Monthly
+            Mensual
           </span>
         </div>
-
-        <div className="flex flex-wrap gap-4 justify-center mt-12">
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 mt-10 gap-10">
+        <div className="flex flex-wrap gap-3 justify-center">
           {donationTiers.map((tier) => (
             <DonationTierCard
               key={tier.productId}
@@ -122,37 +130,40 @@ export const DonationSection: React.FC = () => {
             />
           ))}
         </div>
-      </div>
-      {!isMonthly && (
-        <div className="flex flex-col md:flex-row justify-around items-center mt-10 gap-10">
-          <form
-            className="flex justify-center items-center gap-2"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <InputField
-              name="amount"
-              control={control}
-              label="Choose your own amount"
-              type="number"
-              min={1}
-              step="1"
-              placeholder={`$`}
-              className="md:w-80"
-            />
 
-            <CustomButton
-              className={errors.amount ? "mt-0" : "mt-8"}
-              type="submit"
+        <div className="flex flex-col gap-2 max-h-[55rem]">
+          {!isMonthly && (
+            <form
+              className="flex flex-col md:flex-row justify-center items-center gap-2"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              Donate
-            </CustomButton>
-          </form>
-          <img
-            src="./src/assets/icons.png"
-            alt="donation-icons"
-          />
+              <InputField
+                name="amount"
+                control={control}
+                label="Escoge el monto que deseas donar"
+                type="number"
+                min={1}
+                step="1"
+                placeholder={`S/.`}
+                className="md:w-80"
+              />
+              <CustomButton
+                className={errors.amount ? "mt-0" : "mt-8"}
+                type="submit"
+              >
+                Donar
+              </CustomButton>
+            </form>
+          )}
+          <div className="hidden lg:flex lg:justify-center lg:items-end h-full">
+            <img
+              src="https://res.cloudinary.com/dyntsz5qv/image/upload/v1733675075/cute-golden-retriever_sltikn.jpg"
+              alt="donation-icons"
+              className="w-full h-full max-h-[50rem]"
+            />
+          </div>
         </div>
-      )}
+      </div>
     </section>
   );
 };

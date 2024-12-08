@@ -18,6 +18,7 @@ import { PET_GENDERS, PET_AGES } from "../../constants/allowValues";
 import { LIMIT_PAGE } from "../../constants/api";
 import { useAuthStore } from "../../store/Auth.store";
 import { formatAge } from "../../utils/formatFields";
+import { customTheme } from "../../theme";
 
 export const SearchPet: React.FC = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const SearchPet: React.FC = () => {
     control,
     handleSubmit,
     setValue,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<SearchFormData>({
     resolver: zodResolver(SearchSchema),
     defaultValues: {
@@ -148,7 +149,7 @@ export const SearchPet: React.FC = () => {
     <>
       <div className="flex flex-col gap-2 mt-4">
         <div className="w-full p-4 ">
-          <span>{JSON.stringify(errors)}</span>
+          {/* <span>{JSON.stringify(errors)}</span> */}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col md:flex-row md:items-end justify-center gap-4 "
@@ -156,7 +157,7 @@ export const SearchPet: React.FC = () => {
             <div className="relative w-full md:w-96">
               <Label
                 htmlFor="location"
-                value="Location"
+                value="Ubicación"
                 className="text-slate-gray font-semibold mb-2 block"
               />
               <Controller
@@ -169,7 +170,7 @@ export const SearchPet: React.FC = () => {
                       icon={HiLocationMarker}
                       id="location"
                       type="text"
-                      placeholder="Where are you finding a friend?"
+                      placeholder="Dónde estás buscando un amigo?"
                       onChange={(e) => handleInputChange(e.target.value, field.onChange)}
                     />
                   </div>
@@ -198,28 +199,28 @@ export const SearchPet: React.FC = () => {
             <SelectField
               control={control}
               name="petType"
-              label="Categories"
+              label="Categorias"
               icon={FaPaw}
               options={categories}
-              placeholder="Pet type"
+              placeholder="Seleccionar"
             />
             <div className="gap-4 grid grid-cols-2">
               <SelectField
                 control={control}
                 name="gender"
-                label="Gender"
+                label="Género"
                 icon={FaVenusMars}
                 options={PET_GENDERS}
-                placeholder="Gender"
+                placeholder="Seleccionar"
               />
 
               <SelectField
                 control={control}
                 name="age"
-                label="Age"
+                label="Edad"
                 icon={FaVenusMars}
                 options={PET_AGES}
-                placeholder="ages"
+                placeholder="Seleccionar"
               />
             </div>
 
@@ -228,11 +229,11 @@ export const SearchPet: React.FC = () => {
               color="royal-purple"
             >
               <HiSearch className="w-5 h-5 mr-2" />
-              Search
+              Buscar
             </CustomButton>
           </form>
         </div>
-        <div className="w-full flex flex-wrap gap-4 justify-around">
+        <div className="w-full flex flex-wrap gap-4 md:gap-8 justify-around">
           {pets.map((pet) => (
             <PetCard
               key={pet.petId}
@@ -243,9 +244,7 @@ export const SearchPet: React.FC = () => {
               shelterName={pet.shelterName}
               location={pet.address}
               gender={pet.gender as "male" | "female"}
-              imageUrl={
-                "https://res.cloudinary.com/dyntsz5qv/image/upload/v1731002111/tsjzsokbmwphu3uveuqp.png"
-              }
+              imageUrl={pet.profilePicture}
               isFavorite={pet.isFavorite}
             />
           ))}
@@ -254,6 +253,7 @@ export const SearchPet: React.FC = () => {
 
       <div className="flex justify-center mt-10">
         <Pagination
+          theme={customTheme["pagination"]}
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={onPageChange}

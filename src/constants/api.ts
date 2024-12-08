@@ -20,6 +20,8 @@ export const API_ENDPOINTS = {
   GET_DEPARTMENTS: "/api/v1/places/departments",
   FIND_ALL_ADOPTION_PLANS: "/api/v1/adoptions/applications",
   CREATE_ADOPTION_APPLICATION: "/api/v1/adoptions/applications",
+  FIND_ALL_DONATION_USER: "/api/v1/donations/my-donations",
+  SEND_CONTACT_MESSAGE: "/api/v1/email-sender/contact",
 };
 
-export const LIMIT_PAGE = 3;
+export const LIMIT_PAGE = 5;

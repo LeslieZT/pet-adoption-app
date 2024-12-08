@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Card } from "flowbite-react";
 import { AccountSidebar, ContentType } from "../components/Navbar/Sidebar";
-import { ProfileSection, AplicationSection, FavoritePetsSection } from "../view/Account";
+import {
+  ProfileSection,
+  AplicationSection,
+  FavoritePetsSection,
+  DonationUserSection,
+} from "../view/Account";
 import { MainLayout } from "../layouts/Main.layout";
 
 const AccountPage: React.FC = () => {
   const [activeContent, setActiveContent] = useState<ContentType>("profile");
+  const location = useLocation();
+
+  useEffect(() => {
+    setActiveContent(location.hash.substring(1) as ContentType);
+  }, []);
+
   const renderContent = () => {
     switch (activeContent) {
       case "profile":
@@ -14,6 +26,8 @@ const AccountPage: React.FC = () => {
         return <AplicationSection />;
       case "favorite-pets":
         return <FavoritePetsSection />;
+      case "donations":
+        return <DonationUserSection />;
       default:
         return <ProfileSection />;
     }
@@ -21,7 +35,7 @@ const AccountPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="flex md:min-h-[80vh] flex-col md:flex-row gap-4 items-stretch">
+      <div className="flex md:min-h-[80vh] flex-col lg:flex-row gap-4 items-stretch">
         <AccountSidebar
           activeContent={activeContent}
           setActiveContent={setActiveContent}
