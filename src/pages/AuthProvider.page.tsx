@@ -31,12 +31,11 @@ const AuthProviderPage: React.FC = () => {
           expiresAt: parseInt(expiresAt),
         },
       });
-     
+
       setTimeout(() => {
         setLoading(false);
         navigate("/home");
       }, 2000);
-
     }
   }, []);
 

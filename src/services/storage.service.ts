@@ -15,7 +15,7 @@ export const uploadFile = async (
   const response = await postRequest<ResponseApi<FileUploadResponse[]>>(UPLOAD_FILE, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
-      "X-Channel": channel,
+      "X-Channel": `${channel}`,
       Authorization: `Bearer ${credentials.accessToken}`,
     },
   });

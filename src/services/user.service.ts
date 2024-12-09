@@ -13,7 +13,7 @@ export const getUser = async (
 ): Promise<ResponseApi<User>> => {
   const response = await getRequest<ResponseApi<User>>(GET_USER, {
     headers: {
-      "X-Channel": channel,
+      "X-Channel": `${channel}`,
       Authorization: `Bearer ${credential.accessToken}`,
     },
   });
@@ -27,7 +27,7 @@ export const updateUser = async (
 ): Promise<ResponseApi<UpdateUserResponse>> => {
   const response = await putRequest<ResponseApi<UpdateUserResponse>>(UPDATE_USER, params, {
     headers: {
-      "X-Channel": channel,
+      "X-Channel": `${channel}`,
       Authorization: `Bearer ${credential.accessToken}`,
     },
   });

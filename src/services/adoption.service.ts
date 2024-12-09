@@ -12,7 +12,7 @@ export const findAllByUser = async (channel: ChannelType, credentials: AuthCrede
     FIND_ALL_ADOPTION_PLANS,
     {
       headers: {
-        "X-Channel": channel,
+        "X-Channel": `${channel}`,
         Authorization: `Bearer ${credentials.accessToken}`,
       },
     },
