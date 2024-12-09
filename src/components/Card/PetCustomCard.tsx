@@ -1,10 +1,10 @@
 import { Card } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineArrowOutward, MdOutlinePets } from "react-icons/md";
 import { PiCoinsFill } from "react-icons/pi";
 import { Heading } from "../Typography";
 import { Paragraph } from "../Typography/Paragraph";
 import { CustomButton } from "../Buttons";
-import { Link } from "react-router-dom";
 
 interface PetCustomCardProps {
   icon: "donate" | "adopt";
@@ -13,6 +13,8 @@ interface PetCustomCardProps {
   gender: "male" | "female";
   variant?: "light" | "dark";
   className?: string;
+  isAdopt?: boolean;
+  handleClick?: () => void;
 }
 
 const icons = {
@@ -27,7 +29,10 @@ export const PetCustomCard: React.FC<PetCustomCardProps> = ({
   gender,
   variant = "light",
   className = "",
+  isAdopt = false,
+  handleClick = () => {},
 }) => {
+  const navigate = useNavigate();
   const primaryColor = gender === "male" ? "aqua-blue" : "vibrant-pink";
   const secondaryColor = gender === "male" ? "light-aqua-blue" : "light-vibrant-pink";
 
@@ -37,6 +42,14 @@ export const PetCustomCard: React.FC<PetCustomCardProps> = ({
   const btnColor = variant === "dark" ? secondaryColor : primaryColor;
 
   const Icon = icons[icon];
+
+  const handleClickButton = () => {
+    if (isAdopt) {
+        handleClick()
+    } else {
+      navigate('/donate');
+    }
+  };
 
   return (
     <Card
@@ -59,14 +72,15 @@ export const PetCustomCard: React.FC<PetCustomCardProps> = ({
           {description}
         </Paragraph>
 
-        <Link to="/donate">
+        
           <CustomButton
+            onClick={handleClickButton}
             color={btnColor}
             className="mt-6 py-2 w-auto md: max-w-sm"
           >
-            Donate Now <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
+            {isAdopt ? "Adoptar": "Donar"} Ahora <MdOutlineArrowOutward className="ml-2 h-5 w-5" />
           </CustomButton>
-        </Link>
+ 
       </div>
     </Card>
   );

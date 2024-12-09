@@ -237,6 +237,8 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
             title={`Dale a ${data.name} un hogar para siempre`}
             description="Todas nuestras mascotas sin hogar solo quieren una familia amorosa para formar parte de ella. Si estás buscando una nueva mascota, ¿por qué no considerar adoptar de nosotros?"
             gender={data.gender}
+            isAdopt={true}
+            handleClick={handleAdopt}
           />
           <div className="min-w-[16rem] md:max-w-[30rem]">
             <img
