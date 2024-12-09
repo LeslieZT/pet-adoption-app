@@ -36,7 +36,7 @@ const AuthProviderPage: React.FC = () => {
         setTimeout(() => {
           setLoading(false);
           navigate("/home");
-        }, 2000);
+        }, 500);
       } catch (error: any) {
         console.error("Error en signInWithOAuthCallback:", error);
         navigate("/error");

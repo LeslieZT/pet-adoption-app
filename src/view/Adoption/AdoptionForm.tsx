@@ -14,6 +14,8 @@ import { Heading } from "../../components/Typography";
 import { useAuthStore } from "../../store/Auth.store";
 import * as AdoptionService from "../../services/adoption.service";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { formatRefCode } from "../../utils/formatFields";
 
 interface AdoptionFormProps {
   petId: number;
@@ -23,7 +25,7 @@ interface AdoptionFormProps {
 export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) => {
   const { channel, credential } = useAuthStore((state) => state);
   const [error, setError] = useState<string | null>(null);
-
+  const navigate = useNavigate();
   const { control, handleSubmit, reset } = useForm<AdoptionApplicationFormData>({
     resolver: zodResolver(AdoptionApplicationSchema),
     defaultValues: {
@@ -44,15 +46,13 @@ export const AdoptionForm: React.FC<AdoptionFormProps> = ({ petId, className }) 
 
   const onSubmit = async (data: AdoptionApplicationFormData) => {
     try {
-      const response = await AdoptionService.create(
+      await AdoptionService.create(
         { application: data, petId },
         channel,
         credential!,
       );
       reset();
-      if (response.data) {
-        alert("Solicitud enviada exitosamente");
-      }
+      navigate(`/adopt/${formatRefCode(petId)}/application-form/success`);
     } catch (error: any) {
       setError(error.message);
     }
