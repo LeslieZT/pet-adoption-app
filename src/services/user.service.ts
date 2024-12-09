@@ -16,8 +16,8 @@ export const getUser = async (
       "X-Channel": channel,
       Authorization: `Bearer ${credential.accessToken}`,
     },
-  })
-  
+  });
+
   const response = await getRequest<ResponseApi<User>>(GET_USER, {
     headers: {
       "X-Channel": channel,

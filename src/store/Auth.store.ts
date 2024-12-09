@@ -3,7 +3,7 @@ import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { SignInOAuthResponse } from "./../types/Auth.types";
 import { AuthState, SignInWithOAuthCallbackRequest } from "./Auth.store.type";
 import { SignInRequest, SignUpRequest } from "../types/Auth.types";
-import { ChannelType } from "../enum/ChannelType.enum";
+import { CHANNEL_ADOPTION, ChannelType } from "../enum/ChannelType.enum";
 import * as AuthService from "../services/auth.service";
 import * as UserService from "../services/user.service";
 import { User } from "../types/User.types";
@@ -14,7 +14,7 @@ export const useAuthStore = create<AuthState>()(
       (set, get) => ({
         user: null,
         isAuthenticated: false,
-        channel: ChannelType.ADOPTION,
+        channel: CHANNEL_ADOPTION,
         credential: null,
         signIn: async (params: SignInRequest) => {
           try {
