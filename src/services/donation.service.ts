@@ -28,7 +28,7 @@ export const makeCustomDonation = async (
 export const findAllByUser = async (channel: string, credentials: any) => {
   const response = await getRequest<ResponseApi<DonationUserResponse[]>>(FIND_ALL_DONATION_USER, {
     headers: {
-      "X-Channel": `${channel}`,
+      "X-Channel": channel,
       Authorization: `Bearer ${credentials.accessToken}`,
     },
   });

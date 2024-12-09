@@ -51,7 +51,7 @@ export const markAsFavorite = async (
     { ...params },
     {
       headers: {
-        "X-Channel": `${channel}`,
+        "X-Channel": channel,
         Authorization: `Bearer ${credentials.accessToken}`,
       },
     },
@@ -69,7 +69,7 @@ export const getFavoritePets = async (
     { ...params },
     {
       headers: {
-        "X-Channel": `${channel}`,
+        "X-Channel": channel,
         Authorization: `Bearer ${credentials.accessToken}`,
       },
     },

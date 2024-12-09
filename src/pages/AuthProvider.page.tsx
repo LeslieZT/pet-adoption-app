@@ -18,24 +18,29 @@ const AuthProviderPage: React.FC = () => {
   const refreshToken = hashParams.get("refresh_token");
   const expiresIn = hashParams.get("expires_in");
   const expiresAt = hashParams.get("expires_at");
-  console.log({ channel, accessToken, refreshToken, expiresIn, expiresAt });
+
   useEffect(() => {
     if (provider && channel && accessToken && refreshToken && expiresIn && expiresAt) {
-      setChhanel(channel as ChannelType);
-      signInWithOAuthCallback({
-        provider,
-        credential: {
-          accessToken,
-          refreshToken,
-          expiresIn: parseInt(expiresIn),
-          expiresAt: parseInt(expiresAt),
-        },
-      });
+      try {
+        setChhanel(channel as ChannelType);
+        signInWithOAuthCallback({
+          provider,
+          credential: {
+            accessToken,
+            refreshToken,
+            expiresIn: parseInt(expiresIn),
+            expiresAt: parseInt(expiresAt),
+          },
+        });
 
-      setTimeout(() => {
-        setLoading(false);
-        navigate("/home");
-      }, 2000);
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/home");
+        }, 2000);
+      } catch (error: any) {
+        console.error("Error en signInWithOAuthCallback:", error);
+        navigate("/error");
+      }
     }
   }, []);
 

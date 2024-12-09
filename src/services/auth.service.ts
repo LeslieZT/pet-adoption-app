@@ -19,7 +19,7 @@ export const signUp = async (
   channel: ChannelType,
 ): Promise<ResponseApi<SignUpResponse>> => {
   const response = await postRequest<ResponseApi<SignUpResponse>>(SIGN_UP, params, {
-    headers: { "X-Channel": `${channel}` },
+    headers: { "X-Channel": channel },
   });
   return response;
 };
@@ -29,7 +29,7 @@ export const signIn = async (
   channel: ChannelType,
 ): Promise<ResponseApi<SignInResponse>> => {
   const response = await postRequest<ResponseApi<SignInResponse>>(SIGN_IN, params, {
-    headers: { "X-Channel": `${channel}` },
+    headers: { "X-Channel": channel },
   });
   return response;
 };
@@ -39,7 +39,7 @@ export const signInWithOAuth = async (
   channel: ChannelType,
 ): Promise<ResponseApi<SignInOAuthResponse>> => {
   const response = await postRequest<ResponseApi<SignInOAuthResponse>>(SIGN_IN_OAUTH, params, {
-    headers: { "X-Channel": `${channel}` },
+    headers: { "X-Channel": channel },
   });
   return response;
 };
@@ -51,7 +51,7 @@ export const signInWithOAuthCallback = async (
   const response = await postRequest<ResponseApi<SignInOAuthResponse>>(
     SIGN_IN_OAUTH_CALLBACK,
     params,
-    { headers: { "X-Channel": `${channel}` } },
+    { headers: { "X-Channel": channel } },
   );
   return response;
 };
