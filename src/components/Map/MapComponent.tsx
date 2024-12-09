@@ -44,21 +44,23 @@ export const MapComponent: React.FC<MapComponentProps> = ({
   classname,
 }) => {
   return (
-    <MapContainer
-      center={position}
-      zoom={13}
-      className={`rounded-lg shadow-lg min-h-[350px] min-w-[250px] ${classname}`}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <Marker
-        position={position}
-        icon={CustomMarkerIcon(gender)}
+    <div>
+      <MapContainer
+        center={position}
+        zoom={13}
+        className={`relative z-10 rounded-lg shadow-lg min-h-[350px] min-w-[250px] ${classname}`}
       >
-        <Popup>{market}</Popup>
-      </Marker>
-    </MapContainer>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <Marker
+          position={position}
+          icon={CustomMarkerIcon(gender)}
+        >
+          <Popup>{market}</Popup>
+        </Marker>
+      </MapContainer>
+    </div>
   );
 };

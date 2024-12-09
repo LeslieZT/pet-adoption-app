@@ -18,7 +18,7 @@ import {
 import { useAuthStore } from "../../store/Auth.store";
 import * as PetService from "../../services/pet.service";
 import { formatAge, formatRefCode } from "../../utils/formatFields";
-import { Spinner } from "flowbite-react";
+import { Card, Spinner } from "flowbite-react";
 import { ModalCustom } from "../../components/Modal/ModalCustom";
 
 interface PetProfileProps {
@@ -237,10 +237,12 @@ export const PetProfile: React.FC<PetProfileProps> = ({ id }) => {
             title={`Dale a ${data.name} un hogar para siempre`}
             description="Todas nuestras mascotas sin hogar solo quieren una familia amorosa para formar parte de ella. Si estás buscando una nueva mascota, ¿por qué no considerar adoptar de nosotros?"
             gender={data.gender}
+            isAdopt={true}
+            handleClick={handleAdopt}
           />
-          <div className="min-w-[16rem] md:max-w-[30rem]">
+          <div className={"min-w-[25rem] md:max-w-[30rem] rounded-lg shadow-md "}   >
             <img
-              className="w-full h-full min-w-96 max-h-96 object-cover rounded-lg shadow-md"
+              className="w-full h-auto  max-h-[23rem] object-cover rounded-lg shadow-md "
               src={data.profilePicture}
               alt={`${data.name}-${formatRefCode(data.petId)}-adopcion`}
             />
