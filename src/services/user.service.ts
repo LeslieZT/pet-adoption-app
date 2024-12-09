@@ -11,9 +11,16 @@ export const getUser = async (
   credential: AuthCredentials,
   channel: ChannelType,
 ): Promise<ResponseApi<User>> => {
+  console.log(channel, {
+    headers: {
+      "X-Channel": channel,
+      Authorization: `Bearer ${credential.accessToken}`,
+    },
+  })
+  
   const response = await getRequest<ResponseApi<User>>(GET_USER, {
     headers: {
-      "X-Channel": `${channel}`,
+      "X-Channel": channel,
       Authorization: `Bearer ${credential.accessToken}`,
     },
   });
