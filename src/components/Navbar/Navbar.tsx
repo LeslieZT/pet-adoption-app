@@ -30,7 +30,7 @@ export const NavbarApp: React.FC = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="sticky top-0 z-30 bg-white shadow-md">
         <Navbar className="py-4 px-4 w-full">
           <Navbar.Brand
             as={Link}
