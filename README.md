@@ -35,6 +35,8 @@
 - [Core Features](#core-features)
 - [Get Started with Happy Paws](#get-started-with-happy-paws)
 
+---
+
 ### What Problem Does Happy Paws Solve?
 
 Millions of animals in shelters dream of finding a forever home, yet they remain unseen. On the other side, people longing for companionship often struggle to connect with shelters or navigate cumbersome adoption processes.
