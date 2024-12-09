@@ -18,7 +18,7 @@ const AuthProviderPage: React.FC = () => {
   const refreshToken = hashParams.get("refresh_token");
   const expiresIn = hashParams.get("expires_in");
   const expiresAt = hashParams.get("expires_at");
-
+  console.log({ channel, accessToken, refreshToken, expiresIn, expiresAt });
   useEffect(() => {
     if (provider && channel && accessToken && refreshToken && expiresIn && expiresAt) {
       setChhanel(channel as ChannelType);
@@ -31,8 +31,12 @@ const AuthProviderPage: React.FC = () => {
           expiresAt: parseInt(expiresAt),
         },
       });
-      setLoading(false);
-      navigate("/home");
+     
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/home");
+      }, 2000);
+
     }
   }, []);
 
