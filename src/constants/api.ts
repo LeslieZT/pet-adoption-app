@@ -24,4 +24,4 @@ export const API_ENDPOINTS = {
   SEND_CONTACT_MESSAGE: "/api/v1/email-sender/contact",
 };
 
-export const LIMIT_PAGE = 5;
+export const LIMIT_PAGE = 10;
