@@ -18,7 +18,7 @@ import {
 import { useAuthStore } from "../../store/Auth.store";
 import * as PetService from "../../services/pet.service";
 import { formatAge, formatRefCode } from "../../utils/formatFields";
-import { Card, Spinner } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 import { ModalCustom } from "../../components/Modal/ModalCustom";
 
 interface PetProfileProps {
