@@ -63,7 +63,7 @@ Happy Paws bridges this gap by making it simple and intuitive to find, love, and
 4. **Favorites**: Save pets you love and revisit them anytime.
 5. **Adoption Journey Management**: Track your adoption applications, from submission to final approval.
 6. **Secure Authentication**: Sign up and log in securely to access personalized features.
-7  **Support Through Donations**: Contribute to shelters and animals in need through one-time payments or monthly subscriptions. Your generosity helps provide food, medical care, and a safe haven for animals awaiting adoption
+7. **Support Through Donations**: Contribute to shelters and animals in need through one-time payments or monthly subscriptions. Your generosity helps provide food, medical care, and a safe haven for animals awaiting adoption
 
 ---
 
