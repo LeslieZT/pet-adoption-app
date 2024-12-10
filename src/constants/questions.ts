@@ -2,7 +2,7 @@ export const AdoptApplicationQuestions = [
   {
     id: "1",
     code: "isPlaceOwned",
-    question: "¿Cuántas mascotas tienes?",
+    question: "¿Tienes mascotas en tu hogar?",
   },
   {
     id: "2",

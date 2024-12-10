@@ -39,7 +39,7 @@ export const AdoptSection: React.FC = () => {
       </div>
 
       <div className="flex flex-col items-start justify-center gap-6 md:gap-8">
-        <SubTitle className="text-justify md:text-left">Cómo Adoptar a Tu Nuevo Amigo</SubTitle>
+        <SubTitle className="text-justify md:text-left">¿Cómo Adoptar a tu Nuevo Amigo?</SubTitle>
         <Paragraph className="text-justify">
           ¿Estas listo para llevar a casa a tu nuevo mejor amigo? Explora, conoce, adopta y comienza
           hoy mismo tu viaje lleno de amor y alegría.
